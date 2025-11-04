@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Help Center - MPlace Mortgage</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-green: #10B981;
+      --dark-900: #111827;
+      --dark-700: #374151;
+      --gray-500: #6B7280;
+      --gray-100: #F3F4F6;
+      --gold-accent: #F59E0B;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--dark-900);
+      line-height: 1.6;
+    }
+    
+    .font-display {
+      font-family: 'Playfair Display', serif;
+    }
+    
+    /* Custom Utilities */
+    .btn-primary {
+      @apply bg-[var(--primary-green)] text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-green-600 transition shadow-lg hover:shadow-xl;
+    }
+    
+    .btn-outline-green {
+      @apply border-2 border-[var(--primary-green)] text-[var(--primary-green)] px-8 py-4 rounded-lg font-semibold hover:bg-[var(--primary-green)] hover:text-white transition;
+    }
+    
+    .card {
+      @apply bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition;
+    }
+    
+    .form-input {
+      @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--primary-green)] focus:border-transparent outline-none transition;
+    }
+    
+    .form-label {
+      @apply block text-sm font-semibold text-[var(--dark-700)] mb-2;
+    }
+    
+    /* Smooth Scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Calculator Box */
+    .calc-box {
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 60px rgba(16, 185, 129, 0.3);
+    }
+    
+    .calc-input-group {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    /* Hero Section */
+    .hero-gradient {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.95) 0%, rgba(5, 150, 105, 0.95) 100%),
+                  url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+      background-size: cover;
+      background-position: center;
+      color: white;
+    }
+    
+    .hero-gradient h1,
+    .hero-gradient p {
+      color: white;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    /* Badge */
+    .badge-green {
+      @apply bg-white text-[var(--primary-green)] px-4 py-2 rounded-full text-sm font-bold shadow-lg;
+    }
+    
+    /* FAQ Accordion */
+    .faq-item {
+      @apply bg-white rounded-xl p-6 mb-4 shadow-md cursor-pointer hover:shadow-lg transition;
+    }
+    
+    .faq-question {
+      @apply flex items-center justify-between text-lg font-bold text-[var(--dark-900)];
+    }
+    
+    .faq-answer {
+      @apply mt-4 text-[var(--gray-500)] hidden;
+    }
+    
+    .faq-answer.active {
+      display: block;
+    }
+    
+    .faq-icon {
+      transition: transform 0.3s ease;
+    }
+    
+    .faq-icon.rotate {
+      transform: rotate(180deg);
+    }
+    
+    /* Resource Card */
+    .resource-card {
+      @apply bg-gradient-to-br from-green-50 to-white rounded-xl p-6 border-2 border-green-100 hover:border-[var(--primary-green)] transition;
+    }
+    
+    /* Scroll Progress Indicator */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-green) 0%, var(--gold-accent) 100%);
+      z-index: 9999;
+      transition: width 0.1s ease;
+    }
+    
+    /* Tab Navigation */
+    .tab-btn {
+      @apply px-6 py-3 font-semibold rounded-lg transition;
+    }
+    
+    .tab-btn.active {
+      @apply bg-[var(--primary-green)] text-white;
+    }
+    
+    .tab-btn:not(.active) {
+      @apply text-[var(--gray-500)] hover:bg-gray-100;
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress" id="scroll-progress"></div>
+  
+  <!-- Navigation -->
+  <nav class="fixed w-full bg-white shadow-md z-50">
+    <div class="container mx-auto px-4 lg:px-8 py-4">
+      <div class="flex items-center justify-between">
+        <a href="index.html" class="flex items-center space-x-2">
+          <svg class="w-10 h-10 text-[var(--primary-green)]" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+          </svg>
+          <span class="text-2xl font-display font-bold text-[var(--dark-900)]">MPlace Mortgage</span>
+        </a>
+        
+        <div class="hidden md:flex space-x-8">
+          <a href="index.html#services" class="text-[var(--dark-700)] hover:text-[var(--primary-green)] transition font-medium">Services</a>
+          <a href="help-center.html" class="text-[var(--primary-green)] transition font-medium">Help Center</a>
+          <a href="index.html#contact" class="text-[var(--dark-700)] hover:text-[var(--primary-green)] transition font-medium">Contact</a>
+        </div>
+        
+        <div class="flex items-center space-x-4">
+          <a href="#apply" class="btn-primary py-3 px-6 text-base hidden sm:block">Apply Now</a>
+          <button id="mobile-menu-btn" class="md:hidden text-[var(--dark-700)] hover:text-[var(--primary-green)]">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+        <a href="index.html#services" class="block py-2 text-[var(--dark-700)] hover:text-[var(--primary-green)] transition font-medium">Services</a>
+        <a href="help-center.html" class="block py-2 text-[var(--primary-green)] transition font-medium">Help Center</a>
+        <a href="index.html#contact" class="block py-2 text-[var(--dark-700)] hover:text-[var(--primary-green)] transition font-medium">Contact</a>
+        <a href="#apply" class="block py-2 text-[var(--primary-green)] hover:text-green-600 transition font-semibold">Apply Now</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-gradient pt-32 pb-20">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+        <div class="flex items-center justify-center mb-4">
+          <span class="badge-green">HELP CENTER</span>
+        </div>
+        <h1 class="text-5xl lg:text-6xl font-display font-bold text-white mt-4 mb-6 leading-tight">
+          Everything You Need to Know About Mortgages
+        </h1>
+        <p class="text-xl text-white mb-12 max-w-2xl mx-auto">
+          Calculators, guides, FAQs, and resources to help you make confident home financing decisions
+        </p>
+        
+        <!-- Quick Navigation -->
+        <div class="flex flex-wrap gap-4 justify-center">
+          <a href="#calculators" class="bg-white text-[var(--primary-green)] px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition shadow-lg">Calculators</a>
+          <a href="#faq" class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-[var(--primary-green)] transition">FAQs</a>
+          <a href="#resources" class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-[var(--primary-green)] transition">Resources</a>
+          <a href="#glossary" class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-[var(--primary-green)] transition">Glossary</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mortgage Calculators Section -->
+  <section id="calculators" class="py-20 bg-[var(--gray-100)]">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-12" data-aos="fade-up">
+        <span class="text-[var(--primary-green)] font-semibold text-sm uppercase tracking-wider">Tools & Calculators</span>
+        <h2 class="text-4xl lg:text-5xl font-display font-bold text-[var(--dark-900)] mt-4 mb-6">
+          Calculate Your Numbers
+        </h2>
+        <p class="text-xl text-[var(--gray-500)] max-w-3xl mx-auto">
+          Use our interactive calculators to estimate payments, affordability, and savings
+        </p>
+      </div>
+      
+      <!-- Calculator Tabs -->
+      <div class="max-w-5xl mx-auto mb-8" data-aos="fade-up">
+        <div class="flex flex-wrap gap-4 justify-center mb-8">
+          <button class="tab-btn active" data-tab="payment">Monthly Payment</button>
+          <button class="tab-btn" data-tab="affordability">How Much Can I Afford?</button>
+          <button class="tab-btn" data-tab="refinance">Refinance Savings</button>
+        </div>
+        
+        <!-- Monthly Payment Calculator -->
+        <div id="payment" class="tab-content active">
+          <div class="calc-box">
+            <h3 class="text-3xl font-bold text-white mb-6 text-center">Monthly Payment Calculator</h3>
+            <form id="payment-calc" class="calc-input-group">
+              <div class="grid md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <label class="form-label text-center">Home Price</label>
+                  <input type="text" class="form-input text-center text-lg font-semibold" id="home-price" placeholder="$350,000" value="350000">
+                </div>
+                <div>
+                  <label class="form-label text-center">Down Payment (%)</label>
+                  <input type="text" class="form-input text-center text-lg font-semibold" id="down-percent" placeholder="20%" value="20">
+                </div>
+                <div>
+                  <label class="form-label text-center">Interest Rate (%)</label>
+                  <input type="text" class="form-input text-center text-lg font-semibold" id="interest-rate" placeholder="6.75%" value="6.75">
+                </div>
+                <div>
+                  <label class="form-label text-center">Loan Term (years)</label>
+                  <select class="form-input text-center text-lg font-semibold" id="loan-term">
+                    <option value="30">30 years</option>
+                    <option value="20">20 years</option>
+                    <option value="15">15 years</option>
+                    <option value="10">10 years</option>
+                  </select>
+                </div>
+              </div>
+              <button type="submit" class="btn-primary w-full text-xl bg-white text-[var(--primary-green)] hover:bg-gray-50">
+                Calculate Payment
+              </button>
+            </form>
+            
+            <div id="payment-result" class="hidden text-center mt-8">
+              <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-8">
+                <p class="text-white text-lg mb-3 font-semibold">Estimated Monthly Payment</p>
+                <p class="text-7xl font-bold text-white mb-6" id="monthly-payment">$0</p>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 text-white">
+                  <div>
+                    <p class="text-white/80 text-sm mb-1">Down Payment</p>
+                    <p class="text-xl font-bold" id="down-amount">$0</p>
+                  </div>
+                  <div>
+                    <p class="text-white/80 text-sm mb-1">Loan Amount</p>
+                    <p class="text-xl font-bold" id="loan-amount">$0</p>
+                  </div>
+                  <div>
+                    <p class="text-white/80 text-sm mb-1">Total Interest</p>
+                    <p class="text-xl font-bold" id="total-interest">$0</p>
+                  </div>
+                  <div>
+                    <p class="text-white/80 text-sm mb-1">Total Paid</p>
+                    <p class="text-xl font-bold" id="total-paid">$0</p>
+                  </div>
+                </div>
+                
+                <p class="text-white/80 text-sm mb-6">*Estimate includes principal and interest only. Does not include property taxes, insurance, or HOA fees.</p>
+                <a href="#apply" class="btn-primary bg-white text-[var(--primary-green)] hover:bg-gray-50">
+                  Get Pre-Approved Now →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Affordability Calculator -->
+        <div id="affordability" class="tab-content">
+          <div class="calc-box">
+            <h3 class="text-3xl font-bold text-white mb-6 text-center">Affordability Calculator</h3>
+            <form id="affordability-calc" class="calc-input-group">
+              <div class="grid md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <label class="form-label text-center">Annual Income</label>
+                  <input type="text" class="form-input text-center text-lg font-semibold" id="annual-income" placeholder="$75,000" value="75000">
+                </div>
+                <div>
+                  <label class="form-label text-center">Monthly Debts</label>
+                  <input type="text" class="form-input text-center text-lg font-semibold" id="monthly-debts" placeholder="$500" value="500">
+                </div>
+                <div>
+                  <label class="form-label text-center">Down Payment</label>
+                  <input type="text" class="form-input text-center text-lg font-semibold" id="down-payment-amt" placeholder="$50,000" value="50000">
+                </div>
+                <div>
+                  <label class="form-label text-center">Interest Rate (%)</label>
+                  <input type="text" class="form-input text-center text-lg font-semibold" id="afford-rate" placeholder="6.75%" value="6.75">
+                </div>
+              </div>
+              <button type="submit" class="btn-primary w-full text-xl bg-white text-[var(--primary-green)] hover:bg-gray-50">
+                Calculate Affordability
+              </button>
+            </form>
+            
+            <div id="affordability-result" class="hidden text-center mt-8">
+              <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-8">
+                <p class="text-white text-lg mb-3 font-semibold">Maximum Home Price</p>
+                <p class="text-7xl font-bold text-white mb-6" id="max-home-price">$0</p>
+                
+                <div class="grid grid-cols-2 gap-4 mb-6 text-white">
+                  <div>
+                    <p class="text-white/80 text-sm mb-1">Maximum Loan Amount</p>
+                    <p class="text-xl font-bold" id="max-loan">$0</p>
+                  </div>
+                  <div>
+                    <p class="text-white/80 text-sm mb-1">Estimated Monthly Payment</p>
+                    <p class="text-xl font-bold" id="estimated-payment">$0</p>
+                  </div>
+                </div>
+                
+                <p class="text-white/80 text-sm mb-6">*Based on 28% front-end and 36% back-end debt-to-income ratios. Actual qualification may vary.</p>
+                <a href="#apply" class="btn-primary bg-white text-[var(--primary-green)] hover:bg-gray-50">
+                  Start Your Application →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Refinance Calculator -->
+        <div id="refinance" class="tab-content">
+          <div class="calc-box">
+            <h3 class="text-3xl font-bold text-white mb-6 text-center">Refinance Savings Calculator</h3>
+            <form id="refinance-calc" class="calc-input-group">
+              <div class="grid md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <label class="form-label text-center">Current Loan Balance</label>
+                  <input type="text" class="form-input text-center text-lg font-semibold" id="current-balance" placeholder="$280,000" value="280000">
+                </div>
+                <div>
+                  <label class="form-label text-center">Current Interest Rate (%)</label>
+                  <input type="text" class="form-input text-center text-lg font-semibold" id="current-rate" placeholder="7.5%" value="7.5">
+                </div>
+                <div>
+                  <label class="form-label text-center">New Interest Rate (%)</label>
+                  <input type="text" class="form-input text-center text-lg font-semibold" id="new-rate" placeholder="6.25%" value="6.25">
+                </div>
+                <div>
+                  <label class="form-label text-center">Remaining Term (years)</label>
+                  <input type="text" class="form-input text-center text-lg font-semibold" id="remaining-term" placeholder="25" value="25">
+                </div>
+              </div>
+              <button type="submit" class="btn-primary w-full text-xl bg-white text-[var(--primary-green)] hover:bg-gray-50">
+                Calculate Savings
+              </button>
+            </form>
+            
+            <div id="refinance-result" class="hidden text-center mt-8">
+              <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-8">
+                <p class="text-white text-lg mb-3 font-semibold">Monthly Savings</p>
+                <p class="text-7xl font-bold text-white mb-6" id="monthly-savings">$0</p>
+                
+                <div class="grid grid-cols-3 gap-4 mb-6 text-white">
+                  <div>
+                    <p class="text-white/80 text-sm mb-1">Current Payment</p>
+                    <p class="text-xl font-bold" id="current-payment">$0</p>
+                  </div>
+                  <div>
+                    <p class="text-white/80 text-sm mb-1">New Payment</p>
+                    <p class="text-xl font-bold" id="new-payment">$0</p>
+                  </div>
+                  <div>
+                    <p class="text-white/80 text-sm mb-1">Lifetime Savings</p>
+                    <p class="text-xl font-bold" id="lifetime-savings">$0</p>
+                  </div>
+                </div>
+                
+                <p class="text-white/80 text-sm mb-6">*Estimates do not include closing costs. Actual savings may vary.</p>
+                <a href="#apply" class="btn-primary bg-white text-[var(--primary-green)] hover:bg-gray-50">
+                  Check Refinance Options →
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="py-20 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-[var(--primary-green)] font-semibold text-sm uppercase tracking-wider">Frequently Asked Questions</span>
+        <h2 class="text-4xl lg:text-5xl font-display font-bold text-[var(--dark-900)] mt-4 mb-6">
+          Got Questions? We've Got Answers
+        </h2>
+      </div>
+      
+      <div class="max-w-4xl mx-auto">
+        <!-- FAQ Categories -->
+        <div class="flex flex-wrap gap-3 justify-center mb-12" data-aos="fade-up">
+          <button class="faq-filter-btn px-6 py-2 bg-[var(--primary-green)] text-white rounded-full font-semibold" data-category="all">All Questions</button>
+          <button class="faq-filter-btn px-6 py-2 bg-gray-200 text-[var(--gray-500)] rounded-full font-semibold hover:bg-gray-300" data-category="getting-started">Getting Started</button>
+          <button class="faq-filter-btn px-6 py-2 bg-gray-200 text-[var(--gray-500)] rounded-full font-semibold hover:bg-gray-300" data-category="process">Process</button>
+          <button class="faq-filter-btn px-6 py-2 bg-gray-200 text-[var(--gray-500)] rounded-full font-semibold hover:bg-gray-300" data-category="qualification">Qualification</button>
+          <button class="faq-filter-btn px-6 py-2 bg-gray-200 text-[var(--gray-500)] rounded-full font-semibold hover:bg-gray-300" data-category="loans">Loan Types</button>
+        </div>
+        
+        <!-- FAQ Items -->
+        <div class="space-y-4" id="faq-container">
+          <!-- Getting Started -->
+          <div class="faq-item" data-category="getting-started" data-aos="fade-up">
+            <div class="faq-question">
+              <span>How much do I need for a down payment?</span>
+              <svg class="w-6 h-6 text-[var(--primary-green)] faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+            <div class="faq-answer">
+              <p>It depends on your loan type! Conventional loans can go as low as 3% down for first-time buyers. FHA loans require just 3.5%. VA loans offer 0% down for eligible veterans and active military. USDA loans also offer 0% down in eligible rural areas. The traditional 20% down payment helps you avoid PMI and get better rates, but it's not required.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item" data-category="getting-started" data-aos="fade-up">
+            <div class="faq-question">
+              <span>What credit score do I need to buy a house?</span>
+              <svg class="w-6 h-6 text-[var(--primary-green)] faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+            <div class="faq-answer">
+              <p>Minimum credit scores vary by loan type. FHA loans can work with scores as low as 580 (or 500 with 10% down). Conventional loans typically need 620+. VA loans are more flexible. For the best rates, aim for 740+. Even if your score is lower, we can help you explore options and work on improving your credit.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item" data-category="getting-started" data-aos="fade-up">
+            <div class="faq-question">
+              <span>Should I get pre-qualified or pre-approved?</span>
+              <svg class="w-6 h-6 text-[var(--primary-green)] faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+            <div class="faq-answer">
+              <p>Get pre-approved! Pre-qualification is a quick estimate based on self-reported info. Pre-approval means we've verified your finances, pulled your credit, and you have a conditional commitment for a specific loan amount. In competitive markets, sellers often require pre-approval letters before accepting offers.</p>
+            </div>
+          </div>
+          
+          <!-- Process -->
+          <div class="faq-item" data-category="process" data-aos="fade-up">
+            <div class="faq-question">
+              <span>How long does it take to close on a house?</span>
+              <svg class="w-6 h-6 text-[var(--primary-green)] faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+            <div class="faq-answer">
+              <p>Typically 30-45 days from offer acceptance to closing. The process includes: offer acceptance, home inspection (7-10 days), appraisal (1-2 weeks), underwriting (1-2 weeks), and final closing (1 day). We can expedite to 21 days if needed. VA and FHA loans may take slightly longer due to additional requirements.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item" data-category="process" data-aos="fade-up">
+            <div class="faq-question">
+              <span>What documents do I need to apply?</span>
+              <svg class="w-6 h-6 text-[var(--primary-green)] faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+            <div class="faq-answer">
+              <p>Be ready with: 2 years of W-2s and tax returns, recent pay stubs (last 30 days), 2 months of bank statements, photo ID, proof of any other income, and employment verification. Self-employed? You'll need business tax returns and possibly a P&L statement. We'll provide a complete checklist during pre-approval.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item" data-category="process" data-aos="fade-up">
+            <div class="faq-question">
+              <span>What are closing costs and how much are they?</span>
+              <svg class="w-6 h-6 text-[var(--primary-green)] faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+            <div class="faq-answer">
+              <p>Closing costs typically run 2-5% of the loan amount and include: appraisal fee ($500-$800), title insurance, loan origination fees, escrow/attorney fees, prepaid taxes and insurance, and recording fees. On a $300K loan, expect $6,000-$15,000. You can negotiate seller credits or roll some costs into your loan in certain cases.</p>
+            </div>
+          </div>
+          
+          <!-- Qualification -->
+          <div class="faq-item" data-category="qualification" data-aos="fade-up">
+            <div class="faq-question">
+              <span>What is debt-to-income ratio and why does it matter?</span>
+              <svg class="w-6 h-6 text-[var(--primary-green)] faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+            <div class="faq-answer">
+              <p>Your DTI is your total monthly debt payments divided by your gross monthly income. Most lenders want to see 43% or less (some loans allow up to 50%). This includes your future mortgage payment, car loans, student loans, credit cards, and other debts. Lower DTI = stronger application and better rates.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item" data-category="qualification" data-aos="fade-up">
+            <div class="faq-question">
+              <span>Can I buy a house with student loan debt?</span>
+              <svg class="w-6 h-6 text-[var(--primary-green)] faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+            <div class="faq-answer">
+              <p>Absolutely! Student loans are factored into your debt-to-income ratio, but they don't disqualify you. We use either your actual payment or 0.5-1% of the loan balance as the monthly payment. Income-driven repayment plans can help. Many first-time buyers successfully purchase homes while carrying student debt.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item" data-category="qualification" data-aos="fade-up">
+            <div class="faq-question">
+              <span>Can I use gift money for my down payment?</span>
+              <svg class="w-6 h-6 text-[var(--primary-green)] faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+            <div class="faq-answer">
+              <p>Yes! Gift funds from family members are allowed on most loan types. You'll need a gift letter stating it's a gift (not a loan) and documentation of the transfer. FHA allows 100% of your down payment to be gifted. Conventional loans may require some of your own funds. The donor typically needs to be a relative.</p>
+            </div>
+          </div>
+          
+          <!-- Loan Types -->
+          <div class="faq-item" data-category="loans" data-aos="fade-up">
+            <div class="faq-question">
+              <span>What's the difference between fixed-rate and ARM loans?</span>
+              <svg class="w-6 h-6 text-[var(--primary-green)] faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+            <div class="faq-answer">
+              <p>Fixed-rate mortgages lock your rate for the entire loan term (15, 20, or 30 years). Adjustable-Rate Mortgages (ARMs) have a fixed rate for an initial period (5, 7, or 10 years), then adjust annually based on market rates. ARMs offer lower initial rates but carry rate-change risk. Best for those planning to sell or refinance before adjustment.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item" data-category="loans" data-aos="fade-up">
+            <div class="faq-question">
+              <span>Should I choose a 15-year or 30-year mortgage?</span>
+              <svg class="w-6 h-6 text-[var(--primary-green)] faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+            <div class="faq-answer">
+              <p>It depends on your goals! 30-year loans have lower monthly payments and more flexibility, making them popular for first-time buyers. 15-year loans have higher payments but significantly lower total interest (often saving $100K+) and faster equity building. Consider your budget, goals, and other financial priorities. You can always make extra payments on a 30-year loan.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item" data-category="loans" data-aos="fade-up">
+            <div class="faq-question">
+              <span>What is PMI and how can I avoid it?</span>
+              <svg class="w-6 h-6 text-[var(--primary-green)] faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+            <div class="faq-answer">
+              <p>Private Mortgage Insurance (PMI) protects the lender if you default. It's required on conventional loans with less than 20% down, typically costing 0.5-1% of the loan annually. Ways to avoid it: Put 20% down, use a piggyback loan (80-10-10), choose a VA loan (no PMI), or ask about lender-paid PMI options. PMI can be removed once you reach 20% equity.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item" data-category="loans" data-aos="fade-up">
+            <div class="faq-question">
+              <span>Can I get a mortgage if I'm self-employed?</span>
+              <svg class="w-6 h-6 text-[var(--primary-green)] faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+            <div class="faq-answer">
+              <p>Yes! Self-employed buyers qualify for the same loan programs. You'll need 2 years of tax returns (personal and business), year-to-date P&L, business license, and bank statements. Lenders average your income over 2 years. Business write-offs reduce qualifying income, so plan accordingly. We also offer bank statement loans for those with complex income documentation.</p>
+            </div>
+          </div>
+          
+          <div class="faq-item" data-category="qualification" data-aos="fade-up">
+            <div class="faq-question">
+              <span>How does a past bankruptcy or foreclosure affect my chances?</span>
+              <svg class="w-6 h-6 text-[var(--primary-green)] faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </div>
+            <div class="faq-answer">
+              <p>You can still qualify! FHA loans allow bankruptcy after 2 years and foreclosure after 3 years (with extenuating circumstances). Conventional loans require 4 years post-bankruptcy and 7 years post-foreclosure. VA loans are more flexible. You'll need to re-establish good credit and show financial stability. Many people successfully buy homes after financial hardship.</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="text-center mt-12" data-aos="fade-up">
+          <p class="text-[var(--gray-500)] mb-6 text-lg">Still have questions?</p>
+          <a href="#apply" class="btn-outline-green">Schedule a Call with an Expert</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Resources Section -->
+  <section id="resources" class="py-20 bg-[var(--gray-100)]">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-[var(--primary-green)] font-semibold text-sm uppercase tracking-wider">Download & Learn</span>
+        <h2 class="text-4xl lg:text-5xl font-display font-bold text-[var(--dark-900)] mt-4 mb-6">
+          Free Guides & Checklists
+        </h2>
+        <p class="text-xl text-[var(--gray-500)] max-w-3xl mx-auto">
+          Everything you need to navigate the home buying process with confidence
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <!-- Resource 1 -->
+        <div class="resource-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 rounded-lg bg-[var(--primary-green)] flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-[var(--dark-900)]">First-Time Buyer Guide</h3>
+              <p class="text-sm text-[var(--primary-green)] font-semibold">PDF Download</p>
+            </div>
+          </div>
+          <p class="text-[var(--gray-500)] mb-6">
+            Complete step-by-step guide covering everything from pre-approval to closing. Includes timeline, checklist, and pro tips.
+          </p>
+          <button class="w-full bg-[var(--primary-green)] text-white py-3 rounded-lg font-semibold hover:bg-green-600 transition">
+            Download Guide →
+          </button>
+        </div>
+        
+        <!-- Resource 2 -->
+        <div class="resource-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 rounded-lg bg-[var(--primary-green)] flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-[var(--dark-900)]">Document Checklist</h3>
+              <p class="text-sm text-[var(--primary-green)] font-semibold">PDF Download</p>
+            </div>
+          </div>
+          <p class="text-[var(--gray-500)] mb-6">
+            Comprehensive list of every document you'll need for your mortgage application. Get organized before you start.
+          </p>
+          <button class="w-full bg-[var(--primary-green)] text-white py-3 rounded-lg font-semibold hover:bg-green-600 transition">
+            Download Checklist →
+          </button>
+        </div>
+        
+        <!-- Resource 3 -->
+        <div class="resource-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 rounded-lg bg-[var(--primary-green)] flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-[var(--dark-900)]">Closing Cost Worksheet</h3>
+              <p class="text-sm text-[var(--primary-green)] font-semibold">Excel Download</p>
+            </div>
+          </div>
+          <p class="text-[var(--gray-500)] mb-6">
+            Detailed breakdown of all closing costs with estimator tool. Plan your cash-to-close accurately.
+          </p>
+          <button class="w-full bg-[var(--primary-green)] text-white py-3 rounded-lg font-semibold hover:bg-green-600 transition">
+            Download Worksheet →
+          </button>
+        </div>
+        
+        <!-- Resource 4 -->
+        <div class="resource-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 rounded-lg bg-[var(--primary-green)] flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-[var(--dark-900)]">Home Inspection Guide</h3>
+              <p class="text-sm text-[var(--primary-green)] font-semibold">PDF Download</p>
+            </div>
+          </div>
+          <p class="text-[var(--gray-500)] mb-6">
+            What to expect during inspection, red flags to watch for, and how to negotiate repairs with sellers.
+          </p>
+          <button class="w-full bg-[var(--primary-green)] text-white py-3 rounded-lg font-semibold hover:bg-green-600 transition">
+            Download Guide →
+          </button>
+        </div>
+        
+        <!-- Resource 5 -->
+        <div class="resource-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 rounded-lg bg-[var(--primary-green)] flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-[var(--dark-900)]">Credit Score Booster</h3>
+              <p class="text-sm text-[var(--primary-green)] font-semibold">PDF Download</p>
+            </div>
+          </div>
+          <p class="text-[var(--gray-500)] mb-6">
+            Proven strategies to improve your credit score quickly. Get better rates by boosting your score 50-100 points.
+          </p>
+          <button class="w-full bg-[var(--primary-green)] text-white py-3 rounded-lg font-semibold hover:bg-green-600 transition">
+            Download Guide →
+          </button>
+        </div>
+        
+        <!-- Resource 6 -->
+        <div class="resource-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 rounded-lg bg-[var(--primary-green)] flex items-center justify-center mr-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-[var(--dark-900)]">30-60-90 Day Timeline</h3>
+              <p class="text-sm text-[var(--primary-green)] font-semibold">PDF Download</p>
+            </div>
+          </div>
+          <p class="text-[var(--gray-500)] mb-6">
+            Month-by-month action plan from pre-approval to moving day. Stay on track with this visual timeline.
+          </p>
+          <button class="w-full bg-[var(--primary-green)] text-white py-3 rounded-lg font-semibold hover:bg-green-600 transition">
+            Download Timeline →
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Glossary Section -->
+  <section id="glossary" class="py-20 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-[var(--primary-green)] font-semibold text-sm uppercase tracking-wider">Mortgage Dictionary</span>
+        <h2 class="text-4xl lg:text-5xl font-display font-bold text-[var(--dark-900)] mt-4 mb-6">
+          Common Mortgage Terms Explained
+        </h2>
+        <p class="text-xl text-[var(--gray-500)] max-w-3xl mx-auto">
+          No more confusion—here's what all those mortgage terms actually mean
+        </p>
+      </div>
+      
+      <div class="max-w-4xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-6">
+          <!-- Term 1 -->
+          <div class="card" data-aos="fade-up" data-aos-delay="100">
+            <h3 class="text-xl font-bold text-[var(--dark-900)] mb-2">Amortization</h3>
+            <p class="text-[var(--gray-500)]">
+              The process of paying off your loan over time through regular payments. Each payment covers both principal and interest.
+            </p>
+          </div>
+          
+          <!-- Term 2 -->
+          <div class="card" data-aos="fade-up" data-aos-delay="150">
+            <h3 class="text-xl font-bold text-[var(--dark-900)] mb-2">APR (Annual Percentage Rate)</h3>
+            <p class="text-[var(--gray-500)]">
+              The true cost of your loan including interest rate plus fees, expressed as a yearly rate. Always higher than your interest rate.
+            </p>
+          </div>
+          
+          <!-- Term 3 -->
+          <div class="card" data-aos="fade-up" data-aos-delay="200">
+            <h3 class="text-xl font-bold text-[var(--dark-900)] mb-2">Closing Disclosure</h3>
+            <p class="text-[var(--gray-500)]">
+              Final document showing all loan terms, costs, and fees. You'll receive this 3 days before closing to review.
+            </p>
+          </div>
+          
+          <!-- Term 4 -->
+          <div class="card" data-aos="fade-up" data-aos-delay="250">
+            <h3 class="text-xl font-bold text-[var(--dark-900)] mb-2">DTI (Debt-to-Income)</h3>
+            <p class="text-[var(--gray-500)]">
+              Your total monthly debt divided by gross monthly income. Lenders use this to determine how much you can afford.
+            </p>
+          </div>
+          
+          <!-- Term 5 -->
+          <div class="card" data-aos="fade-up" data-aos-delay="100">
+            <h3 class="text-xl font-bold text-[var(--dark-900)] mb-2">Escrow</h3>
+            <p class="text-[var(--gray-500)]">
+              Account where your lender holds funds for property taxes and insurance, paying them on your behalf annually.
+            </p>
+          </div>
+          
+          <!-- Term 6 -->
+          <div class="card" data-aos="fade-up" data-aos-delay="150">
+            <h3 class="text-xl font-bold text-[var(--dark-900)] mb-2">LTV (Loan-to-Value)</h3>
+            <p class="text-[var(--gray-500)]">
+              Your loan amount divided by the home's value. Lower LTV means more equity and often better rates. 80% LTV = 20% down.
+            </p>
+          </div>
+          
+          <!-- Term 7 -->
+          <div class="card" data-aos="fade-up" data-aos-delay="200">
+            <h3 class="text-xl font-bold text-[var(--dark-900)] mb-2">Points</h3>
+            <p class="text-[var(--gray-500)]">
+              Fees paid upfront to lower your interest rate. One point = 1% of loan amount. Also called "discount points."
+            </p>
+          </div>
+          
+          <!-- Term 8 -->
+          <div class="card" data-aos="fade-up" data-aos-delay="250">
+            <h3 class="text-xl font-bold text-[var(--dark-900)] mb-2">Pre-Approval</h3>
+            <p class="text-[var(--gray-500)]">
+              Conditional commitment from a lender for a specific loan amount after verifying your finances and credit.
+            </p>
+          </div>
+          
+          <!-- Term 9 -->
+          <div class="card" data-aos="fade-up" data-aos-delay="100">
+            <h3 class="text-xl font-bold text-[var(--dark-900)] mb-2">Principal</h3>
+            <p class="text-[var(--gray-500)]">
+              The amount you borrow (not including interest). Each payment chips away at principal, building your equity.
+            </p>
+          </div>
+          
+          <!-- Term 10 -->
+          <div class="card" data-aos="fade-up" data-aos-delay="150">
+            <h3 class="text-xl font-bold text-[var(--dark-900)] mb-2">Title Insurance</h3>
+            <p class="text-[var(--gray-500)]">
+              Protects against ownership disputes or claims on your property. Required by lenders; owner's policy optional but recommended.
+            </p>
+          </div>
+          
+          <!-- Term 11 -->
+          <div class="card" data-aos="fade-up" data-aos-delay="200">
+            <h3 class="text-xl font-bold text-[var(--dark-900)] mb-2">Underwriting</h3>
+            <p class="text-[var(--gray-500)]">
+              The lender's process of evaluating your application, verifying documents, and assessing risk before final approval.
+            </p>
+          </div>
+          
+          <!-- Term 12 -->
+          <div class="card" data-aos="fade-up" data-aos-delay="250">
+            <h3 class="text-xl font-bold text-[var(--dark-900)] mb-2">PITI</h3>
+            <p class="text-[var(--gray-500)]">
+              Principal, Interest, Taxes, and Insurance—your complete monthly housing payment. Always budget for PITI, not just P&I.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="apply" class="py-20 bg-[var(--primary-green)] text-white">
+    <div class="container mx-auto px-4 lg:px-8 text-center">
+      <div class="max-w-3xl mx-auto" data-aos="fade-up">
+        <h2 class="text-4xl lg:text-5xl font-display font-bold mb-6">
+          Ready to Start Your Home Journey?
+        </h2>
+        <p class="text-xl mb-8 text-green-50">
+          Now that you're informed, let's get you pre-approved and shopping for your dream home.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#" class="btn-primary bg-white text-[var(--primary-green)] hover:bg-gray-50">Start Application →</a>
+          <a href="tel:555-123-4567" class="btn-outline-green border-white text-white hover:bg-white hover:text-[var(--primary-green)]">Call Us: (555) 123-4567</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-[var(--dark-900)] text-white py-16">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <!-- Company Info -->
+        <div>
+          <div class="flex items-center space-x-2 mb-6">
+            <svg class="w-8 h-8 text-[var(--primary-green)]" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+            </svg>
+            <span class="text-xl font-display font-bold">MPlace Mortgage</span>
+          </div>
+          <p class="text-gray-400 mb-4">
+            Your trusted partner in achieving homeownership dreams.
+          </p>
+        </div>
+        
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-lg font-semibold mb-6">Loan Products</h4>
+          <ul class="space-y-3">
+            <li><a href="purchase-loans.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">Purchase Loans</a></li>
+            <li><a href="refinance.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">Refinancing</a></li>
+            <li><a href="va-loans.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">VA Loans</a></li>
+            <li><a href="fha-loans.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">FHA Loans</a></li>
+            <li><a href="203k-loans.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">203k Renovation</a></li>
+            <li><a href="jumbo-loans.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">Jumbo Loans</a></li>
+          </ul>
+        </div>
+        
+        <!-- Resources -->
+        <div>
+          <h4 class="text-lg font-semibold mb-6">Resources</h4>
+          <ul class="space-y-3">
+            <li><a href="help-center.html#calculators" class="text-gray-400 hover:text-[var(--primary-green)] transition">Calculators</a></li>
+            <li><a href="help-center.html#faq" class="text-gray-400 hover:text-[var(--primary-green)] transition">FAQ</a></li>
+            <li><a href="help-center.html#resources" class="text-gray-400 hover:text-[var(--primary-green)] transition">Downloads</a></li>
+            <li><a href="privacy-policy.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">Privacy Policy</a></li>
+            <li><a href="terms-of-service.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">Terms of Service</a></li>
+          </ul>
+        </div>
+        
+        <!-- Contact -->
+        <div>
+          <h4 class="text-lg font-semibold mb-6">Contact Us</h4>
+          <div class="space-y-3 text-gray-400">
+            <p>123 Main Street<br>Your City, ST 12345</p>
+            <p>(555) 123-4567</p>
+            <p>info@mplacemortgage.com</p>
+            <p class="text-sm">Mon-Fri: 9AM - 6PM<br>Sat: 10AM - 4PM</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-700 pt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <p class="text-gray-400 text-sm mb-4 md:mb-0">
+            © 2024 MPlace Mortgage. All rights reserved.
+          </p>
+          <div class="flex space-x-6 text-sm">
+            <a href="#" class="text-gray-400 hover:text-[var(--primary-green)] transition">NMLS #123456</a>
+            <a href="#" class="text-gray-400 hover:text-[var(--primary-green)] transition">Equal Housing Lender</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 800,
+      once: true,
+      offset: 100
+    });
+    
+    // Mobile Menu Toggle
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    });
+    
+    // Scroll Progress Indicator
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('scroll-progress').style.width = scrolled + '%';
+    });
+    
+    // Calculator Tab Switching
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const tabId = btn.getAttribute('data-tab');
+        
+        // Remove active class from all tabs and contents
+        tabBtns.forEach(b => b.classList.remove('active'));
+        tabContents.forEach(c => c.classList.remove('active'));
+        
+        // Add active class to clicked tab and corresponding content
+        btn.classList.add('active');
+        document.getElementById(tabId).classList.add('active');
+      });
+    });
+    
+    // Monthly Payment Calculator
+    document.getElementById('payment-calc').addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const homePrice = parseFloat(document.getElementById('home-price').value.replace(/[^0-9.]/g, ''));
+      const downPercent = parseFloat(document.getElementById('down-percent').value);
+      const interestRate = parseFloat(document.getElementById('interest-rate').value);
+      const loanTerm = parseInt(document.getElementById('loan-term').value);
+      
+      const downPayment = homePrice * (downPercent / 100);
+      const loanAmount = homePrice - downPayment;
+      
+      // Calculate monthly payment
+      const monthlyRate = interestRate / 100 / 12;
+      const numPayments = loanTerm * 12;
+      const monthlyPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) / 
+                            (Math.pow(1 + monthlyRate, numPayments) - 1);
+      
+      // Calculate totals
+      const totalPaid = monthlyPayment * numPayments;
+      const totalInterest = totalPaid - loanAmount;
+      
+      // Update display
+      document.getElementById('monthly-payment').textContent = 
+        '$' + Math.round(monthlyPayment).toLocaleString();
+      document.getElementById('down-amount').textContent = 
+        '$' + Math.round(downPayment).toLocaleString();
+      document.getElementById('loan-amount').textContent = 
+        '$' + Math.round(loanAmount).toLocaleString();
+      document.getElementById('total-interest').textContent = 
+        '$' + Math.round(totalInterest).toLocaleString();
+      document.getElementById('total-paid').textContent = 
+        '$' + Math.round(totalPaid).toLocaleString();
+      
+      document.getElementById('payment-result').classList.remove('hidden');
+    });
+    
+    // Affordability Calculator
+    document.getElementById('affordability-calc').addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const annualIncome = parseFloat(document.getElementById('annual-income').value.replace(/[^0-9.]/g, ''));
+      const monthlyDebts = parseFloat(document.getElementById('monthly-debts').value.replace(/[^0-9.]/g, ''));
+      const downPayment = parseFloat(document.getElementById('down-payment-amt').value.replace(/[^0-9.]/g, ''));
+      const interestRate = parseFloat(document.getElementById('afford-rate').value);
+      
+      const monthlyIncome = annualIncome / 12;
+      
+      // Use 28% front-end ratio
+      const maxMonthlyPayment = monthlyIncome * 0.28;
+      
+      // Calculate max loan amount (30-year term)
+      const monthlyRate = interestRate / 100 / 12;
+      const numPayments = 30 * 12;
+      const maxLoan = maxMonthlyPayment * (Math.pow(1 + monthlyRate, numPayments) - 1) / 
+                     (monthlyRate * Math.pow(1 + monthlyRate, numPayments));
+      
+      const maxHomePrice = maxLoan + downPayment;
+      
+      // Update display
+      document.getElementById('max-home-price').textContent = 
+        '$' + Math.round(maxHomePrice).toLocaleString();
+      document.getElementById('max-loan').textContent = 
+        '$' + Math.round(maxLoan).toLocaleString();
+      document.getElementById('estimated-payment').textContent = 
+        '$' + Math.round(maxMonthlyPayment).toLocaleString();
+      
+      document.getElementById('affordability-result').classList.remove('hidden');
+    });
+    
+    // Refinance Calculator
+    document.getElementById('refinance-calc').addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const currentBalance = parseFloat(document.getElementById('current-balance').value.replace(/[^0-9.]/g, ''));
+      const currentRate = parseFloat(document.getElementById('current-rate').value);
+      const newRate = parseFloat(document.getElementById('new-rate').value);
+      const remainingTerm = parseFloat(document.getElementById('remaining-term').value);
+      
+      // Calculate current payment
+      const currentMonthlyRate = currentRate / 100 / 12;
+      const currentNumPayments = remainingTerm * 12;
+      const currentPayment = currentBalance * (currentMonthlyRate * Math.pow(1 + currentMonthlyRate, currentNumPayments)) / 
+                            (Math.pow(1 + currentMonthlyRate, currentNumPayments) - 1);
+      
+      // Calculate new payment
+      const newMonthlyRate = newRate / 100 / 12;
+      const newNumPayments = remainingTerm * 12;
+      const newPayment = currentBalance * (newMonthlyRate * Math.pow(1 + newMonthlyRate, newNumPayments)) / 
+                        (Math.pow(1 + newMonthlyRate, newNumPayments) - 1);
+      
+      const monthlySavings = currentPayment - newPayment;
+      const lifetimeSavings = monthlySavings * newNumPayments;
+      
+      // Update display
+      document.getElementById('monthly-savings').textContent = 
+        '$' + Math.round(monthlySavings).toLocaleString();
+      document.getElementById('current-payment').textContent = 
+        '$' + Math.round(currentPayment).toLocaleString();
+      document.getElementById('new-payment').textContent = 
+        '$' + Math.round(newPayment).toLocaleString();
+      document.getElementById('lifetime-savings').textContent = 
+        '$' + Math.round(lifetimeSavings).toLocaleString();
+      
+      document.getElementById('refinance-result').classList.remove('hidden');
+    });
+    
+    // FAQ Accordion
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const answer = item.querySelector('.faq-answer');
+        const icon = item.querySelector('.faq-icon');
+        
+        // Toggle current item
+        answer.classList.toggle('active');
+        icon.classList.toggle('rotate');
+      });
+    });
+    
+    // FAQ Filter
+    const filterBtns = document.querySelectorAll('.faq-filter-btn');
+    
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const category = btn.getAttribute('data-category');
+        
+        // Update button styles
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-[var(--primary-green)]', 'text-white');
+          b.classList.add('bg-gray-200', 'text-[var(--gray-500)]');
+        });
+        btn.classList.remove('bg-gray-200', 'text-[var(--gray-500)]');
+        btn.classList.add('bg-[var(--primary-green)]', 'text-white');
+        
+        // Filter FAQ items
+        faqItems.forEach(item => {
+          if (category === 'all' || item.getAttribute('data-category') === category) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+    
+    // Format currency inputs
+    document.querySelectorAll('input[type="text"]').forEach(input => {
+      if (input.placeholder && (input.placeholder.includes('$') || input.id.includes('income') || input.id.includes('balance'))) {
+        input.addEventListener('blur', (e) => {
+          let value = e.target.value.replace(/[^0-9.]/g, '');
+          if (value && !isNaN(value)) {
+            e.target.value = parseFloat(value).toLocaleString();
+          }
+        });
+        
+        input.addEventListener('focus', (e) => {
+          e.target.value = e.target.value.replace(/[^0-9.]/g, '');
+        });
+      }
+    });
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
