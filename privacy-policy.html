@@ -1,1 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy - Meetingplace Mortgage</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-green: #10B981;
+      --dark-900: #111827;
+      --dark-700: #374151;
+      --gray-500: #6B7280;
+      --gray-100: #F3F4F6;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--dark-900);
+      line-height: 1.8;
+    }
+    
+    .font-display {
+      font-family: 'Playfair Display', serif;
+    }
+    
+    /* Smooth Scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    .content-section {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .content-section h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--dark-900);
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    .content-section h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--dark-700);
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    
+    .content-section p {
+      margin-bottom: 1rem;
+      color: var(--gray-500);
+    }
+    
+    .content-section ul {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--gray-500);
+    }
+    
+    .content-section li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .last-updated {
+      color: var(--gray-500);
+      font-style: italic;
+      margin-bottom: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="fixed w-full bg-white shadow-md z-50">
+    <div class="container mx-auto px-4 lg:px-8 py-4">
+      <div class="flex items-center justify-between">
+        <a href="index.html" class="flex items-center space-x-2">
+          <svg class="w-10 h-10 text-[var(--primary-green)]" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+          </svg>
+          <span class="text-2xl font-display font-bold text-[var(--dark-900)]">Meetingplace Mortgage</span>
+        </a>
+        
+        <div class="hidden md:flex space-x-8">
+          <a href="index.html#services" class="text-[var(--dark-700)] hover:text-[var(--primary-green)] transition font-medium">Services</a>
+          <a href="help-center.html" class="text-[var(--dark-700)] hover:text-[var(--primary-green)] transition font-medium">Help Center</a>
+          <a href="index.html#contact" class="text-[var(--dark-700)] hover:text-[var(--primary-green)] transition font-medium">Contact</a>
+        </div>
+        
+        <div class="flex items-center space-x-4">
+          <a href="index.html#apply" class="bg-[var(--primary-green)] text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition hidden sm:block">Apply Now</a>
+          <button id="mobile-menu-btn" class="md:hidden text-[var(--dark-700)] hover:text-[var(--primary-green)]">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+        <a href="index.html#services" class="block py-2 text-[var(--dark-700)] hover:text-[var(--primary-green)] transition font-medium">Services</a>
+        <a href="help-center.html" class="block py-2 text-[var(--dark-700)] hover:text-[var(--primary-green)] transition font-medium">Help Center</a>
+        <a href="index.html#contact" class="block py-2 text-[var(--dark-700)] hover:text-[var(--primary-green)] transition font-medium">Contact</a>
+        <a href="index.html#apply" class="block py-2 text-[var(--primary-green)] hover:text-green-600 transition font-semibold">Apply Now</a>
+      </div>
+    </div>
+  </nav>
 
+  <!-- Header -->
+  <section class="pt-32 pb-12 bg-[var(--gray-100)]">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-4xl lg:text-5xl font-display font-bold text-[var(--dark-900)] mb-4">
+          Privacy Policy
+        </h1>
+        <p class="text-lg text-[var(--gray-500)]">
+          Please read our privacy policy carefully before using our services
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="content-section">
+        <p class="last-updated">Last Updated: November 4, 2025</p>
+
+        <p>
+          Welcome to Meetingplace Mortgage. By accessing or using our website and services, you agree to be bound by this privacy policy. If you do not agree to this policy, please do not use our services.This privacy policy governs the use of information by Meetingplace Mortgage, Inc. as collected on the company’s website. As long as the website (www.mplacemortgage.com) is “live”; this privacy policy content will be included on the website.
+
+​
+
+Meetingplace Mortgage, Inc. is committed to security and privacy of the personal information. This privacy policy applies to that information that you submit via this website, and that Meetingplace Mortgage, Inc. receives via this website. It does not apply to the practices of businesses and people with which we have no affiliation or control.
+
+​
+
+While using this site, you may click a link which brings you to a site not controlled nor owned by Meetingplace Mortgage, Inc. In this case, you should review the policies of that site. This Meetingplace Mortgage, Inc. policy should not be taken to apply outside of www.mplacemortgage.com.
+        </p>
+
+        <h1> Information Collection, Use, and Sharing</h1>
+        <p>
+           Meetingplace Mortgage, Inc. collects personal information ("Information") from you through e-mail, forms, and other methods located on our website. This Information is collected only if you choose to submit it, and in submitting it you agree to have the Information handled in accord with this policy. This Information may include names, social security numbers, e-mail addresses, phone numbers, home data including pricing and outstanding loans, and other data as requested or provided.
+
+​
+
+Meetingplace Mortgage, Inc. takes the privacy of your information seriously. We will share your information only among our company and its affiliates and/or commonly owned companies, and may do so for any business reason. We do not sell or transfer your information to any unrelated third party, except as provided for herein.
+
+​
+
+Meetingplace Mortgage, Inc. will use your Information in order to fulfill your request. As such, information may be shared as necessary with third parties including:
+
+•          Appraisal companies 
+•          Credit agencies 
+•          Mortgage insurance companies 
+•          Title and escrow companies or Hazard Insurance Companies 
+•          Lenders
+
+Meetingplace Mortgage, Inc. will not otherwise share the Information which you have provided.
+
+Your Access to and Control of Information
+
+You may opt out of any future contacts from us, or change the information we have on file for you, at any time. You can do the following at any time by contacting us via the mailing address, email address or phone number given on our website:
+
+•          See what data we have about you, if any. 
+•          Change/correct any data we have about you. 
+•          Have us delete any data we have about you. 
+•          Express any concern you have about our use of your data or its security 
+
+We take precautions to protect your information.
+
+When you submit sensitive information via the website, your information is protected both online and offline. Wherever we collect sensitive information (such as a social security number), that information is encrypted and transmitted to us in a secure way. You can verify this by looking for a closed lock icon at the bottom of your web browser, or looking for "https" at the beginning of the address of the web page. While we use encryption to protect sensitive information transmitted online, we also protect your information offline. The computers and servers in which we store personally identifiable information are kept in a secure environment.
+
+If you feel that we are not abiding by this privacy policy, you should contact us immediately at the address, telephone number or email address below.
+        </p>
+
+        <h2> Browsing the Website</h2>
+        <p>As you browse the Website, we may record certain data about your visit. This data does not include any personally identifiable information, and cannot be traced back to you unless you choose to identify yourself and/or your access history. Data collected may include your IP address, operating system, browser type, time, date, and page visits, where you came from, and other such non-personal information. We may also place "cookies" on your computer. These help us in tracking your use of the Website, and do not collect any personally identifiable data about you. If you choose to reject these cookies, certain functions of the Website may be unable to operate.
+        </p>
+        <h3> Legal Requirements</h3>
+        <p>
+          You must be at least 18 years old and capable of entering into a legally binding agreement to use our services. By using our services, you represent and warrant that you meet these requirements.
+        </p>
+
+        <h4> This Policy May Change</h4>
+        <p>
+          This privacy policy may change at any time, for any reason, and without notice. It is your responsibility to check this policy often to ensure that you are aware of our latest policies.
+        </p>
+        <ul>
+          <li>Use the services in any way that violates any applicable federal, state, local, or international law or regulation</li>
+          <li>Transmit any material that is defamatory, obscene, or otherwise objectionable</li>
+          <li>Impersonate or attempt to impersonate Meetingplace Mortgage, our employees, another user, or any other person or entity</li>
+          <li>Engage in any conduct that restricts or inhibits anyone's use or enjoyment of the services</li>
+          <li>Use any robot, spider, or other automatic device to access the services for any purpose without our express written permission</li>
+        </ul>
+
+        <h2> Contact Information</h2>
+        <p>
+          If you have any questions about this Privacy Policy, please contact us at:
+        </p>
+        <p>
+          <strong>Meetingplace Mortgage</strong><br>
+          25 Indian Rock Road, Suite 10<br>
+          Windham, NH 03087<br>
+          Phone: (844) 123-4567<br>
+          Email: info@mplacemortgage.com
+        </p>
+
+        <hr style="margin: 3rem 0; border-color: #E5E7EB;">
+
+        <p style="text-align: center; color: var(--gray-500); font-size: 0.875rem;">
+          By using Meetingplace Mortgage's services, you acknowledge that you have read and understood this privacy policy and agree to be bound by it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-[var(--dark-900)] text-white py-16">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <!-- Company Info -->
+        <div>
+          <div class="flex items-center space-x-2 mb-6">
+            <svg class="w-8 h-8 text-[var(--primary-green)]" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+            </svg>
+            <span class="text-xl font-display font-bold">Meetingplace Mortgage</span>
+          </div>
+          <p class="text-gray-400 mb-4">
+            Your trusted partner in achieving homeownership dreams.
+          </p>
+        </div>
+        
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-lg font-semibold mb-6">Loan Products</h4>
+          <ul class="space-y-3">
+            <li><a href="purchase-loans.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">Purchase Loans</a></li>
+            <li><a href="refinance.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">Refinancing</a></li>
+            <li><a href="va-loans.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">VA Loans</a></li>
+            <li><a href="fha-loans.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">FHA Loans</a></li>
+            <li><a href="203k-loans.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">203k Renovation</a></li>
+            <li><a href="jumbo-loans.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">Jumbo Loans</a></li>
+          </ul>
+        </div>
+        
+        <!-- Resources -->
+        <div>
+          <h4 class="text-lg font-semibold mb-6">Resources</h4>
+          <ul class="space-y-3">
+            <li><a href="help-center.html#calculators" class="text-gray-400 hover:text-[var(--primary-green)] transition">Calculators</a></li>
+            <li><a href="help-center.html#faq" class="text-gray-400 hover:text-[var(--primary-green)] transition">FAQ</a></li>
+            <li><a href="help-center.html#resources" class="text-gray-400 hover:text-[var(--primary-green)] transition">Downloads</a></li>
+            <li><a href="privacy-policy.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">Privacy Policy</a></li>
+            <li><a href="terms-of-service.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">Terms of Service</a></li>
+          </ul>
+        </div>
+        
+        <!-- Contact -->
+        <div>
+          <h4 class="text-lg font-semibold mb-6">Contact Us</h4>
+          <div class="space-y-3 text-gray-400">
+            <p>25 Indian Rock Road, Suite 10<br>Windham, NH 03087</p>
+            <p>(844) 224-2275</p>
+            <p>info@mplacemortgage.com</p>
+            <p class="text-sm">Mon-Fri: 9AM - 6PM<br>Sat: 10AM - 4PM</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-700 pt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <p class="text-gray-400 text-sm mb-4 md:mb-0">
+            © 2025 Meetingplace Mortgage. All rights reserved.
+          </p>
+          <div class="flex space-x-6 text-sm">
+            <a href="#" class="text-gray-400 hover:text-[var(--primary-green)] transition">NMLS #123456</a>
+            <a href="#" class="text-gray-400 hover:text-[var(--primary-green)] transition">Equal Housing Lender</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile Menu Toggle
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>
