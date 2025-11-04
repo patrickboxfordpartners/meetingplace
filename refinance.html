@@ -1,1 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Refinance Your Mortgage - MPlace Mortgage</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-green: #10B981;
+      --dark-900: #111827;
+      --dark-700: #374151;
+      --gray-500: #6B7280;
+      --gray-100: #F3F4F6;
+      --gold-accent: #F59E0B;
+      --purple-accent: #7C3AED;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--dark-900);
+      line-height: 1.6;
+    }
+    
+    .font-display {
+      font-family: 'Playfair Display', serif;
+    }
+    
+    /* Custom Utilities */
+    .btn-primary {
+      @apply bg-[var(--primary-green)] text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-green-600 transition shadow-lg hover:shadow-xl;
+    }
+    
+    .btn-outline-green {
+      @apply border-2 border-[var(--primary-green)] text-[var(--primary-green)] px-8 py-4 rounded-lg font-semibold hover:bg-[var(--primary-green)] hover:text-white transition;
+    }
+    
+    .card {
+      @apply bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition;
+    }
+    
+    .form-input {
+      @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--primary-green)] focus:border-transparent outline-none transition;
+    }
+    
+    .form-label {
+      @apply block text-sm font-semibold text-[var(--dark-700)] mb-2;
+    }
+    
+    /* Step Numbers */
+    .step-number {
+      @apply w-16 h-16 rounded-full bg-[var(--primary-green)] text-white flex items-center justify-center text-2xl font-bold mx-auto mb-6;
+    }
+    
+    /* Smooth Scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Calculator Box */
+    .calc-box {
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 60px rgba(16, 185, 129, 0.3);
+    }
+    
+    .calc-input-group {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    /* Hero Section */
+    .hero-gradient {
+      background: linear-gradient(135deg, rgba(124, 58, 237, 0.05) 0%, rgba(255, 255, 255, 1) 100%);
+    }
+    
+    /* Badge */
+    .badge-purple {
+      @apply bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-xs font-semibold;
+    }
+    
+    /* Reason Cards */
+    .reason-card {
+      @apply bg-gradient-to-br from-purple-50 to-white rounded-xl p-6 border-2 border-purple-100 hover:border-[var(--primary-green)] transition;
+    }
+    
+    /* Savings Highlight */
+    .savings-box {
+      @apply bg-green-50 border-2 border-green-200 rounded-xl p-6 text-center;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="fixed w-full bg-white shadow-md z-50">
+    <div class="container mx-auto px-4 lg:px-8 py-4">
+      <div class="flex items-center justify-between">
+        <a href="index.html" class="flex items-center space-x-2">
+          <svg class="w-10 h-10 text-[var(--primary-green)]" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+          </svg>
+          <span class="text-2xl font-display font-bold text-[var(--dark-900)]">MPlace Mortgage</span>
+        </a>
+        
+        <div class="hidden md:flex space-x-8">
+          <a href="index.html#services" class="text-[var(--dark-700)] hover:text-[var(--primary-green)] transition font-medium">Services</a>
+          <a href="calculator.html" class="text-[var(--dark-700)] hover:text-[var(--primary-green)] transition font-medium">Calculator</a>
+          <a href="faq.html" class="text-[var(--dark-700)] hover:text-[var(--primary-green)] transition font-medium">FAQ</a>
+          <a href="resources.html" class="text-[var(--dark-700)] hover:text-[var(--primary-green)] transition font-medium">Resources</a>
+        </div>
+        
+        <a href="#apply" class="btn-primary py-3 px-6 text-base">Apply Now</a>
+      </div>
+    </div>
+  </nav>
 
+  <!-- Hero Section -->
+  <section class="hero-gradient pt-32 pb-20">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+        <div class="flex items-center justify-center mb-4">
+          <span class="badge-purple">REFINANCING</span>
+        </div>
+        <h1 class="text-5xl lg:text-6xl font-display font-bold text-[var(--dark-900)] mt-4 mb-6 leading-tight">
+          Lower Your Rate, Lower Your Payment
+        </h1>
+        <p class="text-xl text-[var(--gray-500)] mb-12 max-w-2xl mx-auto">
+          Refinancing your mortgage can save you thousands. Whether you want to reduce your monthly payment, shorten your loan term, or access your home's equity, we'll help you find the right solution.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#calculator" class="btn-primary">Calculate Your Savings</a>
+          <a href="#when-to-refinance" class="btn-outline-green">Should I Refinance?</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Benefits -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+          <div class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-2">Lower Payments</h3>
+          <p class="text-[var(--gray-500)]">Reduce your monthly payment and free up cash for other goals</p>
+        </div>
+        
+        <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+          <div class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-2">Pay Off Faster</h3>
+          <p class="text-[var(--gray-500)]">Shorten your loan term and save on interest over time</p>
+        </div>
+        
+        <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+          <div class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-2">Access Cash</h3>
+          <p class="text-[var(--gray-500)]">Tap into your home's equity for renovations or debt consolidation</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Types of Refinancing -->
+  <section class="py-20 bg-[var(--gray-100)]">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-[var(--primary-green)] font-semibold text-sm uppercase tracking-wider">Refinance Options</span>
+        <h2 class="text-4xl lg:text-5xl font-display font-bold text-[var(--dark-900)] mt-4 mb-6">
+          Choose Your Refinance Path
+        </h2>
+        <p class="text-xl text-[var(--gray-500)] max-w-3xl mx-auto">
+          Different goals require different strategies
+        </p>
+      </div>
+      
+      <div class="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <!-- Rate-and-Term Refinance -->
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="text-2xl font-bold text-[var(--dark-900)]">Rate-and-Term Refinance</h3>
+            <span class="bg-green-100 text-green-600 px-3 py-1 rounded-full text-xs font-semibold">MOST POPULAR</span>
+          </div>
+          
+          <p class="text-[var(--gray-500)] mb-6">
+            Replace your current mortgage with a new one at a better interest rate or different loan term. Your loan balance stays roughly the same (plus closing costs if you roll them in).
+          </p>
+          
+          <div class="bg-[var(--gray-100)] rounded-lg p-4 mb-6">
+            <h4 class="font-semibold text-[var(--dark-900)] mb-3">Best For:</h4>
+            <ul class="space-y-2 text-[var(--gray-500)]">
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span>Lowering your monthly payment with a better rate</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span>Shortening your loan term (30-year to 15-year)</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span>Switching from ARM to fixed-rate mortgage</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span>Removing PMI once you have 20%+ equity</span>
+              </li>
+            </ul>
+          </div>
+          
+          <div class="border-t border-gray-200 pt-4">
+            <p class="text-sm text-[var(--gray-500)] mb-4"><strong>Typical Savings:</strong> $100-$400+ per month depending on rate improvement</p>
+            <a href="#calculator" class="text-[var(--primary-green)] font-semibold hover:underline">Calculate Your Savings →</a>
+          </div>
+        </div>
+        
+        <!-- Cash-Out Refinance -->
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
+          <div class="flex items-center justify-between mb-6">
+            <h3 class="text-2xl font-bold text-[var(--dark-900)]">Cash-Out Refinance</h3>
+            <span class="badge-purple">ACCESS EQUITY</span>
+          </div>
+          
+          <p class="text-[var(--gray-500)] mb-6">
+            Replace your current mortgage with a larger loan and receive the difference in cash. Use your home's equity for major expenses while potentially still improving your rate or terms.
+          </p>
+          
+          <div class="bg-[var(--gray-100)] rounded-lg p-4 mb-6">
+            <h4 class="font-semibold text-[var(--dark-900)] mb-3">Best For:</h4>
+            <ul class="space-y-2 text-[var(--gray-500)]">
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span>Home renovations and improvements</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span>Consolidating high-interest debt (credit cards, auto loans)</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span>Major expenses (college tuition, medical bills)</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span>Investment opportunities or business needs</span>
+              </li>
+            </ul>
+          </div>
+          
+          <div class="border-t border-gray-200 pt-4">
+            <p class="text-sm text-[var(--gray-500)] mb-4"><strong>Typical Access:</strong> Up to 80% of your home's value (minus current mortgage balance)</p>
+            <a href="#apply" class="text-[var(--primary-green)] font-semibold hover:underline">Check Your Equity →</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Streamline Options -->
+      <div class="mt-12 max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- VA IRRRL -->
+          <div class="card bg-blue-50 border-2 border-blue-200" data-aos="fade-up" data-aos-delay="100">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 rounded-lg bg-blue-600 text-white flex items-center justify-center mr-4 flex-shrink-0">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-[var(--dark-900)]">VA IRRRL (Streamline)</h3>
+                <p class="text-sm text-[var(--gray-500)]">For existing VA loans</p>
+              </div>
+            </div>
+            <p class="text-[var(--gray-500)] mb-4">
+              Fast, simplified refinance for current VA loan holders with reduced documentation, no appraisal required in most cases, and the ability to roll closing costs into the loan.
+            </p>
+            <a href="va-loans.html" class="text-blue-600 font-semibold hover:underline text-sm">Learn About VA Refinancing →</a>
+          </div>
+          
+          <!-- FHA Streamline -->
+          <div class="card bg-green-50 border-2 border-green-200" data-aos="fade-up" data-aos-delay="200">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 rounded-lg bg-[var(--primary-green)] text-white flex items-center justify-center mr-4 flex-shrink-0">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold text-[var(--dark-900)]">FHA Streamline</h3>
+                <p class="text-sm text-[var(--gray-500)]">For existing FHA loans</p>
+              </div>
+            </div>
+            <p class="text-[var(--gray-500)] mb-4">
+              Quick refinance option for FHA borrowers with minimal paperwork, no income verification, no appraisal in many cases, and lower closing costs than traditional refinancing.
+            </p>
+            <a href="fha-loans.html" class="text-[var(--primary-green)] font-semibold hover:underline text-sm">Learn About FHA Refinancing →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- When to Refinance -->
+  <section id="when-to-refinance" class="py-20 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-[var(--primary-green)] font-semibold text-sm uppercase tracking-wider">Is It Time?</span>
+        <h2 class="text-4xl lg:text-5xl font-display font-bold text-[var(--dark-900)] mt-4 mb-6">
+          When Should You Refinance?
+        </h2>
+        <p class="text-xl text-[var(--gray-500)] max-w-3xl mx-auto">
+          Look for these signs that refinancing could benefit you
+        </p>
+      </div>
+      
+      <div class="max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Reason 1 -->
+          <div class="reason-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="w-12 h-12 rounded-lg bg-purple-600 text-white flex items-center justify-center mb-4">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-[var(--dark-900)] mb-2">Rates Have Dropped</h3>
+            <p class="text-[var(--gray-500)] text-sm">
+              If rates are at least 0.5-1% lower than your current rate, refinancing could save you significant money.
+            </p>
+          </div>
+          
+          <!-- Reason 2 -->
+          <div class="reason-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="w-12 h-12 rounded-lg bg-purple-600 text-white flex items-center justify-center mb-4">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-[var(--dark-900)] mb-2">Credit Score Improved</h3>
+            <p class="text-[var(--gray-500)] text-sm">
+              A better credit score since your original loan could qualify you for lower rates and better terms.
+            </p>
+          </div>
+          
+          <!-- Reason 3 -->
+          <div class="reason-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="w-12 h-12 rounded-lg bg-purple-600 text-white flex items-center justify-center mb-4">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-[var(--dark-900)] mb-2">Home Value Increased</h3>
+            <p class="text-[var(--gray-500)] text-sm">
+              More equity means better loan-to-value ratio, which can eliminate PMI or unlock cash-out options.
+            </p>
+          </div>
+          
+          <!-- Reason 4 -->
+          <div class="reason-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="w-12 h-12 rounded-lg bg-purple-600 text-white flex items-center justify-center mb-4">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-[var(--dark-900)] mb-2">ARM Is Adjusting</h3>
+            <p class="text-[var(--gray-500)] text-sm">
+              If you have an adjustable-rate mortgage about to adjust, locking in a fixed rate can provide payment stability.
+            </p>
+          </div>
+          
+          <!-- Reason 5 -->
+          <div class="reason-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="w-12 h-12 rounded-lg bg-purple-600 text-white flex items-center justify-center mb-4">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-[var(--dark-900)] mb-2">Need Cash for Projects</h3>
+            <p class="text-[var(--gray-500)] text-sm">
+              Tapping home equity through cash-out refinance often beats personal loans or credit cards with lower rates.
+            </p>
+          </div>
+          
+          <!-- Reason 6 -->
+          <div class="reason-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="w-12 h-12 rounded-lg bg-purple-600 text-white flex items-center justify-center mb-4">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-[var(--dark-900)] mb-2">Want to Pay Off Faster</h3>
+            <p class="text-[var(--gray-500)] text-sm">
+              Refinancing to a 15 or 20-year term can save tens of thousands in interest and build equity faster.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Break-Even Analysis -->
+  <section class="py-20 bg-[var(--gray-100)]">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12" data-aos="fade-up">
+          <span class="text-[var(--primary-green)] font-semibold text-sm uppercase tracking-wider">Understanding Costs</span>
+          <h2 class="text-4xl lg:text-5xl font-display font-bold text-[var(--dark-900)] mt-4 mb-6">
+            The Break-Even Point
+          </h2>
+          <p class="text-xl text-[var(--gray-500)]">
+            How long will it take to recoup your closing costs through monthly savings?
+          </p>
+        </div>
+        
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
+          <div class="grid md:grid-cols-2 gap-8 mb-8">
+            <div>
+              <h3 class="text-xl font-bold text-[var(--dark-900)] mb-4">The Calculation</h3>
+              <div class="bg-[var(--gray-100)] rounded-lg p-6 mb-4">
+                <p class="text-center text-sm text-[var(--gray-500)] mb-2">Break-Even Formula:</p>
+                <p class="text-center text-lg font-bold text-[var(--dark-900)]">
+                  Closing Costs ÷ Monthly Savings = Break-Even Months
+                </p>
+              </div>
+              <p class="text-[var(--gray-500)] text-sm">
+                If your closing costs are $5,000 and you save $200/month, you'll break even in 25 months (just over 2 years). After that, it's pure savings.
+              </p>
+            </div>
+            
+            <div>
+              <h3 class="text-xl font-bold text-[var(--dark-900)] mb-4">General Guidelines</h3>
+              <ul class="space-y-3 text-[var(--gray-500)]">
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  </svg>
+                  <span><strong>Stay 3+ years:</strong> Refinancing usually makes sense</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  </svg>
+                  <span><strong>Stay 1-2 years:</strong> Evaluate carefully, may not be worth it</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                  </svg>
+                  <span><strong>Moving soon:</strong> Probably skip refinancing unless savings are substantial</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="bg-yellow-50 border-2 border-yellow-200 rounded-lg p-6">
+            <div class="flex items-start">
+              <svg class="w-6 h-6 text-yellow-600 mr-3 flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+              </svg>
+              <div>
+                <p class="font-semibold text-[var(--dark-900)] mb-2">Pro Tip:</p>
+                <p class="text-[var(--gray-500)] text-sm">
+                  Even if your break-even is 2-3 years, refinancing might still be worth it for peace of mind (switching ARM to fixed) or accessing needed cash (cash-out refinance). Not every decision is purely financial.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Calculator Section -->
+  <section id="calculator" class="py-20 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-12" data-aos="fade-up">
+        <span class="text-[var(--primary-green)] font-semibold text-sm uppercase tracking-wider">Savings Calculator</span>
+        <h2 class="text-4xl lg:text-5xl font-display font-bold text-[var(--dark-900)] mt-4 mb-6">
+          Calculate Your Refinance Savings
+        </h2>
+        <p class="text-xl text-[var(--gray-500)] max-w-3xl mx-auto">
+          See how much you could save each month and over the life of your loan
+        </p>
+      </div>
+      
+      <div class="max-w-5xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+        <div class="calc-box">
+          <form id="refi-calc" class="calc-input-group">
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <label class="form-label text-center">Current Loan Balance</label>
+                <input type="text" class="form-input text-center text-lg font-semibold" id="loan-balance" placeholder="$300,000" value="300000">
+              </div>
+              <div>
+                <label class="form-label text-center">Current Interest Rate (%)</label>
+                <input type="text" class="form-input text-center text-lg font-semibold" id="current-rate" placeholder="7.0%" value="7.0">
+              </div>
+              <div>
+                <label class="form-label text-center">New Interest Rate (%)</label>
+                <input type="text" class="form-input text-center text-lg font-semibold" id="new-rate" placeholder="6.0%" value="6.0">
+              </div>
+              <div>
+                <label class="form-label text-center">Remaining Term (Years)</label>
+                <input type="text" class="form-input text-center text-lg font-semibold" id="remaining-term" placeholder="27" value="27">
+              </div>
+            </div>
+            <button type="submit" class="btn-primary w-full text-xl bg-white text-[var(--primary-green)] hover:bg-gray-50">
+              Calculate My Savings
+            </button>
+          </form>
+          
+          <div id="calc-result" class="hidden text-center mt-8">
+            <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-8">
+              <div class="savings-box mb-6">
+                <p class="text-[var(--primary-green)] text-lg mb-2 font-semibold">Monthly Savings</p>
+                <p class="text-5xl font-bold text-[var(--primary-green)]" id="monthly-savings">$0</p>
+              </div>
+              
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 text-white">
+                <div>
+                  <p class="text-white/80 text-sm mb-1">Old Payment</p>
+                  <p class="text-xl font-bold" id="old-payment">$0</p>
+                </div>
+                <div>
+                  <p class="text-white/80 text-sm mb-1">New Payment</p>
+                  <p class="text-xl font-bold" id="new-payment">$0</p>
+                </div>
+                <div>
+                  <p class="text-white/80 text-sm mb-1">Annual Savings</p>
+                  <p class="text-xl font-bold" id="annual-savings">$0</p>
+                </div>
+                <div>
+                  <p class="text-white/80 text-sm mb-1">Lifetime Savings</p>
+                  <p class="text-xl font-bold text-yellow-300" id="lifetime-savings">$0</p>
+                </div>
+              </div>
+              
+              <p class="text-white/80 text-sm mb-6">*Estimate based on principal and interest only. Actual savings may vary based on closing costs and other factors.</p>
+              <a href="#apply" class="btn-primary bg-white text-[var(--primary-green)] hover:bg-gray-50">
+                Start My Refinance →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="py-20 bg-[var(--gray-100)]">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-[var(--primary-green)] font-semibold text-sm uppercase tracking-wider">The Process</span>
+        <h2 class="text-4xl lg:text-5xl font-display font-bold text-[var(--dark-900)] mt-4 mb-6">
+          How Refinancing Works
+        </h2>
+        <p class="text-xl text-[var(--gray-500)] max-w-3xl mx-auto">
+          A simple four-step process to lower your payment
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+        <!-- Step 1 -->
+        <div class="card text-center" data-aos="fade-up" data-aos-delay="100">
+          <div class="step-number">1</div>
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-3">Apply & Get Approved</h3>
+          <p class="text-[var(--gray-500)]">
+            Submit your application with current loan details and financial information
+          </p>
+        </div>
+        
+        <!-- Step 2 -->
+        <div class="card text-center" data-aos="fade-up" data-aos-delay="200">
+          <div class="step-number">2</div>
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-3">Home Appraisal</h3>
+          <p class="text-[var(--gray-500)]">
+            An appraiser determines your home's current value for loan-to-value calculation
+          </p>
+        </div>
+        
+        <!-- Step 3 -->
+        <div class="card text-center" data-aos="fade-up" data-aos-delay="300">
+          <div class="step-number">3</div>
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-3">Underwriting</h3>
+          <p class="text-[var(--gray-500)]">
+            We verify your information and finalize your new loan terms and rate
+          </p>
+        </div>
+        
+        <!-- Step 4 -->
+        <div class="card text-center" data-aos="fade-up" data-aos-delay="400">
+          <div class="step-number">4</div>
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-3">Close & Save</h3>
+          <p class="text-[var(--gray-500)]">
+            Sign your paperwork and start enjoying your new lower payment!
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-[var(--primary-green)] font-semibold text-sm uppercase tracking-wider">Common Questions</span>
+        <h2 class="text-4xl lg:text-5xl font-display font-bold text-[var(--dark-900)] mt-4 mb-6">
+          Refinance FAQ
+        </h2>
+      </div>
+      
+      <div class="max-w-4xl mx-auto space-y-6">
+        <!-- FAQ Item 1 -->
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-3">How much does it cost to refinance?</h3>
+          <p class="text-[var(--gray-500)]">
+            Closing costs typically range from 2-5% of your loan amount. This includes appraisal fees, title insurance, origination fees, and other closing costs. Many borrowers choose to roll these costs into the new loan amount rather than paying them upfront.
+          </p>
+        </div>
+        
+        <!-- FAQ Item 2 -->
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-3">How long does refinancing take?</h3>
+          <p class="text-[var(--gray-500)]">
+            Most refinances take 30-45 days from application to closing. Streamline refinances (VA IRRRL, FHA Streamline) can sometimes close faster, in 2-3 weeks, due to reduced documentation requirements.
+          </p>
+        </div>
+        
+        <!-- FAQ Item 3 -->
+        <div class="card" data-aos="fade-up" data-aos-delay="300">
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-3">Will refinancing hurt my credit score?</h3>
+          <p class="text-[var(--gray-500)]">
+            Your credit score may drop slightly (usually 5-10 points) temporarily due to the credit inquiry and new account. However, it typically recovers within a few months, and the long-term benefits of a lower payment usually outweigh this short-term impact.
+          </p>
+        </div>
+        
+        <!-- FAQ Item 4 -->
+        <div class="card" data-aos="fade-up" data-aos-delay="400">
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-3">Can I refinance if I have less than 20% equity?</h3>
+          <p class="text-[var(--gray-500)]">
+            Yes! You can refinance with less than 20% equity, though you may need to pay PMI if you're doing a conventional refinance. However, if your home value has increased since purchase, you might have more equity than you think. FHA and VA loans don't require 20% equity.
+          </p>
+        </div>
+        
+        <!-- FAQ Item 5 -->
+        <div class="card" data-aos="fade-up" data-aos-delay="500">
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-3">What's a "no-closing-cost" refinance?</h3>
+          <p class="text-[var(--gray-500)]">
+            A no-closing-cost refinance means you don't pay closing costs upfront, but they're either rolled into your loan amount (increasing your balance) or covered by accepting a slightly higher interest rate. There's no such thing as truly "free" refinancing—you pay one way or another.
+          </p>
+        </div>
+        
+        <!-- FAQ Item 6 -->
+        <div class="card" data-aos="fade-up" data-aos-delay="600">
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-3">Should I reset to a 30-year term when I refinance?</h3>
+          <p class="text-[var(--gray-500)]">
+            It depends on your goals. Resetting to 30 years will lower your monthly payment the most. However, if you've already paid down your mortgage significantly, you might want to choose a 15 or 20-year term to maintain your payoff timeline and save on interest. We can help you compare options.
+          </p>
+        </div>
+      </div>
+      
+      <div class="text-center mt-12" data-aos="fade-up">
+        <p class="text-[var(--gray-500)] mb-6">Still have questions?</p>
+        <a href="faq.html" class="btn-outline-green">View All FAQs</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="apply" class="py-20 bg-[var(--primary-green)] text-white">
+    <div class="container mx-auto px-4 lg:px-8 text-center">
+      <div class="max-w-3xl mx-auto" data-aos="fade-up">
+        <h2 class="text-4xl lg:text-5xl font-display font-bold mb-6">
+          Ready to Start Saving?
+        </h2>
+        <p class="text-xl mb-8 text-green-50">
+          Lower your payment, shorten your term, or access your equity. Let's find the refinance option that works best for you.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#" class="btn-primary bg-white text-[var(--primary-green)] hover:bg-gray-50">Start Application →</a>
+          <a href="tel:555-123-4567" class="btn-outline-green border-white text-white hover:bg-white hover:text-[var(--primary-green)]">Call Us: (555) 123-4567</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-[var(--dark-900)] text-white py-16">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <!-- Company Info -->
+        <div>
+          <div class="flex items-center space-x-2 mb-6">
+            <svg class="w-8 h-8 text-[var(--primary-green)]" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+            </svg>
+            <span class="text-xl font-display font-bold">MPlace Mortgage</span>
+          </div>
+          <p class="text-gray-400 mb-4">
+            Your trusted partner in achieving homeownership dreams.
+          </p>
+        </div>
+        
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-lg font-semibold mb-6">Loan Products</h4>
+          <ul class="space-y-3">
+            <li><a href="purchase-loans.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">Purchase Loans</a></li>
+            <li><a href="refinance.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">Refinancing</a></li>
+            <li><a href="va-loans.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">VA Loans</a></li>
+            <li><a href="fha-loans.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">FHA Loans</a></li>
+            <li><a href="203k-loans.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">203k Renovation</a></li>
+            <li><a href="jumbo-loans.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">Jumbo Loans</a></li>
+          </ul>
+        </div>
+        
+        <!-- Resources -->
+        <div>
+          <h4 class="text-lg font-semibold mb-6">Resources</h4>
+          <ul class="space-y-3">
+            <li><a href="calculator.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">Calculator</a></li>
+            <li><a href="faq.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">FAQ</a></li>
+            <li><a href="resources.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">Learning Center</a></li>
+            <li><a href="privacy-policy.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">Privacy Policy</a></li>
+            <li><a href="terms-of-service.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">Terms of Service</a></li>
+          </ul>
+        </div>
+        
+        <!-- Contact -->
+        <div>
+          <h4 class="text-lg font-semibold mb-6">Contact Us</h4>
+          <div class="space-y-3 text-gray-400">
+            <p>123 Main Street<br>Your City, ST 12345</p>
+            <p>(555) 123-4567</p>
+            <p>info@mplacemortgage.com</p>
+            <p class="text-sm">Mon-Fri: 9AM - 6PM<br>Sat: 10AM - 4PM</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-700 pt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <p class="text-gray-400 text-sm mb-4 md:mb-0">
+            © 2024 MPlace Mortgage. All rights reserved.
+          </p>
+          <div class="flex space-x-6 text-sm">
+            <a href="#" class="text-gray-400 hover:text-[var(--primary-green)] transition">NMLS #123456</a>
+            <a href="#" class="text-gray-400 hover:text-[var(--primary-green)] transition">Equal Housing Lender</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 800,
+      once: true,
+      offset: 100
+    });
+    
+    // Refinance Savings Calculator
+    document.getElementById('refi-calc').addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const loanBalance = parseFloat(document.getElementById('loan-balance').value.replace(/[^0-9.]/g, ''));
+      const currentRate = parseFloat(document.getElementById('current-rate').value);
+      const newRate = parseFloat(document.getElementById('new-rate').value);
+      const remainingTerm = parseFloat(document.getElementById('remaining-term').value);
+      
+      // Calculate old payment
+      const oldMonthlyRate = currentRate / 100 / 12;
+      const oldNumPayments = remainingTerm * 12;
+      const oldPayment = loanBalance * (oldMonthlyRate * Math.pow(1 + oldMonthlyRate, oldNumPayments)) / 
+                         (Math.pow(1 + oldMonthlyRate, oldNumPayments) - 1);
+      
+      // Calculate new payment
+      const newMonthlyRate = newRate / 100 / 12;
+      const newNumPayments = remainingTerm * 12;
+      const newPayment = loanBalance * (newMonthlyRate * Math.pow(1 + newMonthlyRate, newNumPayments)) / 
+                         (Math.pow(1 + newMonthlyRate, newNumPayments) - 1);
+      
+      // Calculate savings
+      const monthlySavings = oldPayment - newPayment;
+      const annualSavings = monthlySavings * 12;
+      const lifetimeSavings = monthlySavings * newNumPayments;
+      
+      // Update display
+      document.getElementById('old-payment').textContent = 
+        '$' + Math.round(oldPayment).toLocaleString();
+      document.getElementById('new-payment').textContent = 
+        '$' + Math.round(newPayment).toLocaleString();
+      document.getElementById('monthly-savings').textContent = 
+        '$' + Math.round(monthlySavings).toLocaleString();
+      document.getElementById('annual-savings').textContent = 
+        '$' + Math.round(annualSavings).toLocaleString();
+      document.getElementById('lifetime-savings').textContent = 
+        '$' + Math.round(lifetimeSavings).toLocaleString();
+      
+      document.getElementById('calc-result').classList.remove('hidden');
+    });
+    
+    // Format currency inputs
+    document.querySelectorAll('input[type="text"]').forEach(input => {
+      if (input.placeholder && input.placeholder.includes('$')) {
+        input.addEventListener('input', (e) => {
+          let value = e.target.value.replace(/[^0-9.]/g, '');
+          if (value) {
+            value = parseFloat(value).toLocaleString();
+            e.target.value = value;
+          }
+        });
+      }
+    });
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
