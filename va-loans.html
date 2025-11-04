@@ -1,1 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VA Loans - MPlace Mortgage</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-green: #10B981;
+      --dark-900: #111827;
+      --dark-700: #374151;
+      --gray-500: #6B7280;
+      --gray-100: #F3F4F6;
+      --gold-accent: #F59E0B;
+      --navy-blue: #1E3A8A;
+      --red-accent: #DC2626;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--dark-900);
+      line-height: 1.6;
+    }
+    
+    .font-display {
+      font-family: 'Playfair Display', serif;
+    }
+    
+    /* Custom Utilities */
+    .btn-primary {
+      @apply bg-[var(--primary-green)] text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-green-600 transition shadow-lg hover:shadow-xl;
+    }
+    
+    .btn-outline-green {
+      @apply border-2 border-[var(--primary-green)] text-[var(--primary-green)] px-8 py-4 rounded-lg font-semibold hover:bg-[var(--primary-green)] hover:text-white transition;
+    }
+    
+    .card {
+      @apply bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition;
+    }
+    
+    .form-input {
+      @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--primary-green)] focus:border-transparent outline-none transition;
+    }
+    
+    .form-label {
+      @apply block text-sm font-semibold text-[var(--dark-700)] mb-2;
+    }
+    
+    /* Step Numbers */
+    .step-number {
+      @apply w-16 h-16 rounded-full bg-[var(--primary-green)] text-white flex items-center justify-center text-2xl font-bold mx-auto mb-6;
+    }
+    
+    /* Smooth Scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Calculator Box */
+    .calc-box {
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 60px rgba(16, 185, 129, 0.3);
+    }
+    
+    .calc-input-group {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    /* Hero Section */
+    .hero-gradient {
+      background: linear-gradient(135deg, rgba(30, 58, 138, 0.05) 0%, rgba(255, 255, 255, 1) 100%);
+    }
+    
+    /* Badge */
+    .badge-red {
+      @apply bg-red-100 text-red-600 px-3 py-1 rounded-full text-xs font-semibold;
+    }
+    
+    .badge-blue {
+      @apply bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-xs font-semibold;
+    }
+    
+    /* Benefits Grid */
+    .benefit-card {
+      @apply bg-gradient-to-br from-blue-50 to-white rounded-xl p-6 border-2 border-blue-100 hover:border-[var(--primary-green)] transition;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="fixed w-full bg-white shadow-md z-50">
+    <div class="container mx-auto px-4 lg:px-8 py-4">
+      <div class="flex items-center justify-between">
+        <a href="index.html" class="flex items-center space-x-2">
+          <svg class="w-10 h-10 text-[var(--primary-green)]" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+          </svg>
+          <span class="text-2xl font-display font-bold text-[var(--dark-900)]">MPlace Mortgage</span>
+        </a>
+        
+        <div class="hidden md:flex space-x-8">
+          <a href="index.html#services" class="text-[var(--dark-700)] hover:text-[var(--primary-green)] transition font-medium">Services</a>
+          <a href="calculator.html" class="text-[var(--dark-700)] hover:text-[var(--primary-green)] transition font-medium">Calculator</a>
+          <a href="faq.html" class="text-[var(--dark-700)] hover:text-[var(--primary-green)] transition font-medium">FAQ</a>
+          <a href="resources.html" class="text-[var(--dark-700)] hover:text-[var(--primary-green)] transition font-medium">Resources</a>
+        </div>
+        
+        <a href="#apply" class="btn-primary py-3 px-6 text-base">Apply Now</a>
+      </div>
+    </div>
+  </nav>
 
+  <!-- Hero Section -->
+  <section class="hero-gradient pt-32 pb-20">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+        <div class="flex items-center justify-center mb-4">
+          <span class="badge-red">FOR VETERANS & MILITARY</span>
+        </div>
+        <h1 class="text-5xl lg:text-6xl font-display font-bold text-[var(--dark-900)] mt-4 mb-6 leading-tight">
+          VA Home Loans: Your Benefit, Our Honor
+        </h1>
+        <p class="text-xl text-[var(--gray-500)] mb-12 max-w-2xl mx-auto">
+          Thank you for your service. The VA home loan benefit offers 0% down payment, no mortgage insurance, and competitive rates as a thank you for protecting our nation. Let us help you use the benefits you've earned.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#apply" class="btn-primary">Get Pre-Approved</a>
+          <a href="#eligibility" class="btn-outline-green">Check Eligibility</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Benefits -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-12" data-aos="fade-up">
+        <h2 class="text-3xl lg:text-4xl font-display font-bold text-[var(--dark-900)] mb-4">
+          Unmatched Benefits for Those Who Served
+        </h2>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+          <div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-2">0% Down Payment</h3>
+          <p class="text-[var(--gray-500)]">Buy a home with no money down - 100% financing available</p>
+        </div>
+        
+        <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+          <div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-2">No PMI Required</h3>
+          <p class="text-[var(--gray-500)]">Save hundreds per month without private mortgage insurance</p>
+        </div>
+        
+        <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+          <div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-2">Competitive Rates</h3>
+          <p class="text-[var(--gray-500)]">Often lower than conventional loans with better terms</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What is VA Loan -->
+  <section class="py-20 bg-[var(--gray-100)]">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12" data-aos="fade-up">
+          <span class="text-[var(--primary-green)] font-semibold text-sm uppercase tracking-wider">Understanding VA Loans</span>
+          <h2 class="text-4xl lg:text-5xl font-display font-bold text-[var(--dark-900)] mt-4 mb-6">
+            What Is a VA Home Loan?
+          </h2>
+        </div>
+        
+        <div class="card text-center" data-aos="fade-up" data-aos-delay="100">
+          <p class="text-lg text-[var(--gray-500)] mb-6">
+            A VA loan is a mortgage guaranteed by the U.S. Department of Veterans Affairs, designed to help active-duty service members, veterans, and eligible surviving spouses become homeowners. The VA doesn't actually lend the money—approved lenders like us do—but the VA guarantees a portion of the loan, which allows lenders to offer more favorable terms.
+          </p>
+          <p class="text-lg text-[var(--gray-500)] mb-6">
+            This benefit was created in 1944 as part of the GI Bill to help returning WWII veterans. Since then, the VA home loan program has helped millions of service members and veterans achieve the dream of homeownership.
+          </p>
+          <div class="grid md:grid-cols-3 gap-6 text-left mt-8">
+            <div class="flex items-start">
+              <svg class="w-6 h-6 text-[var(--primary-green)] mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-[var(--gray-500)]">Can be used multiple times throughout your life</span>
+            </div>
+            <div class="flex items-start">
+              <svg class="w-6 h-6 text-[var(--primary-green)] mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-[var(--gray-500)]">No maximum loan amount in most counties</span>
+            </div>
+            <div class="flex items-start">
+              <svg class="w-6 h-6 text-[var(--primary-green)] mr-3 mt-1 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-[var(--gray-500)]">Easier to qualify than conventional loans</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VA Loan Advantages -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-[var(--primary-green)] font-semibold text-sm uppercase tracking-wider">Key Advantages</span>
+        <h2 class="text-4xl lg:text-5xl font-display font-bold text-[var(--dark-900)] mt-4 mb-6">
+          Why VA Loans Stand Out
+        </h2>
+        <p class="text-xl text-[var(--gray-500)] max-w-3xl mx-auto">
+          The VA loan offers benefits you won't find with any other mortgage product
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <!-- Advantage 1 -->
+        <div class="benefit-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="w-12 h-12 rounded-lg bg-blue-600 text-white flex items-center justify-center mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-3">Zero Down Payment</h3>
+          <p class="text-[var(--gray-500)]">
+            Purchase a home with 0% down payment, meaning you can finance 100% of the purchase price. This saves you tens of thousands in upfront costs.
+          </p>
+        </div>
+        
+        <!-- Advantage 2 -->
+        <div class="benefit-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="w-12 h-12 rounded-lg bg-blue-600 text-white flex items-center justify-center mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-3">No PMI Ever</h3>
+          <p class="text-[var(--gray-500)]">
+            Unlike conventional loans with less than 20% down, VA loans don't require private mortgage insurance. This can save you $100-300+ per month.
+          </p>
+        </div>
+        
+        <!-- Advantage 3 -->
+        <div class="benefit-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="w-12 h-12 rounded-lg bg-blue-600 text-white flex items-center justify-center mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-3">Lower Interest Rates</h3>
+          <p class="text-[var(--gray-500)]">
+            VA loans typically have lower interest rates than conventional mortgages because of the government backing, saving you money over the life of the loan.
+          </p>
+        </div>
+        
+        <!-- Advantage 4 -->
+        <div class="benefit-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="w-12 h-12 rounded-lg bg-blue-600 text-white flex items-center justify-center mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-3">Flexible Credit Standards</h3>
+          <p class="text-[var(--gray-500)]">
+            While most lenders prefer a 620+ credit score, VA loans are generally more forgiving than conventional loans for those with past credit challenges.
+          </p>
+        </div>
+        
+        <!-- Advantage 5 -->
+        <div class="benefit-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="w-12 h-12 rounded-lg bg-blue-600 text-white flex items-center justify-center mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-3">Limited Closing Costs</h3>
+          <p class="text-[var(--gray-500)]">
+            The VA limits what closing costs you can be charged, and you can ask the seller to pay up to 4% of the purchase price toward your closing costs.
+          </p>
+        </div>
+        
+        <!-- Advantage 6 -->
+        <div class="benefit-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="w-12 h-12 rounded-lg bg-blue-600 text-white flex items-center justify-center mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-3">Reusable Benefit</h3>
+          <p class="text-[var(--gray-500)]">
+            Your VA loan benefit can be used multiple times. Once you pay off or sell a home, your entitlement is restored for future purchases.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Eligibility Section -->
+  <section id="eligibility" class="py-20 bg-[var(--gray-100)]">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-[var(--primary-green)] font-semibold text-sm uppercase tracking-wider">Who Qualifies</span>
+        <h2 class="text-4xl lg:text-5xl font-display font-bold text-[var(--dark-900)] mt-4 mb-6">
+          VA Loan Eligibility Requirements
+        </h2>
+        <p class="text-xl text-[var(--gray-500)] max-w-3xl mx-auto">
+          Service requirements vary by duty status and era of service
+        </p>
+      </div>
+      
+      <div class="max-w-5xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+          <!-- Active Duty -->
+          <div class="card" data-aos="fade-up" data-aos-delay="100">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-[var(--dark-900)]">Active Duty Military</h3>
+            </div>
+            <ul class="space-y-3 text-[var(--gray-500)]">
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span>Served at least 90 consecutive days on active duty</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span>Currently serving and have served at least 90 days</span>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Veterans -->
+          <div class="card" data-aos="fade-up" data-aos-delay="200">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-[var(--dark-900)]">Veterans</h3>
+            </div>
+            <ul class="space-y-3 text-[var(--gray-500)]">
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span>Served 90+ consecutive active duty days (wartime) OR 181 days (peacetime)</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span>Received discharge other than dishonorable</span>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- National Guard / Reserves -->
+          <div class="card" data-aos="fade-up" data-aos-delay="300">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-[var(--dark-900)]">National Guard & Reserves</h3>
+            </div>
+            <ul class="space-y-3 text-[var(--gray-500)]">
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span>Completed at least 6 years of service in the Reserves or National Guard</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span>Discharged honorably OR currently serving in the Reserves/Guard</span>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Surviving Spouses -->
+          <div class="card" data-aos="fade-up" data-aos-delay="400">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-[var(--dark-900)]">Surviving Spouses</h3>
+            </div>
+            <ul class="space-y-3 text-[var(--gray-500)]">
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span>Spouse died in service or from service-connected disability</span>
+              </li>
+              <li class="flex items-start">
+                <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                </svg>
+                <span>Remarriage after age 57 may still qualify</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- COE Info -->
+        <div class="card bg-blue-50 border-2 border-blue-200" data-aos="fade-up">
+          <div class="text-center">
+            <h3 class="text-2xl font-bold text-[var(--dark-900)] mb-4">Certificate of Eligibility (COE)</h3>
+            <p class="text-[var(--gray-500)] mb-6">
+              To use your VA loan benefit, you'll need a Certificate of Eligibility from the VA. Don't worry—we can help you obtain your COE as part of the application process. In many cases, we can verify your eligibility electronically within minutes.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="https://www.va.gov/housing-assistance/home-loans/check-coe-status/" target="_blank" class="btn-outline-green">Check COE Status →</a>
+              <a href="#apply" class="btn-primary">We'll Help You Get It</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-[var(--primary-green)] font-semibold text-sm uppercase tracking-wider">The Process</span>
+        <h2 class="text-4xl lg:text-5xl font-display font-bold text-[var(--dark-900)] mt-4 mb-6">
+          How to Get Your VA Loan
+        </h2>
+        <p class="text-xl text-[var(--gray-500)] max-w-3xl mx-auto">
+          Five simple steps to homeownership with your VA benefit
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-6 max-w-6xl mx-auto">
+        <!-- Step 1 -->
+        <div class="card text-center" data-aos="fade-up" data-aos-delay="100">
+          <div class="step-number">1</div>
+          <h3 class="text-lg font-bold text-[var(--dark-900)] mb-3">Get Your COE</h3>
+          <p class="text-[var(--gray-500)] text-sm">
+            We'll help you obtain your Certificate of Eligibility from the VA
+          </p>
+        </div>
+        
+        <!-- Step 2 -->
+        <div class="card text-center" data-aos="fade-up" data-aos-delay="200">
+          <div class="step-number">2</div>
+          <h3 class="text-lg font-bold text-[var(--dark-900)] mb-3">Get Pre-Approved</h3>
+          <p class="text-[var(--gray-500)] text-sm">
+            Complete your application and receive pre-approval
+          </p>
+        </div>
+        
+        <!-- Step 3 -->
+        <div class="card text-center" data-aos="fade-up" data-aos-delay="300">
+          <div class="step-number">3</div>
+          <h3 class="text-lg font-bold text-[var(--dark-900)] mb-3">Find Your Home</h3>
+          <p class="text-[var(--gray-500)] text-sm">
+            Shop with confidence using your pre-approval letter
+          </p>
+        </div>
+        
+        <!-- Step 4 -->
+        <div class="card text-center" data-aos="fade-up" data-aos-delay="400">
+          <div class="step-number">4</div>
+          <h3 class="text-lg font-bold text-[var(--dark-900)] mb-3">VA Appraisal</h3>
+          <p class="text-[var(--gray-500)] text-sm">
+            The VA appraises the home to ensure it meets standards
+          </p>
+        </div>
+        
+        <!-- Step 5 -->
+        <div class="card text-center" data-aos="fade-up" data-aos-delay="500">
+          <div class="step-number">5</div>
+          <h3 class="text-lg font-bold text-[var(--dark-900)] mb-3">Close & Move In</h3>
+          <p class="text-[var(--gray-500)] text-sm">
+            Sign documents, get your keys, and welcome home!
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Calculator Section -->
+  <section id="calculator" class="py-20 bg-[var(--gray-100)]">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-12" data-aos="fade-up">
+        <span class="text-[var(--primary-green)] font-semibold text-sm uppercase tracking-wider">Quick Estimate</span>
+        <h2 class="text-4xl lg:text-5xl font-display font-bold text-[var(--dark-900)] mt-4 mb-6">
+          Calculate Your VA Loan Payment
+        </h2>
+        <p class="text-xl text-[var(--gray-500)] max-w-3xl mx-auto">
+          See what you can afford with 0% down and no PMI
+        </p>
+      </div>
+      
+      <div class="max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+        <div class="calc-box">
+          <form id="va-calc" class="calc-input-group">
+            <div class="grid md:grid-cols-3 gap-6 mb-6">
+              <div>
+                <label class="form-label text-center">Home Price</label>
+                <input type="text" class="form-input text-center text-lg font-semibold" id="home-price" placeholder="$400,000" value="400000">
+              </div>
+              <div>
+                <label class="form-label text-center">Interest Rate (%)</label>
+                <input type="text" class="form-input text-center text-lg font-semibold" id="interest-rate" placeholder="6.0%" value="6.0">
+              </div>
+              <div>
+                <label class="form-label text-center">Loan Term</label>
+                <select class="form-input text-center text-lg font-semibold" id="loan-term">
+                  <option value="30">30 Years</option>
+                  <option value="15">15 Years</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="btn-primary w-full text-xl bg-white text-[var(--primary-green)] hover:bg-gray-50">
+              Calculate Payment
+            </button>
+          </form>
+          
+          <div id="calc-result" class="hidden text-center mt-8">
+            <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-8">
+              <p class="text-white text-lg mb-3 font-semibold">Estimated Monthly Payment (P&I)</p>
+              <p class="text-7xl font-bold text-white mb-6" id="monthly-payment">$0</p>
+              
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 text-white">
+                <div>
+                  <p class="text-white/80 text-sm mb-1">Down Payment</p>
+                  <p class="text-2xl font-bold">$0</p>
+                </div>
+                <div>
+                  <p class="text-white/80 text-sm mb-1">PMI</p>
+                  <p class="text-2xl font-bold">$0</p>
+                </div>
+                <div>
+                  <p class="text-white/80 text-sm mb-1">VA Funding Fee</p>
+                  <p class="text-xl font-bold" id="funding-fee">$0</p>
+                </div>
+                <div>
+                  <p class="text-white/80 text-sm mb-1">Savings vs Conv.</p>
+                  <p class="text-xl font-bold text-yellow-300" id="pmi-savings">$0/mo</p>
+                </div>
+              </div>
+              
+              <p class="text-white/80 text-sm mb-6">*Estimate does not include property taxes, insurance, or HOA fees. VA funding fee is typically 2.15% for first-time use (can be financed).</p>
+              <a href="#apply" class="btn-primary bg-white text-[var(--primary-green)] hover:bg-gray-50">
+                Get Pre-Approved Now →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Important Considerations -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-[var(--primary-green)] font-semibold text-sm uppercase tracking-wider">Good to Know</span>
+        <h2 class="text-4xl lg:text-5xl font-display font-bold text-[var(--dark-900)] mt-4 mb-6">
+          Important VA Loan Considerations
+        </h2>
+      </div>
+      
+      <div class="max-w-5xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- VA Funding Fee -->
+          <div class="card" data-aos="fade-up" data-aos-delay="100">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2zM10 8.5a.5.5 0 11-1 0 .5.5 0 011 0zm5 5a.5.5 0 11-1 0 .5.5 0 011 0z"/>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-[var(--dark-900)]">VA Funding Fee</h3>
+            </div>
+            <p class="text-[var(--gray-500)] mb-4">
+              Most borrowers pay a VA funding fee (typically 2.15% for first-time use, 3.3% for subsequent use). This one-time fee helps keep the program running for future veterans. Good news:
+            </p>
+            <ul class="space-y-2 text-[var(--gray-500)]">
+              <li class="flex items-start">
+                <span class="text-[var(--primary-green)] mr-2">•</span>
+                <span>Can be rolled into your loan amount</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-[var(--primary-green)] mr-2">•</span>
+                <span>Veterans with service-connected disabilities are exempt</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-[var(--primary-green)] mr-2">•</span>
+                <span>Purple Heart recipients are exempt</span>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Property Requirements -->
+          <div class="card" data-aos="fade-up" data-aos-delay="200">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-[var(--dark-900)]">Property Requirements</h3>
+            </div>
+            <p class="text-[var(--gray-500)] mb-4">
+              VA loans are for primary residences only and must meet minimum property requirements:
+            </p>
+            <ul class="space-y-2 text-[var(--gray-500)]">
+              <li class="flex items-start">
+                <span class="text-[var(--primary-green)] mr-2">•</span>
+                <span>Must be your primary residence</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-[var(--primary-green)] mr-2">•</span>
+                <span>Property must meet VA's Minimum Property Requirements (MPRs)</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-[var(--primary-green)] mr-2">•</span>
+                <span>1-4 unit properties qualify</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-[var(--primary-green)] mr-2">•</span>
+                <span>Condos must be VA-approved</span>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Entitlement -->
+          <div class="card" data-aos="fade-up" data-aos-delay="300">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-[var(--dark-900)]">Entitlement & Loan Limits</h3>
+            </div>
+            <p class="text-[var(--gray-500)] mb-4">
+              As of 2020, there's no maximum loan amount for veterans with full entitlement:
+            </p>
+            <ul class="space-y-2 text-[var(--gray-500)]">
+              <li class="flex items-start">
+                <span class="text-[var(--primary-green)] mr-2">•</span>
+                <span>Full entitlement = No loan limit (with $0 down)</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-[var(--primary-green)] mr-2">•</span>
+                <span>Partial entitlement = May have limits or require down payment</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-[var(--primary-green)] mr-2">•</span>
+                <span>Entitlement restores when you pay off/sell previous VA loan</span>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Occupancy -->
+          <div class="card" data-aos="fade-up" data-aos-delay="400">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-[var(--dark-900)]">Occupancy Requirements</h3>
+            </div>
+            <p class="text-[var(--gray-500)] mb-4">
+              You must certify that you intend to occupy the property:
+            </p>
+            <ul class="space-y-2 text-[var(--gray-500)]">
+              <li class="flex items-start">
+                <span class="text-[var(--primary-green)] mr-2">•</span>
+                <span>Must move in within 60 days of closing</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-[var(--primary-green)] mr-2">•</span>
+                <span>Must live there for at least 12 months</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-[var(--primary-green)] mr-2">•</span>
+                <span>Can buy before retiring from active duty if occupancy is within 12 months</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-[var(--primary-green)] mr-2">•</span>
+                <span>After 12 months, can rent out and buy another with VA loan</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-20 bg-[var(--gray-100)]">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-[var(--primary-green)] font-semibold text-sm uppercase tracking-wider">Common Questions</span>
+        <h2 class="text-4xl lg:text-5xl font-display font-bold text-[var(--dark-900)] mt-4 mb-6">
+          VA Loan FAQ
+        </h2>
+      </div>
+      
+      <div class="max-w-4xl mx-auto space-y-6">
+        <!-- FAQ Item 1 -->
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-3">Can I use my VA loan more than once?</h3>
+          <p class="text-[var(--gray-500)]">
+            Yes! Your VA loan benefit is reusable. Once you pay off your VA loan and sell the property, your entitlement is fully restored. You can even have two VA loans at the same time in certain situations if you have enough remaining entitlement.
+          </p>
+        </div>
+        
+        <!-- FAQ Item 2 -->
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-3">Do I have to pay the VA funding fee?</h3>
+          <p class="text-[var(--gray-500)]">
+            Most borrowers pay the VA funding fee, but you're exempt if you receive VA disability compensation, are receiving retirement pay in lieu of disability, or are a surviving spouse. Purple Heart recipients are also exempt. The fee can be financed into your loan amount.
+          </p>
+        </div>
+        
+        <!-- FAQ Item 3 -->
+        <div class="card" data-aos="fade-up" data-aos-delay="300">
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-3">What credit score do I need for a VA loan?</h3>
+          <p class="text-[var(--gray-500)]">
+            While the VA doesn't set a minimum credit score, most lenders require at least 620. However, VA loans are generally more flexible than conventional loans. If you have past credit challenges, especially due to military service, we can work with you to explore your options.
+          </p>
+        </div>
+        
+        <!-- FAQ Item 4 -->
+        <div class="card" data-aos="fade-up" data-aos-delay="400">
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-3">Can I use a VA loan to buy an investment property?</h3>
+          <p class="text-[var(--gray-500)]">
+            No, VA loans must be used for your primary residence. However, you can buy a multi-unit property (2-4 units), live in one unit, and rent out the others. This is a great way to start building wealth through real estate while using your VA benefit.
+          </p>
+        </div>
+        
+        <!-- FAQ Item 5 -->
+        <div class="card" data-aos="fade-up" data-aos-delay="500">
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-3">How long does it take to close on a VA loan?</h3>
+          <p class="text-[var(--gray-500)]">
+            VA loans typically take 30-45 days to close. While some believe VA loans take longer, we've streamlined our process to be competitive with conventional loans. With proper preparation and documentation, we can often close faster.
+          </p>
+        </div>
+        
+        <!-- FAQ Item 6 -->
+        <div class="card" data-aos="fade-up" data-aos-delay="600">
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-3">What if the home doesn't pass the VA appraisal?</h3>
+          <p class="text-[var(--gray-500)]">
+            If the home doesn't meet VA's Minimum Property Requirements, you have options: the seller can make repairs, you can negotiate a lower price, or you can walk away and get your earnest money back. The VA appraisal protects you by ensuring the home is safe and sound.
+          </p>
+        </div>
+      </div>
+      
+      <div class="text-center mt-12" data-aos="fade-up">
+        <p class="text-[var(--gray-500)] mb-6">Still have questions?</p>
+        <a href="faq.html" class="btn-outline-green">View All FAQs</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="apply" class="py-20 bg-[var(--primary-green)] text-white">
+    <div class="container mx-auto px-4 lg:px-8 text-center">
+      <div class="max-w-3xl mx-auto" data-aos="fade-up">
+        <h2 class="text-4xl lg:text-5xl font-display font-bold mb-6">
+          Ready to Use Your VA Benefits?
+        </h2>
+        <p class="text-xl mb-8 text-green-50">
+          You've served our country. Let us serve you by helping you get the home you deserve with your hard-earned VA loan benefit.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#" class="btn-primary bg-white text-[var(--primary-green)] hover:bg-gray-50">Start Application →</a>
+          <a href="tel:555-123-4567" class="btn-outline-green border-white text-white hover:bg-white hover:text-[var(--primary-green)]">Call Us: (555) 123-4567</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-[var(--dark-900)] text-white py-16">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <!-- Company Info -->
+        <div>
+          <div class="flex items-center space-x-2 mb-6">
+            <svg class="w-8 h-8 text-[var(--primary-green)]" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+            </svg>
+            <span class="text-xl font-display font-bold">MPlace Mortgage</span>
+          </div>
+          <p class="text-gray-400 mb-4">
+            Your trusted partner in achieving homeownership dreams.
+          </p>
+        </div>
+        
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-lg font-semibold mb-6">Loan Products</h4>
+          <ul class="space-y-3">
+            <li><a href="purchase-loans.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">Purchase Loans</a></li>
+            <li><a href="refinance.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">Refinancing</a></li>
+            <li><a href="va-loans.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">VA Loans</a></li>
+            <li><a href="fha-loans.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">FHA Loans</a></li>
+            <li><a href="203k-loans.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">203k Renovation</a></li>
+            <li><a href="jumbo-loans.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">Jumbo Loans</a></li>
+          </ul>
+        </div>
+        
+        <!-- Resources -->
+        <div>
+          <h4 class="text-lg font-semibold mb-6">Resources</h4>
+          <ul class="space-y-3">
+            <li><a href="calculator.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">Calculator</a></li>
+            <li><a href="faq.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">FAQ</a></li>
+            <li><a href="resources.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">Learning Center</a></li>
+            <li><a href="privacy-policy.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">Privacy Policy</a></li>
+            <li><a href="terms-of-service.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">Terms of Service</a></li>
+          </ul>
+        </div>
+        
+        <!-- Contact -->
+        <div>
+          <h4 class="text-lg font-semibold mb-6">Contact Us</h4>
+          <div class="space-y-3 text-gray-400">
+            <p>123 Main Street<br>Your City, ST 12345</p>
+            <p>(555) 123-4567</p>
+            <p>info@mplacemortgage.com</p>
+            <p class="text-sm">Mon-Fri: 9AM - 6PM<br>Sat: 10AM - 4PM</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-700 pt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <p class="text-gray-400 text-sm mb-4 md:mb-0">
+            © 2024 MPlace Mortgage. All rights reserved.
+          </p>
+          <div class="flex space-x-6 text-sm">
+            <a href="#" class="text-gray-400 hover:text-[var(--primary-green)] transition">NMLS #123456</a>
+            <a href="#" class="text-gray-400 hover:text-[var(--primary-green)] transition">Equal Housing Lender</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 800,
+      once: true,
+      offset: 100
+    });
+    
+    // VA Loan Calculator
+    document.getElementById('va-calc').addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const homePrice = parseFloat(document.getElementById('home-price').value.replace(/[^0-9.]/g, ''));
+      const interestRate = parseFloat(document.getElementById('interest-rate').value);
+      const loanTerm = parseInt(document.getElementById('loan-term').value);
+      
+      // VA loan has no down payment
+      const loanAmount = homePrice;
+      const monthlyRate = interestRate / 100 / 12;
+      const numPayments = loanTerm * 12;
+      
+      const monthlyPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) / 
+                            (Math.pow(1 + monthlyRate, numPayments) - 1);
+      
+      // Calculate VA funding fee (2.15% for first-time use, can be financed)
+      const fundingFee = homePrice * 0.0215;
+      
+      // Calculate PMI savings vs conventional (typically 0.5-1% of loan annually)
+      const pmiMonthly = (homePrice * 0.007) / 12; // Using 0.7% annual rate
+      
+      // Update display
+      document.getElementById('monthly-payment').textContent = 
+        '$' + Math.round(monthlyPayment).toLocaleString();
+      document.getElementById('funding-fee').textContent = 
+        '$' + Math.round(fundingFee).toLocaleString();
+      document.getElementById('pmi-savings').textContent = 
+        '$' + Math.round(pmiMonthly).toLocaleString() + '/mo';
+      
+      document.getElementById('calc-result').classList.remove('hidden');
+    });
+    
+    // Format currency inputs
+    document.querySelectorAll('input[type="text"]').forEach(input => {
+      if (input.placeholder && input.placeholder.includes('$')) {
+        input.addEventListener('input', (e) => {
+          let value = e.target.value.replace(/[^0-9.]/g, '');
+          if (value) {
+            value = parseFloat(value).toLocaleString();
+            e.target.value = value;
+          }
+        });
+      }
+    });
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
