@@ -114,26 +114,27 @@
 <body>
   <!-- Navigation -->
   <nav class="fixed w-full bg-white shadow-md z-50">
-    <div class="container mx-auto px-4 lg:px-8 py-4">
-      <div class="flex items-center justify-between">
-        <a href="index.html" class="flex items-center space-x-2">
-          <svg class="w-10 h-10 text-[var(--primary-green)]" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
-          </svg>
-          <span class="text-2xl font-display font-bold text-[var(--dark-900)]">MPlace Mortgage</span>
-        </a>
-        
-        <div class="hidden md:flex space-x-8">
-          <a href="index.html#services" class="text-[var(--dark-700)] hover:text-[var(--primary-green)] transition font-medium">Services</a>
-          <a href="calculator.html" class="text-[var(--dark-700)] hover:text-[var(--primary-green)] transition font-medium">Calculator</a>
-          <a href="faq.html" class="text-[var(--dark-700)] hover:text-[var(--primary-green)] transition font-medium">FAQ</a>
-          <a href="resources.html" class="text-[var(--dark-700)] hover:text-[var(--primary-green)] transition font-medium">Resources</a>
-        </div>
-        
-        <a href="#apply" class="btn-primary py-3 px-6 text-base">Apply Now</a>
+  <div class="container mx-auto px-4 lg:px-8 py-4">
+    <div class="flex items-center justify-between">
+      <!-- Logo - REPLACE 'your-logo-here.png' WITH YOUR LOGO PATH -->
+      <a href="index.html" class="flex items-center">
+        <img src="mplacelogoupdated.png" alt="Meetingplace Mortgage" class="logo-img" style="height: 50px; width: auto; max-width: 200px;">
+      </a>
+      
+      <!-- Navigation Links -->
+      <div class="hidden lg:flex space-x-6">
+        <a href="purchase-loans.html" class="text-gray-700 hover:text-green-600 transition font-medium">Purchase A Loan</a>
+        <a href="refinance.html" class="text-gray-700 hover:text-green-600 transition font-medium">Refinance</a>
+        <a href="fha-loans.html" class="text-gray-700 hover:text-green-600 transition font-medium">FHA</a>
+        <a href="203k-loans.html" class="text-gray-700 hover:text-green-600 transition font-medium">203K Loans</a>
+        <a href="jumbo-loans.html" class="text-gray-700 hover:text-green-600 transition font-medium">Jumbo Loans</a>
+        <a href="va-loans.html" class="text-gray-700 hover:text-green-600 transition font-medium">VA Loans</a>
       </div>
+      
+      <a href="#apply" class="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition shadow-lg">Apply Now</a>
     </div>
-  </nav>
+  </div>
+</nav>
 
   <!-- Hero Section -->
   <section class="hero-gradient pt-32 pb-20">
