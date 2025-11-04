@@ -1,1 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Purchase Loans - Meetingplace Mortgage</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- AOS Animation Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-green: #10B981;
+      --dark-900: #111827;
+      --dark-700: #374151;
+      --gray-500: #6B7280;
+      --gray-100: #F3F4F6;
+      --gold-accent: #F59E0B;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--dark-900);
+      line-height: 1.6;
+    }
+    
+    .font-display {
+      font-family: 'Playfair Display', serif;
+    }
+    
+    /* Custom Utilities */
+    .btn-primary {
+      @apply bg-[var(--primary-green)] text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-green-600 transition shadow-lg hover:shadow-xl;
+    }
+    
+    .btn-outline-green {
+      @apply border-2 border-[var(--primary-green)] text-[var(--primary-green)] px-8 py-4 rounded-lg font-semibold hover:bg-[var(--primary-green)] hover:text-white transition;
+    }
+    
+    .card {
+      @apply bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition;
+    }
+    
+    .form-input {
+      @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--primary-green)] focus:border-transparent outline-none transition;
+    }
+    
+    .form-label {
+      @apply block text-sm font-semibold text-[var(--dark-700)] mb-2;
+    }
+    
+    /* Step Numbers */
+    .step-number {
+      @apply w-16 h-16 rounded-full bg-[var(--primary-green)] text-white flex items-center justify-center text-2xl font-bold mx-auto mb-6;
+    }
+    
+    /* Comparison Table */
+    .comparison-table {
+      @apply overflow-x-auto;
+    }
+    
+    .comparison-table table {
+      @apply w-full border-collapse;
+    }
+    
+    .comparison-table th {
+      @apply bg-[var(--gray-100)] p-4 text-left font-semibold text-[var(--dark-900)] border-b-2 border-[var(--primary-green)];
+    }
+    
+    .comparison-table td {
+      @apply p-4 border-b border-gray-200;
+    }
+    
+    /* Smooth Scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Modal */
+    .modal {
+      backdrop-filter: blur(4px);
+    }
+    
+    /* Calculator Box */
+    .calc-box {
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      border-radius: 24px;
+      padding: 2.5rem;
+      box-shadow: 0 20px 60px rgba(16, 185, 129, 0.3);
+    }
+    
+    .calc-input-group {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    
+    /* Hero Section */
+    .hero-gradient {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(255, 255, 255, 1) 100%);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="fixed w-full bg-white shadow-md z-50">
+    <div class="container mx-auto px-4 lg:px-8 py-4">
+      <div class="flex items-center justify-between">
+        <a href="index.html" class="flex items-center space-x-2">
+          <svg class="w-10 h-10 text-[var(--primary-green)]" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+          </svg>
+          <span class="text-2xl font-display font-bold text-[var(--dark-900)]">Meetingplace Mortgage</span>
+        </a>
+        
+        <div class="hidden md:flex space-x-8">
+          <a href="index.html#services" class="text-[var(--dark-700)] hover:text-[var(--primary-green)] transition font-medium">Services</a>
+          <a href="calculator.html" class="text-[var(--dark-700)] hover:text-[var(--primary-green)] transition font-medium">Calculator</a>
+          <a href="faq.html" class="text-[var(--dark-700)] hover:text-[var(--primary-green)] transition font-medium">FAQ</a>
+          <a href="resources.html" class="text-[var(--dark-700)] hover:text-[var(--primary-green)] transition font-medium">Resources</a>
+        </div>
+        
+        <a href="#apply" class="btn-primary py-3 px-6 text-base">Apply Now</a>
+      </div>
+    </div>
+  </nav>
 
+  <!-- Hero Section -->
+  <section class="hero-gradient pt-32 pb-20">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+        <span class="text-[var(--primary-green)] font-semibold text-sm uppercase tracking-wider">Purchase Loans</span>
+        <h1 class="text-5xl lg:text-6xl font-display font-bold text-[var(--dark-900)] mt-4 mb-6 leading-tight">
+          Your Journey to Homeownership Starts Here
+        </h1>
+        <p class="text-xl text-[var(--gray-500)] mb-12 max-w-2xl mx-auto">
+          Whether it's your first home or your dream home, we'll help you find the perfect loan with competitive rates and expert guidance every step of the way.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#apply" class="btn-primary">Get Pre-Approved</a>
+          <a href="#calculator" class="btn-outline-green">Calculate Payment</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Benefits -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+          <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-[var(--primary-green)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-2">Competitive Rates</h3>
+          <p class="text-[var(--gray-500)]">Access to exclusive rates from multiple lenders to get you the best deal</p>
+        </div>
+        
+        <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+          <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-[var(--primary-green)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-2">Fast Approval</h3>
+          <p class="text-[var(--gray-500)]">Get pre-approved in as little as 24 hours and close in 30 days</p>
+        </div>
+        
+        <div class="text-center" data-aos="fade-up" data-aos-delay="300">
+          <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-[var(--primary-green)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z"/>
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-2">Expert Guidance</h3>
+          <p class="text-[var(--gray-500)]">Dedicated loan officer guiding you through every step</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="py-20 bg-[var(--gray-100)]">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-[var(--primary-green)] font-semibold text-sm uppercase tracking-wider">Simple Process</span>
+        <h2 class="text-4xl lg:text-5xl font-display font-bold text-[var(--dark-900)] mt-4 mb-6">
+          How It Works
+        </h2>
+        <p class="text-xl text-[var(--gray-500)] max-w-3xl mx-auto">
+          Getting your home loan is easier than you think. Follow these simple steps.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+        <!-- Step 1 -->
+        <div class="card text-center" data-aos="fade-up" data-aos-delay="100">
+          <div class="step-number">1</div>
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-3">Get Pre-Approved</h3>
+          <p class="text-[var(--gray-500)]">
+            Complete our simple application and get pre-approved in 24 hours. Know exactly how much you can afford.
+          </p>
+        </div>
+        
+        <!-- Step 2 -->
+        <div class="card text-center" data-aos="fade-up" data-aos-delay="200">
+          <div class="step-number">2</div>
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-3">Find Your Home</h3>
+          <p class="text-[var(--gray-500)]">
+            Work with your realtor to find the perfect home. Your pre-approval letter strengthens your offer.
+          </p>
+        </div>
+        
+        <!-- Step 3 -->
+        <div class="card text-center" data-aos="fade-up" data-aos-delay="300">
+          <div class="step-number">3</div>
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-3">Submit Documents</h3>
+          <p class="text-[var(--gray-500)]">
+            Upload your documents through our secure portal. We'll handle the processing and underwriting.
+          </p>
+        </div>
+        
+        <!-- Step 4 -->
+        <div class="card text-center" data-aos="fade-up" data-aos-delay="400">
+          <div class="step-number">4</div>
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-3">Close & Move In</h3>
+          <p class="text-[var(--gray-500)]">
+            Sign your documents, get your keys, and move into your new home. Congratulations!
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Loan Types -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-[var(--primary-green)] font-semibold text-sm uppercase tracking-wider">Loan Options</span>
+        <h2 class="text-4xl lg:text-5xl font-display font-bold text-[var(--dark-900)] mt-4 mb-6">
+          Choose the Right Loan for You
+        </h2>
+        <p class="text-xl text-[var(--gray-500)] max-w-3xl mx-auto">
+          We offer a variety of purchase loan options to fit your financial situation and goals.
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <!-- Conventional Loan -->
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-2xl font-bold text-[var(--dark-900)]">Conventional</h3>
+            <span class="text-xs bg-green-100 text-[var(--primary-green)] px-3 py-1 rounded-full font-semibold">POPULAR</span>
+          </div>
+          <p class="text-[var(--gray-500)] mb-6">
+            The most common loan type with competitive rates for borrowers with good credit.
+          </p>
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-[var(--gray-500)]">Down payment as low as 3%</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-[var(--gray-500)]">Fixed or adjustable rates</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-[var(--gray-500)]">15 or 30-year terms</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-[var(--gray-500)]">Credit score 620+</span>
+            </li>
+          </ul>
+          <a href="fha-loans.html" class="text-[var(--primary-green)] font-semibold hover:underline">Learn More →</a>
+        </div>
+        
+        <!-- FHA Loan -->
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-2xl font-bold text-[var(--dark-900)]">FHA</h3>
+            <span class="text-xs bg-blue-100 text-blue-600 px-3 py-1 rounded-full font-semibold">FIRST-TIME</span>
+          </div>
+          <p class="text-[var(--gray-500)] mb-6">
+            Government-backed loan perfect for first-time buyers with lower down payments.
+          </p>
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-[var(--gray-500)]">Down payment as low as 3.5%</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-[var(--gray-500)]">Flexible credit requirements</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-[var(--gray-500)]">Great for first-time buyers</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-[var(--gray-500)]">Credit score 580+</span>
+            </li>
+          </ul>
+          <a href="fha-loans.html" class="text-[var(--primary-green)] font-semibold hover:underline">Learn More →</a>
+        </div>
+        
+        <!-- VA Loan -->
+        <div class="card" data-aos="fade-up" data-aos-delay="300">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-2xl font-bold text-[var(--dark-900)]">VA</h3>
+            <span class="text-xs bg-red-100 text-red-600 px-3 py-1 rounded-full font-semibold">VETERANS</span>
+          </div>
+          <p class="text-[var(--gray-500)] mb-6">
+            Exclusive benefits for veterans and active military members with zero down payment.
+          </p>
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-[var(--gray-500)]">0% down payment</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-[var(--gray-500)]">No private mortgage insurance</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-[var(--gray-500)]">Competitive interest rates</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-[var(--gray-500)]">For military & veterans</span>
+            </li>
+          </ul>
+          <a href="va-loans.html" class="text-[var(--primary-green)] font-semibold hover:underline">Learn More →</a>
+        </div>
+        
+        <!-- Jumbo Loan -->
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-2xl font-bold text-[var(--dark-900)]">Jumbo</h3>
+            <span class="text-xs bg-purple-100 text-purple-600 px-3 py-1 rounded-full font-semibold">LUXURY</span>
+          </div>
+          <p class="text-[var(--gray-500)] mb-6">
+            For high-value properties that exceed conventional loan limits.
+          </p>
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-[var(--gray-500)]">Loans above $766,550</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-[var(--gray-500)]">Competitive rates for large loans</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-[var(--gray-500)]">Fixed or adjustable options</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-[var(--gray-500)]">Strong credit required</span>
+            </li>
+          </ul>
+          <a href="jumbo-loans.html" class="text-[var(--primary-green)] font-semibold hover:underline">Learn More →</a>
+        </div>
+        
+        <!-- 203k Loan -->
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-2xl font-bold text-[var(--dark-900)]">203k</h3>
+            <span class="text-xs bg-orange-100 text-orange-600 px-3 py-1 rounded-full font-semibold">RENOVATION</span>
+          </div>
+          <p class="text-[var(--gray-500)] mb-6">
+            Finance both purchase and renovation costs in a single loan for fixer-uppers.
+          </p>
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-[var(--gray-500)]">Purchase + renovation in one loan</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-[var(--gray-500)]">Down payment as low as 3.5%</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-[var(--gray-500)]">Perfect for fixer-uppers</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-[var(--gray-500)]">Government-backed</span>
+            </li>
+          </ul>
+          <a href="203k-loans.html" class="text-[var(--primary-green)] font-semibold hover:underline">Learn More →</a>
+        </div>
+        
+        <!-- USDA Loan -->
+        <div class="card" data-aos="fade-up" data-aos-delay="300">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-2xl font-bold text-[var(--dark-900)]">USDA</h3>
+            <span class="text-xs bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full font-semibold">RURAL</span>
+          </div>
+          <p class="text-[var(--gray-500)] mb-6">
+            Zero down payment loans for eligible rural and suburban properties.
+          </p>
+          <ul class="space-y-3 mb-6">
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-[var(--gray-500)]">0% down payment</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-[var(--gray-500)]">Lower mortgage insurance</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-[var(--gray-500)]">For rural/suburban areas</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-[var(--primary-green)] mr-2 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              <span class="text-[var(--gray-500)]">Income limits apply</span>
+            </li>
+          </ul>
+          <a href="#" class="text-[var(--primary-green)] font-semibold hover:underline">Learn More →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Calculator Section -->
+  <section id="calculator" class="py-20 bg-[var(--gray-100)]">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-12" data-aos="fade-up">
+        <span class="text-[var(--primary-green)] font-semibold text-sm uppercase tracking-wider">Quick Estimate</span>
+        <h2 class="text-4xl lg:text-5xl font-display font-bold text-[var(--dark-900)] mt-4 mb-6">
+          Calculate Your Monthly Payment
+        </h2>
+        <p class="text-xl text-[var(--gray-500)] max-w-3xl mx-auto">
+          Get an instant estimate and see what you can afford
+        </p>
+      </div>
+      
+      <div class="max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+        <div class="calc-box">
+          <form id="purchase-calc" class="calc-input-group">
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <label class="form-label text-center">Home Price</label>
+                <input type="text" class="form-input text-center text-lg font-semibold" id="home-price" placeholder="$400,000" value="400000">
+              </div>
+              <div>
+                <label class="form-label text-center">Down Payment</label>
+                <input type="text" class="form-input text-center text-lg font-semibold" id="down-payment" placeholder="$80,000" value="80000">
+              </div>
+              <div>
+                <label class="form-label text-center">Interest Rate (%)</label>
+                <input type="text" class="form-input text-center text-lg font-semibold" id="interest-rate" placeholder="6.5%" value="6.5">
+              </div>
+              <div>
+                <label class="form-label text-center">Loan Term</label>
+                <select class="form-input text-center text-lg font-semibold" id="loan-term">
+                  <option value="30">30 Years</option>
+                  <option value="15">15 Years</option>
+                  <option value="20">20 Years</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="btn-primary w-full text-xl bg-white text-[var(--primary-green)] hover:bg-gray-50">
+              Calculate Payment
+            </button>
+          </form>
+          
+          <div id="calc-result" class="hidden text-center mt-8">
+            <div class="bg-white/20 backdrop-blur-sm rounded-2xl p-8">
+              <p class="text-white text-lg mb-3 font-semibold">Estimated Monthly Payment</p>
+              <p class="text-7xl font-bold text-white mb-2" id="monthly-payment">$0</p>
+              <p class="text-white/90 text-sm mb-8">Principal & Interest Only</p>
+              
+              <div class="grid grid-cols-3 gap-6 mb-6 text-white">
+                <div>
+                  <p class="text-white/80 text-sm mb-1">Loan Amount</p>
+                  <p class="text-2xl font-bold" id="loan-amount">$0</p>
+                </div>
+                <div>
+                  <p class="text-white/80 text-sm mb-1">Total Interest</p>
+                  <p class="text-2xl font-bold" id="total-interest">$0</p>
+                </div>
+                <div>
+                  <p class="text-white/80 text-sm mb-1">Total Paid</p>
+                  <p class="text-2xl font-bold" id="total-paid">$0</p>
+                </div>
+              </div>
+              
+              <p class="text-white/80 text-sm mb-6">*Estimate does not include property taxes, insurance, HOA fees, or PMI</p>
+              <a href="#apply" class="btn-primary bg-white text-[var(--primary-green)] hover:bg-gray-50">
+                Get Pre-Approved Now →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Requirements -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-[var(--primary-green)] font-semibold text-sm uppercase tracking-wider">What You'll Need</span>
+        <h2 class="text-4xl lg:text-5xl font-display font-bold text-[var(--dark-900)] mt-4 mb-6">
+          Application Requirements
+        </h2>
+        <p class="text-xl text-[var(--gray-500)] max-w-3xl mx-auto">
+          Gather these documents to speed up your application process
+        </p>
+      </div>
+      
+      <div class="max-w-5xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Income Documentation -->
+          <div class="card" data-aos="fade-up" data-aos-delay="100">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 rounded-lg bg-green-100 flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-[var(--primary-green)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-[var(--dark-900)]">Income Documentation</h3>
+            </div>
+            <ul class="space-y-2 text-[var(--gray-500)]">
+              <li class="flex items-start">
+                <span class="text-[var(--primary-green)] mr-2">•</span>
+                <span>Recent pay stubs (last 30 days)</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-[var(--primary-green)] mr-2">•</span>
+                <span>W-2 forms (last 2 years)</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-[var(--primary-green)] mr-2">•</span>
+                <span>Tax returns (last 2 years if self-employed)</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-[var(--primary-green)] mr-2">•</span>
+                <span>Additional income documentation (bonuses, investments, etc.)</span>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Asset Documentation -->
+          <div class="card" data-aos="fade-up" data-aos-delay="200">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 rounded-lg bg-green-100 flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-[var(--primary-green)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-[var(--dark-900)]">Asset Documentation</h3>
+            </div>
+            <ul class="space-y-2 text-[var(--gray-500)]">
+              <li class="flex items-start">
+                <span class="text-[var(--primary-green)] mr-2">•</span>
+                <span>Bank statements (last 2-3 months)</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-[var(--primary-green)] mr-2">•</span>
+                <span>Investment account statements</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-[var(--primary-green)] mr-2">•</span>
+                <span>Retirement account statements</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-[var(--primary-green)] mr-2">•</span>
+                <span>Gift letter (if down payment is a gift)</span>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Credit & ID -->
+          <div class="card" data-aos="fade-up" data-aos-delay="300">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 rounded-lg bg-green-100 flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-[var(--primary-green)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2"/>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-[var(--dark-900)]">Identification & Credit</h3>
+            </div>
+            <ul class="space-y-2 text-[var(--gray-500)]">
+              <li class="flex items-start">
+                <span class="text-[var(--primary-green)] mr-2">•</span>
+                <span>Government-issued photo ID (driver's license, passport)</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-[var(--primary-green)] mr-2">•</span>
+                <span>Social Security card or number</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-[var(--primary-green)] mr-2">•</span>
+                <span>Authorization for credit check</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-[var(--primary-green)] mr-2">•</span>
+                <span>Explanation for any credit issues</span>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Property Information -->
+          <div class="card" data-aos="fade-up" data-aos-delay="400">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 rounded-lg bg-green-100 flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-[var(--primary-green)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-[var(--dark-900)]">Property Information</h3>
+            </div>
+            <ul class="space-y-2 text-[var(--gray-500)]">
+              <li class="flex items-start">
+                <span class="text-[var(--primary-green)] mr-2">•</span>
+                <span>Purchase agreement (once home is under contract)</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-[var(--primary-green)] mr-2">•</span>
+                <span>Property address and details</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-[var(--primary-green)] mr-2">•</span>
+                <span>Homeowners insurance quote</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-[var(--primary-green)] mr-2">•</span>
+                <span>HOA information (if applicable)</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-20 bg-[var(--gray-100)]">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="text-center mb-16" data-aos="fade-up">
+        <span class="text-[var(--primary-green)] font-semibold text-sm uppercase tracking-wider">Common Questions</span>
+        <h2 class="text-4xl lg:text-5xl font-display font-bold text-[var(--dark-900)] mt-4 mb-6">
+          Purchase Loan FAQ
+        </h2>
+      </div>
+      
+      <div class="max-w-4xl mx-auto space-y-6">
+        <!-- FAQ Item 1 -->
+        <div class="card" data-aos="fade-up" data-aos-delay="100">
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-3">How much do I need for a down payment?</h3>
+          <p class="text-[var(--gray-500)]">
+            Down payment requirements vary by loan type. Conventional loans can require as little as 3%, FHA loans 3.5%, VA and USDA loans 0%, and jumbo loans typically 10-20%. Your specific situation and loan type will determine your requirement.
+          </p>
+        </div>
+        
+        <!-- FAQ Item 2 -->
+        <div class="card" data-aos="fade-up" data-aos-delay="200">
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-3">What credit score do I need to buy a home?</h3>
+          <p class="text-[var(--gray-500)]">
+            Minimum credit scores vary: Conventional loans typically require 620+, FHA loans 580+, VA loans around 620+, and jumbo loans 700+. However, higher scores often qualify for better interest rates.
+          </p>
+        </div>
+        
+        <!-- FAQ Item 3 -->
+        <div class="card" data-aos="fade-up" data-aos-delay="300">
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-3">How long does it take to close on a home?</h3>
+          <p class="text-[var(--gray-500)]">
+            On average, it takes 30-45 days to close on a home purchase. With all documents ready and a streamlined process, we can sometimes close in as little as 21-30 days.
+          </p>
+        </div>
+        
+        <!-- FAQ Item 4 -->
+        <div class="card" data-aos="fade-up" data-aos-delay="400">
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-3">What's the difference between pre-qualification and pre-approval?</h3>
+          <p class="text-[var(--gray-500)]">
+            Pre-qualification is an estimate based on self-reported information. Pre-approval is a more thorough process involving credit checks and document verification, giving you a stronger position when making an offer.
+          </p>
+        </div>
+        
+        <!-- FAQ Item 5 -->
+        <div class="card" data-aos="fade-up" data-aos-delay="500">
+          <h3 class="text-xl font-bold text-[var(--dark-900)] mb-3">Can I use gift money for my down payment?</h3>
+          <p class="text-[var(--gray-500)]">
+            Yes! Most loan programs allow gift funds from family members for down payment and closing costs. You'll need a gift letter stating the funds are a gift and not a loan that needs to be repaid.
+          </p>
+        </div>
+      </div>
+      
+      <div class="text-center mt-12" data-aos="fade-up">
+        <p class="text-[var(--gray-500)] mb-6">Still have questions?</p>
+        <a href="faq.html" class="btn-outline-green">View All FAQs</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="apply" class="py-20 bg-[var(--primary-green)] text-white">
+    <div class="container mx-auto px-4 lg:px-8 text-center">
+      <div class="max-w-3xl mx-auto" data-aos="fade-up">
+        <h2 class="text-4xl lg:text-5xl font-display font-bold mb-6">
+          Ready to Start Your Home Journey?
+        </h2>
+        <p class="text-xl mb-8 text-green-50">
+          Get pre-approved today and take the first step toward homeownership. Our expert team is here to guide you every step of the way.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="#" class="btn-primary bg-white text-[var(--primary-green)] hover:bg-gray-50">Start Application →</a>
+          <a href="tel:555-123-4567" class="btn-outline-green border-white text-white hover:bg-white hover:text-[var(--primary-green)]">Call Us: (555) 123-4567</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-[var(--dark-900)] text-white py-16">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <!-- Company Info -->
+        <div>
+          <div class="flex items-center space-x-2 mb-6">
+            <svg class="w-8 h-8 text-[var(--primary-green)]" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+            </svg>
+            <span class="text-xl font-display font-bold">Meetingplace Mortgage</span>
+          </div>
+          <p class="text-gray-400 mb-4">
+            Your trusted partner in achieving homeownership dreams.
+          </p>
+        </div>
+        
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-lg font-semibold mb-6">Loan Products</h4>
+          <ul class="space-y-3">
+            <li><a href="purchase-loans.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">Purchase Loans</a></li>
+            <li><a href="refinance.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">Refinancing</a></li>
+            <li><a href="va-loans.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">VA Loans</a></li>
+            <li><a href="fha-loans.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">FHA Loans</a></li>
+            <li><a href="203k-loans.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">203k Renovation</a></li>
+            <li><a href="jumbo-loans.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">Jumbo Loans</a></li>
+          </ul>
+        </div>
+        
+        <!-- Resources -->
+        <div>
+          <h4 class="text-lg font-semibold mb-6">Resources</h4>
+          <ul class="space-y-3">
+            <li><a href="calculator.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">Calculator</a></li>
+            <li><a href="faq.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">FAQ</a></li>
+            <li><a href="resources.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">Learning Center</a></li>
+            <li><a href="privacy-policy.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">Privacy Policy</a></li>
+            <li><a href="terms-of-service.html" class="text-gray-400 hover:text-[var(--primary-green)] transition">Terms of Service</a></li>
+          </ul>
+        </div>
+        
+        <!-- Contact -->
+        <div>
+          <h4 class="text-lg font-semibold mb-6">Contact Us</h4>
+          <div class="space-y-3 text-gray-400">
+            <p>123 Main Street<br>Your City, ST 12345</p>
+            <p>(555) 123-4567</p>
+            <p>info@mplacemortgage.com</p>
+            <p class="text-sm">Mon-Fri: 9AM - 6PM<br>Sat: 10AM - 4PM</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="border-t border-gray-700 pt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <p class="text-gray-400 text-sm mb-4 md:mb-0">
+            © 2025 Meetingplace Mortgage. All rights reserved.
+          </p>
+          <div class="flex space-x-6 text-sm">
+            <a href="#" class="text-gray-400 hover:text-[var(--primary-green)] transition">NMLS #123456</a>
+            <a href="#" class="text-gray-400 hover:text-[var(--primary-green)] transition">Equal Housing Lender</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 800,
+      once: true,
+      offset: 100
+    });
+    
+    // Purchase Calculator
+    document.getElementById('purchase-calc').addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const homePrice = parseFloat(document.getElementById('home-price').value.replace(/[^0-9.]/g, ''));
+      const downPayment = parseFloat(document.getElementById('down-payment').value.replace(/[^0-9.]/g, ''));
+      const interestRate = parseFloat(document.getElementById('interest-rate').value);
+      const loanTerm = parseInt(document.getElementById('loan-term').value);
+      
+      const loanAmount = homePrice - downPayment;
+      const monthlyRate = interestRate / 100 / 12;
+      const numPayments = loanTerm * 12;
+      
+      const monthlyPayment = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) / 
+                            (Math.pow(1 + monthlyRate, numPayments) - 1);
+      
+      const totalPaid = monthlyPayment * numPayments;
+      const totalInterest = totalPaid - loanAmount;
+      
+      // Update display
+      document.getElementById('monthly-payment').textContent = 
+        '$' + Math.round(monthlyPayment).toLocaleString();
+      document.getElementById('loan-amount').textContent = 
+        '$' + Math.round(loanAmount).toLocaleString();
+      document.getElementById('total-interest').textContent = 
+        '$' + Math.round(totalInterest).toLocaleString();
+      document.getElementById('total-paid').textContent = 
+        '$' + Math.round(totalPaid).toLocaleString();
+      
+      document.getElementById('calc-result').classList.remove('hidden');
+    });
+    
+    // Format currency inputs
+    document.querySelectorAll('input[type="text"]').forEach(input => {
+      if (input.placeholder && input.placeholder.includes('$')) {
+        input.addEventListener('input', (e) => {
+          let value = e.target.value.replace(/[^0-9.]/g, '');
+          if (value) {
+            value = parseFloat(value).toLocaleString();
+            e.target.value = value;
+          }
+        });
+      }
+    });
+    
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
