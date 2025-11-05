@@ -1,7 +1,7 @@
 <?php
 // Replace with your actual Monday API token
 $apiToken = "eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjU4MjkzNTYyNSwiYWFpIjoxMSwidWlkIjo5NTQxMTU0NiwiaWFkIjoiMjAyNS0xMS0wNVQxODo0ODowNy40OTZaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6MzIyNzkzMTcsInJnbiI6InVzZTEifQ.0wdsVkQOlNx2zUJKFsyuvs0IdouCdHUWKl1fPoCSLRI";
-$boardId  = 18323185491;
+$boardId  = "18323185491";
 
 // Collect form data safely
 $fullName        = $_POST['full_name'] ?? '';
