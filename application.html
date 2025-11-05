@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mortgage Application</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem; }
+    .form-step { display: none; }
+    .form-step.active { display: block; }
+    .buttons { margin-top: 1rem; }
+    button { padding: 0.5rem 1rem; margin-right: 0.5rem; }
+    .progress { margin-bottom: 1rem; }
+  </style>
+</head>
+<body>
+
+  <h2>Mortgage Application</h2>
+  <div class="progress" id="progress">Step 1 of 5</div>
+
+  <form id="mortgageForm">
+
+    <!-- Step 1: Personal Info -->
+    <div class="form-step active">
+      <label>Full Name</label><br>
+      <input type="text" name="full_name" required><br><br>
+
+      <label>Email</label><br>
+      <input type="email" name="email" required><br><br>
+
+      <label>Phone</label><br>
+      <input type="tel" name="phone" required><br><br>
+
+      <label>Date of Birth</label><br>
+      <input type="date" name="dob" required><br><br>
+    </div>
+
+    <!-- Step 2: Property & Loan -->
+    <div class="form-step">
+      <label>Property Address</label><br>
+      <input type="text" name="property_address" required><br><br>
+
+      <label>Purchase Price</label><br>
+      <input type="number" name="purchase_price" required><br><br>
+
+      <label>Loan Amount Requested</label><br>
+      <input type="number" name="loan_amount" required><br><br>
+
+      <label>Transaction Type</label><br>
+      <select name="transaction_type" required>
+        <option value="">Select</option>
+        <option value="purchase">Purchase</option>
+        <option value="refinance">Refinance</option>
+      </select><br><br>
+    </div>
+
+    <!-- Step 3: Employment & Income -->
+    <div class="form-step">
+      <label>Employer Name</label><br>
+      <input type="text" name="employer"><br><br>
+
+      <label>Job Title</label><br>
+      <input type="text" name="job_title"><br><br>
+
+      <label>Time at Job (years)</label><br>
+      <input type="number" name="time_at_job"><br><br>
+
+      <label>Monthly Gross Income</label><br>
+      <input type="number" name="monthly_income"><br><br>
+    </div>
+
+    <!-- Step 4: Assets & Liabilities -->
+    <div class="form-step">
+      <label>Bank Name</label><br>
+      <input type="text" name="bank_name"><br><br>
+
+      <label>Approximate Savings</label><br>
+      <input type="number" name="savings"><br><br>
+
+      <label>Monthly Debt Obligations</label><br>
+      <input type="number" name="monthly_debt"><br><br>
+    </div>
+
+    <!-- Step 5: Consent -->
+    <div class="form-step">
+      <label>
+        <input type="checkbox" name="consent" required>
+        I consent to being contacted and understand this is not a credit application.
+      </label><br><br>
+
+      <button type="submit">Submit Application</button>
+    </div>
+
+    <div class="buttons">
+      <button type="button" id="prevBtn">Previous</button>
+      <button type="button" id="nextBtn">Next</button>
+    </div>
+  </form>
+
+  <script>
+    const steps = document.querySelectorAll(".form-step");
+    const nextBtn = document.getElementById("nextBtn");
+    const prevBtn = document.getElementById("prevBtn");
+    const progress = document.getElementById("progress");
+    let currentStep = 0;
+
+    function showStep(step) {
+      steps.forEach((s, i) => s.classList.toggle("active", i === step));
+      progress.textContent = `Step ${step + 1} of ${steps.length}`;
+      prevBtn.style.display = step === 0 ? "none" : "inline-block";
+      nextBtn.style.display = step === steps.length - 1 ? "none" : "inline-block";
+    }
+
+    nextBtn.addEventListener("click", () => {
+      if (currentStep < steps.length - 1) {
+        currentStep++;
+        showStep(currentStep);
+      }
+    });
+
+    prevBtn.addEventListener("click", () => {
+      if (currentStep > 0) {
+        currentStep--;
+        showStep(currentStep);
+      }
+    });
+
+    showStep(currentStep);
+
+    document.getElementById("mortgageForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      alert("Application submitted! (Next step: connect to Monday CRM)");
+    });
+  </script>
+
+</body>
+</html>
