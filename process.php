@@ -47,31 +47,40 @@ $consent = isset($_POST['consent']) ? 'Yes' : 'No';
 
 file_put_contents('debug.log', "Validation passed. Name: $full_name, Email: $email\n", FILE_APPEND);
 
-// Build column values for Monday.com
+// Build column values for Monday.com (exact IDs from your board)
 $columnValues = [
-    "text" => $full_name,
-    "email" => [
-        "email" => $email,
-        "text" => $email
-    ],
-    "phone" => $phone,
-    "date" => $dob,
-    "text4" => $current_address,
-    "text7" => $property_address,
-    "numbers" => $purchase_price,
-    "numbers1" => $loan_amount,
-    "dropdown" => $transaction_type,
-    "dropdown8" => $occupancy,
-    "text8" => $employer,
-    "text9" => $job_title,
-    "numbers6" => $time_at_job,
-    "numbers3" => $monthly_income,
-    "numbers4" => $other_income,
-    "text0" => $bank_name,
-    "numbers7" => $savings,
-    "numbers5" => $monthly_debt,
-    "status" => $consent
+  // email & phone types
+  'lead_email' => ['email' => $email, 'text' => $email],
+  'lead_phone' => ['phone' => $phone, 'countryShortName' => 'US'],
+
+  // text fields
+  'text'            => $job_title,          // Job Title
+  'lead_company'    => $employer,           // Employer Name
+  'text_mkxdrgsj'   => $current_address,    // Current Address
+  'text_mkxdvt4v'   => $property_address,   // Property Address
+  'text_mkxd44hz'   => $bank_name,          // Bank Name
+
+  // numbers (strip symbols just in case)
+  'numeric_mkxdn0rw' => preg_replace('/[^\d.]/','', $purchase_price),  // Purchase Price
+  'numeric_mkxbgt39' => preg_replace('/[^\d.]/','', $loan_amount),     // Loan Amount Requested
+  'numeric_mkxdw8b6' => preg_replace('/[^\d.]/','', $time_at_job),     // Time At Job
+  'numeric_mkxd3yr5' => preg_replace('/[^\d.]/','', $monthly_income),  // Monthly Gross Income
+  'numeric_mkxdhe8q' => preg_replace('/[^\d.]/','', $other_income),    // Other Income
+  // If you collect these, uncomment:
+  // 'numeric_mkxddesj' => preg_replace('/[^\d.]/','', $savings),       // Approximate Savings
+  // 'numeric_mkxdmkaa' => preg_replace('/[^\d.]/','', $monthly_debt),  // Monthly Debt Obligations
+
+  // date (expects YYYY-MM-DD)
+  'date_mkxd4yv6'    => ['date' => $dob],
+
+  // dropdowns (labels must match your Monday option text)
+  'dropdown_mkxbjpf6' => ['labels' => [trim($transaction_type)]],  // Transaction Type
+  'dropdown_mkxdw2t5' => ['labels' => [trim($occupancy)]],         // Occupancy
+
+  // checkbox (uncomment if you have a consent var)
+  // 'boolean_mkxdqnft' => ['checked' => (!empty($consent) ? 'true' : 'false')],
 ];
+
 
 // Remove empty values
 $columnValues = array_filter($columnValues, function($value) {
@@ -88,7 +97,7 @@ $query = 'mutation ($boardId: ID!, $itemName: String!, $columnValues: JSON!) {
 $variables = [
     "boardId" => "18323185491",
     "itemName" => $full_name,
-    "columnValues" => json_encode($columnValues)
+    "columnValues" => json_encode($columnValues, JSON_UNESCAPED_SLASHES)
 ];
 
 $data = json_encode([
