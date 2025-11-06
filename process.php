@@ -1,12 +1,14 @@
 <?php
-// Enable error reporting for debugging
+// Debug version - will show us what's happening
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Set headers for JSON response
-header('Content-Type: application/json');
+// Log what we received
+file_put_contents('debug.log', "=== NEW SUBMISSION ===\n", FILE_APPEND);
+file_put_contents('debug.log', "POST data: " . print_r($_POST, true) . "\n", FILE_APPEND);
+file_put_contents('debug.log', "Time: " . date('Y-m-d H:i:s') . "\n\n", FILE_APPEND);
 
-// Capture form fields from the mortgage application
+// Capture form fields
 $full_name = $_POST['full_name'] ?? '';
 $email = $_POST['email'] ?? '';
 $phone = $_POST['phone'] ?? '';
@@ -29,64 +31,63 @@ $consent = isset($_POST['consent']) ? 'Yes' : 'No';
 
 // Validate required fields
 if (empty($full_name) || empty($email) || empty($phone)) {
-    echo json_encode([
-        'success' => false,
-        'error' => 'Missing required fields: full_name, email, or phone'
-    ]);
+    file_put_contents('debug.log', "ERROR: Missing required fields\n", FILE_APPEND);
+    echo "ERROR: Missing required fields";
     exit;
 }
 
+file_put_contents('debug.log', "Validation passed. Name: $full_name, Email: $email\n", FILE_APPEND);
+
 // Build column values for Monday.com
-// Note: These keys must match your Monday.com board column IDs
 $columnValues = [
-    "text" => $full_name,           // Name column
-    "email" => [                     // Email column
+    "text" => $full_name,
+    "email" => [
         "email" => $email,
         "text" => $email
     ],
-    "phone" => $phone,               // Phone column
-    "date" => $dob,                  // Date of Birth column
-    "text4" => $current_address,     // Current Address column
-    "text7" => $property_address,    // Property Address column
-    "numbers" => $purchase_price,    // Purchase Price column
-    "numbers1" => $loan_amount,      // Loan Amount Requested column
-    "dropdown" => $transaction_type, // Transaction Type column
-    "dropdown8" => $occupancy,       // Occupancy column
-    "text8" => $employer,            // Employer Name column
-    "text9" => $job_title,           // Job Title column
-    "numbers6" => $time_at_job,      // Time At Job column
-    "numbers3" => $monthly_income,   // Monthly Gross Income column
-    "numbers4" => $other_income,     // Other Income column
-    "text0" => $bank_name,           // Bank Name column
-    "numbers7" => $savings,          // Approximate Savings column
-    "numbers5" => $monthly_debt,     // Monthly Debt Obligations column
-    "status" => $consent             // Consent Checkbox column
+    "phone" => $phone,
+    "date" => $dob,
+    "text4" => $current_address,
+    "text7" => $property_address,
+    "numbers" => $purchase_price,
+    "numbers1" => $loan_amount,
+    "dropdown" => $transaction_type,
+    "dropdown8" => $occupancy,
+    "text8" => $employer,
+    "text9" => $job_title,
+    "numbers6" => $time_at_job,
+    "numbers3" => $monthly_income,
+    "numbers4" => $other_income,
+    "text0" => $bank_name,
+    "numbers7" => $savings,
+    "numbers5" => $monthly_debt,
+    "status" => $consent
 ];
 
-// Remove empty values to avoid Monday.com errors
+// Remove empty values
 $columnValues = array_filter($columnValues, function($value) {
     return $value !== '' && $value !== null;
 });
 
-// GraphQL mutation to create item in Monday.com
+// GraphQL mutation
 $query = 'mutation ($boardId: ID!, $itemName: String!, $columnValues: JSON!) {
   create_item(board_id: $boardId, item_name: $itemName, column_values: $columnValues) {
     id
   }
 }';
 
-// Variables - Update boardId to your actual board ID
 $variables = [
-    "boardId" => "1762389923",  // Your Monday.com board ID
-    "itemName" => $full_name,   // Use applicant name as item name
+    "boardId" => "1762389923",
+    "itemName" => $full_name,
     "columnValues" => json_encode($columnValues)
 ];
 
-// Prepare request
 $data = json_encode([
     'query' => $query,
     'variables' => $variables
 ]);
+
+file_put_contents('debug.log', "Sending to Monday.com...\n", FILE_APPEND);
 
 $headers = [
     'Content-Type: application/json',
@@ -104,31 +105,22 @@ $response = curl_exec($ch);
 $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 curl_close($ch);
 
-// Parse response
+file_put_contents('debug.log', "Monday response code: $httpCode\n", FILE_APPEND);
+file_put_contents('debug.log', "Monday response: $response\n", FILE_APPEND);
+
 $responseData = json_decode($response, true);
 
 // Check for errors
 if ($httpCode !== 200 || isset($responseData['errors'])) {
-    echo json_encode([
-        'success' => false,
-        'error' => 'Failed to submit to Monday.com',
-        'details' => $responseData,
-        'http_code' => $httpCode
-    ]);
+    file_put_contents('debug.log', "ERROR from Monday.com\n", FILE_APPEND);
+    echo "ERROR: Failed to submit to Monday.com<br>";
+    echo "HTTP Code: $httpCode<br>";
+    echo "Response: " . print_r($responseData, true);
     exit;
 }
 
-// Success! Redirect to thank you page
-if (isset($_POST['full_name'])) {
-    // If this is a form submission (not API call), redirect to success page
-    header('Location: https://mplacemortgage.com/thank-you.html');
-    exit;
-} else {
-    // If this is an API call, return JSON
-    echo json_encode([
-        'success' => true,
-        'message' => 'Application submitted successfully',
-        'monday_response' => $responseData
-    ]);
-}
+// Success! Redirect
+file_put_contents('debug.log', "SUCCESS! Redirecting to thank-you page\n\n", FILE_APPEND);
+header('Location: https://mplacemortgage.com/thank-you.html');
+exit;
 ?>
