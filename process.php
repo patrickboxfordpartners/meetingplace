@@ -1,143 +1,143 @@
 <?php
-// ===== process.php — creates monday.com item + emails you a lead =====
+// Better debug version
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-// 1) Require POST
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-  http_response_code(405);
-  header('Content-Type: text/plain; charset=utf-8');
-  echo "Use POST";
-  exit;
-}
+// Log what we received
+file_put_contents('debug.log', "=== NEW SUBMISSION ===\n", FILE_APPEND);
+file_put_contents('debug.log', "POST data: " . print_r($_POST, true) . "\n", FILE_APPEND);
+file_put_contents('debug.log', "Time: " . date('Y-m-d H:i:s') . "\n\n", FILE_APPEND);
 
-// 2) Read & sanitize the minimum required fields
-$full_name = trim($_POST['full_name'] ?? '');
-$email     = trim($_POST['email'] ?? '');
-$phone     = trim($_POST['phone'] ?? '');
+// Capture form fields
+$full_name = $_POST['full_name'] ?? '';
+$email = $_POST['email'] ?? '';
+$phone = $_POST['phone'] ?? '';
 
-// (Optional) honeypot: bots fill hidden "website" field; humans don't
-if (!empty($_POST['website'] ?? '')) { http_response_code(204); exit; }
+// Show what we got
+echo "<h2>Debug Info:</h2>";
+echo "Full Name: '" . htmlspecialchars($full_name) . "'<br>";
+echo "Email: '" . htmlspecialchars($email) . "'<br>";
+echo "Phone: '" . htmlspecialchars($phone) . "'<br>";
+echo "<br>";
 
-// 3) Validate requireds
+// Check what's missing
 $missing = [];
-if ($full_name === '') $missing[] = 'full_name';
-if ($email === '')     $missing[] = 'email';
-if ($phone === '')     $missing[] = 'phone';
+if (empty($full_name)) $missing[] = 'full_name';
+if (empty($email)) $missing[] = 'email';
+if (empty($phone)) $missing[] = 'phone';
 
-if ($missing) {
-  http_response_code(400);
-  $h = fn($s) => htmlspecialchars($s ?? '', ENT_QUOTES, 'UTF-8');
-  ?>
-  <!doctype html><html lang="en"><head>
-    <meta charset="utf-8"><title>Missing Required Fields</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <style>body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;margin:40px}
-    code{background:#f3f6f5;padding:2px 6px;border-radius:6px}.box{max-width:720px;border:1px solid #e6eef0;border-radius:12px;padding:20px}</style>
-  </head><body><div class="box">
-    <h1>Missing Required Fields</h1>
-    <p>We need: <strong><?= implode(', ', $missing) ?></strong></p>
-    <pre>Full Name: '<?= $h($full_name) ?>'
-Email:     '<?= $h($email) ?>'
-Phone:     '<?= $h($phone) ?>'</pre>
-    <p><a href="javascript:history.back()">Go back</a></p>
-  </div></body></html><?php
-  exit;
+if (!empty($missing)) {
+    echo "<h3 style='color: red;'>Missing Required Fields:</h3>";
+    echo implode(', ', $missing);
+    file_put_contents('debug.log', "ERROR: Missing fields: " . implode(', ', $missing) . "\n", FILE_APPEND);
+    exit;
 }
 
-// 4) Create item in monday.com
-$MONDAY_TOKEN = getenv('MONDAY_TOKEN'); // set in Azure → Configuration → Application settings
-$BOARD_ID     = (int)(getenv('MONDAY_BOARD_ID') ?: 1234567890); // put real board id or set env
-$GROUP_ID     = getenv('MONDAY_GROUP_ID') ?: 'topics';          // put real group id or set env
+// If we get here, all required fields are present
+$dob = $_POST['dob'] ?? '';
+$current_address = $_POST['current_address'] ?? '';
+$property_address = $_POST['property_address'] ?? '';
+$purchase_price = $_POST['purchase_price'] ?? '';
+$loan_amount = $_POST['loan_amount'] ?? '';
+$transaction_type = $_POST['transaction_type'] ?? '';
+$occupancy = $_POST['occupancy'] ?? '';
+$employer = $_POST['employer'] ?? '';
+$job_title = $_POST['job_title'] ?? '';
+$time_at_job = $_POST['time_at_job'] ?? '';
+$monthly_income = $_POST['monthly_income'] ?? '';
+$other_income = $_POST['other_income'] ?? '';
+$bank_name = $_POST['bank_name'] ?? '';
+$savings = $_POST['savings'] ?? '';
+$monthly_debt = $_POST['monthly_debt'] ?? '';
+$consent = isset($_POST['consent']) ? 'Yes' : 'No';
 
-// Column IDs — adjust to match your board column IDs
-$EMAIL_COL_ID = getenv('MONDAY_EMAIL_COL') ?: 'email';
-$PHONE_COL_ID = getenv('MONDAY_PHONE_COL') ?: 'phone';
-// $NOTE_COL_ID  = getenv('MONDAY_NOTE_COL')  ?: null; // optional text column
+file_put_contents('debug.log', "Validation passed. Name: $full_name, Email: $email\n", FILE_APPEND);
 
-$createdMonday = false;
-$mondayError   = null;
-
-if ($MONDAY_TOKEN && $BOARD_ID && $GROUP_ID) {
-  $columnValues = [
-    $EMAIL_COL_ID => ['email' => $email, 'text' => $email],
-    $PHONE_COL_ID => ['phone' => $phone, 'countryShortName' => 'US'],
-    // if (!empty($NOTE_COL_ID)) $columnValues[$NOTE_COL_ID] = "Web lead";
-  ];
-
-  $mutation = <<<'GQL'
-    mutation ($board: ID!, $group: String!, $item: String!, $cols: JSON!) {
-      create_item(board_id: $board, group_id: $group, item_name: $item, column_values: $cols) { id }
-    }
-  GQL;
-
-  $payload = [
-    'query' => $mutation,
-    'variables' => [
-      'board' => $BOARD_ID,
-      'group' => $GROUP_ID,
-      'item'  => "Lead: " . $full_name,
-      'cols'  => json_encode($columnValues, JSON_UNESCAPED_SLASHES),
+// Build column values for Monday.com
+$columnValues = [
+    "text" => $full_name,
+    "email" => [
+        "email" => $email,
+        "text" => $email
     ],
-  ];
+    "phone" => $phone,
+    "date" => $dob,
+    "text4" => $current_address,
+    "text7" => $property_address,
+    "numbers" => $purchase_price,
+    "numbers1" => $loan_amount,
+    "dropdown" => $transaction_type,
+    "dropdown8" => $occupancy,
+    "text8" => $employer,
+    "text9" => $job_title,
+    "numbers6" => $time_at_job,
+    "numbers3" => $monthly_income,
+    "numbers4" => $other_income,
+    "text0" => $bank_name,
+    "numbers7" => $savings,
+    "numbers5" => $monthly_debt,
+    "status" => $consent
+];
 
-  $ch = curl_init('https://api.monday.com/v2');
-  curl_setopt_array($ch, [
-    CURLOPT_HTTPHEADER     => [
-      'Content-Type: application/json',
-      'Authorization: ' . $MONDAY_TOKEN, // monday expects raw token (no "Bearer ")
-    ],
-    CURLOPT_POST           => true,
-    CURLOPT_POSTFIELDS     => json_encode($payload),
-    CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_TIMEOUT        => 12,
-  ]);
-  $resp = curl_exec($ch);
-  $http = curl_getinfo($ch, CURLINFO_RESPONSE_CODE);
-  $err  = curl_error($ch);
-  curl_close($ch);
+// Remove empty values
+$columnValues = array_filter($columnValues, function($value) {
+    return $value !== '' && $value !== null;
+});
 
-  if ($err)              { $mondayError = $err; }
-  elseif ($http >= 400)  { $mondayError = "HTTP $http: $resp"; }
-  else {
-    $j = json_decode($resp, true);
-    $createdMonday = isset($j['data']['create_item']['id']);
-    if (!$createdMonday) { $mondayError = $resp; }
+// GraphQL mutation
+$query = 'mutation ($boardId: ID!, $itemName: String!, $columnValues: JSON!) {
+  create_item(board_id: $boardId, item_name: $itemName, column_values: $columnValues) {
+    id
   }
+}';
+
+$variables = [
+    "boardId" => "1762389923",
+    "itemName" => $full_name,
+    "columnValues" => json_encode($columnValues)
+];
+
+$data = json_encode([
+    'query' => $query,
+    'variables' => $variables
+]);
+
+file_put_contents('debug.log', "Sending to Monday.com...\n", FILE_APPEND);
+
+$headers = [
+    'Content-Type: application/json',
+    'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjU4MjkzNTYyNSwiYWFpIjoxMSwidWlkIjo5NTQxMTU0NiwiaWFkIjoiMjAyNS0xMS0wNVQxODo0ODowNy40OTZaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6MzIyNzkzMTcsInJnbiI6InVzZTEifQ.0wdsVkQOlNx2zUJKFsyuvs0IdouCdHUWKl1fPoCSLRI'
+];
+
+// Send to Monday.com
+$ch = curl_init('https://api.monday.com/v2');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+$response = curl_exec($ch);
+$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+curl_close($ch);
+
+file_put_contents('debug.log', "Monday response code: $httpCode\n", FILE_APPEND);
+file_put_contents('debug.log', "Monday response: $response\n", FILE_APPEND);
+
+$responseData = json_decode($response, true);
+
+// Check for errors
+if ($httpCode !== 200 || isset($responseData['errors'])) {
+    file_put_contents('debug.log', "ERROR from Monday.com\n", FILE_APPEND);
+    echo "<h3 style='color: red;'>ERROR: Failed to submit to Monday.com</h3>";
+    echo "HTTP Code: $httpCode<br>";
+    echo "Response: <pre>" . print_r($responseData, true) . "</pre>";
+    exit;
 }
 
-// 5) Email notification (simple)
-// Set LEAD_NOTIFY_TO in Azure (or hardcode your address here)
-$TO_EMAIL = getenv('LEAD_NOTIFY_TO') ?: 'loans@mplacemortgage.com';
-$SUBJ     = 'New Pre-Approval';
-$BODY     = "Name: $full_name\nEmail: $email\nPhone: $phone\n"
-          . "monday: " . ($createdMonday ? "created" : "not created") . ($mondayError ? " ($mondayError)" : "") . "\n";
-$HEADERS  = "From: no-reply@mplacemortgage.com\r\nReply-To: $email\r\n";
-@mail($TO_EMAIL, $SUBJ, $BODY, $HEADERS); // If not delivered, switch to SMTP (I can paste that too)
-
-// 6) Success page (kept lightweight; use your own thank-you if you prefer)
-$h = fn($s) => htmlspecialchars($s ?? '', ENT_QUOTES, 'UTF-8');
+// Success! Redirect
+file_put_contents('debug.log', "SUCCESS! Redirecting to thank-you page\n\n", FILE_APPEND);
+echo "<h2 style='color: green;'>SUCCESS! Redirecting...</h2>";
+echo "<script>setTimeout(function(){ window.location.href = 'https://mplacemortgage.com/thank-you.html'; }, 2000);</script>";
+exit;
 ?>
-<!doctype html>
-<html lang="en"><head>
-  <meta charset="utf-8" />
-  <title>Application Received</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <style>
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;margin:40px}
-    .card{max-width:720px;background:#fff;border:1px solid #e6eef0;border-radius:12px;padding:24px}
-    h1{margin:0 0 10px}.muted{color:#566}
-  </style>
-</head><body>
-  <div class="card">
-    <h1>Thanks, we got it.</h1>
-    <p class="muted">We’ll be in touch shortly.</p>
-    <h3>Summary</h3>
-    <ul>
-      <li><strong>Name:</strong> <?= $h($full_name) ?></li>
-      <li><strong>Email:</strong> <?= $h($email) ?></li>
-      <li><strong>Phone:</strong> <?= $h($phone) ?></li>
-    </ul>
-    <?php if (!$createdMonday): ?>
-      <p class="muted">Heads up: monday.com item wasn’t confirmed. We still emailed the lead. (<?= $h($mondayError ?? 'unknown') ?>)</p>
-    <?php endif; ?>
-  </div>
-</body></html>
+
