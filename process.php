@@ -1,91 +1,80 @@
 <?php
-// Replace with your actual Monday API token
-$apiToken = "eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjU4MjkzNTYyNSwiYWFpIjoxMSwidWlkIjo5NTQxMTU0NiwiaWFkIjoiMjAyNS0xMS0wNVQxODo0ODowNy40OTZaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6MzIyNzkzMTcsInJnbiI6InVzZTEifQ.0wdsVkQOlNx2zUJKFsyuvs0IdouCdHUWKl1fPoCSLRI";
-$boardId  = "18323185491";
+// Capture form fields
+$volume = $_POST['volume'] ?? '';
+$loanamt = $_POST['loanamt'] ?? '';
+$loans = $_POST['loans'] ?? '';
+$jumboamt = $_POST['jumboamt'] ?? '';
+$jumboloans = $_POST['jumboloans'] ?? '';
+$convamt = $_POST['convamt'] ?? '';
+$convloans = $_POST['convloans'] ?? '';
+$governmentamt = $_POST['governmentamt'] ?? '';
+$governmentloans = $_POST['governmentloans'] ?? '';
+$purchaseamt = $_POST['purchaseamt'] ?? '';
+$purchaseloans = $_POST['purchaseloans'] ?? '';
+$refiamt = $_POST['refiamt'] ?? '';
+$refiloans = $_POST['refiloans'] ?? '';
+$category = $_POST['category'] ?? '';
+$supercategory = $_POST['supercategory'] ?? '';
+$subcategory = $_POST['subcategory'] ?? '';
+$supercategory2 = $_POST['supercategory2'] ?? '';
+$subcategory2 = $_POST['subcategory2'] ?? '';
 
-// Collect form data safely
-$fullName        = $_POST['full_name'] ?? '';
-$email           = $_POST['email'] ?? '';
-$phone           = $_POST['phone'] ?? '';
-$dob             = $_POST['dob'] ?? '';
-$currentAddress  = $_POST['current_address'] ?? '';
-$propertyAddress = $_POST['property_address'] ?? '';
-$purchasePrice   = $_POST['purchase_price'] ?? '';
-$loanAmount      = $_POST['loan_amount'] ?? '';
-$transactionType = $_POST['transaction_type'] ?? '';
-$occupancy       = $_POST['occupancy'] ?? '';
-$employer        = $_POST['employer'] ?? '';
-$jobTitle        = $_POST['job_title'] ?? '';
-$timeAtJob       = $_POST['time_at_job'] ?? '';
-$monthlyIncome   = $_POST['monthly_income'] ?? '';
-$otherIncome     = $_POST['other_income'] ?? '';
-$bankName        = $_POST['bank_name'] ?? '';
-$savings         = $_POST['savings'] ?? '';
-$monthlyDebt     = $_POST['monthly_debt'] ?? '';
-$consent         = isset($_POST['consent']) ? true : false;
-
-// Build column values JSON
+// Build column values for Monday
 $columnValues = [
-  "lead_email"         => ["email" => $email, "text" => $email],
-  "lead_phone"         => ["phone" => $phone, "countryShortName" => "US"],
-  "date_mkxd4yv6"      => $dob,
-  "text_mkxdrgsj"      => $currentAddress,
-  "text_mkxdvt4v"      => $propertyAddress,
-  "numeric_mkxdn0rw"   => $purchasePrice,
-  "numeric_mkxbgt39"   => $loanAmount,
-  "dropdown_mkxbjpf6"  => ["labels" => [$transactionType]],
-  "dropdown_mkxdw2t5"  => ["labels" => [$occupancy]],
-  "lead_company"       => $employer,
-  "text"               => $jobTitle,
-  "numeric_mkxdw8b6"   => $timeAtJob,
-  "numeric_mkxd3yr5"   => $monthlyIncome,
-  "numeric_mkxdhe8q"   => $otherIncome,
-  "text_mkxd44hz"      => $bankName,
-  "numeric_mkxddesj"   => $savings,
-  "numeric_mkxdmkaa"   => $monthlyDebt,
-  "boolean_mkxdqnft"   => ["checked" => $consent]
+    "volume" => $volume,
+    "loanamt" => $loanamt,
+    "loans" => $loans,
+    "jumboamt" => $jumboamt,
+    "jumboloans" => $jumboloans,
+    "convamt" => $convamt,
+    "convloans" => $convloans,
+    "governmentamt" => $governmentamt,
+    "governmentloans" => $governmentloans,
+    "purchaseamt" => $purchaseamt,
+    "purchaseloans" => $purchaseloans,
+    "refiamt" => $refiamt,
+    "refiloans" => $refiloans,
+    "category" => $category,
+    "supercategory" => $supercategory,
+    "subcategory" => $subcategory,
+    "supercategory2" => $supercategory2,
+    "subcategory2" => $subcategory2
 ];
 
-// Build GraphQL mutation
-$query = 'mutation ($boardId: Int!, $itemName: String!, $columnVals: JSON!) {
-  create_item (
-    board_id: $boardId,
-    item_name: $itemName,
-    column_values: $columnVals
-  ) {
+// GraphQL mutation
+$query = 'mutation ($boardId: ID!, $itemName: String!, $columnValues: JSON!) {
+  create_item(board_id: $boardId, item_name: $itemName, column_values: $columnValues) {
     id
   }
 }';
 
+// Variables — boardId must be a string
 $variables = [
-  "boardId"   => $boardId,
-  "itemName"  => "Lead - " . $fullName,
-  "columnVals"=> json_encode($columnValues)
+    "boardId" => "18323185491",
+    "itemName" => "New Submission",
+    "columnValues" => json_encode($columnValues)
 ];
 
-// Send request to Monday API
-$ch = curl_init("https://api.monday.com/v2");
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_HTTPHEADER, [
-  "Content-Type: application/json",
-  "Authorization: $apiToken"
+// Prepare request
+$data = json_encode([
+    'query' => $query,
+    'variables' => $variables
 ]);
+
+$headers = [
+    'Content-Type: application/json',
+    'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjU4MjkzNTYyNSwiYWFpIjoxMSwidWlkIjo5NTQxMTU0NiwiaWFkIjoiMjAyNS0xMS0wNVQxODo0ODowNy40OTZaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6MzIyNzkzMTcsInJnbiI6InVzZTEifQ.0wdsVkQOlNx2zUJKFsyuvs0IdouCdHUWKl1fPoCSLRI'
+];
+
+// Send to Monday
+$ch = curl_init('https://api.monday.com/v2');
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([
-  "query"     => $query,
-  "variables" => $variables
-]));
-echo json_encode($variables);
-exit;
+curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
 $response = curl_exec($ch);
 curl_close($ch);
 
-// Handle response
-$data = json_decode($response, true);
-if (isset($data['data']['create_item']['id'])) {
-  echo "Application submitted successfully!";
-} else {
-  echo "Error submitting application: " . $response;
-}
-?>
+// Show response for debugging
+echo $response;
