@@ -113,8 +113,22 @@
     
     /* Hero Section */
     .hero-gradient {
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(255, 255, 255, 1) 100%);
-    }
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.95) 0%, rgba(5, 150, 105, 0.95) 100%),
+              url('https://images.unsplash.com/photo-CHOOSE-YOUR-IMAGE?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+.hero-gradient h1,
+.hero-gradient p {
+  color: white;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.badge-green {
+  @apply bg-white text-[var(--primary-green)] px-4 py-2 rounded-full text-sm font-bold shadow-lg;
+}
+    
   </style>
 </head>
 <body>
@@ -143,23 +157,25 @@
 </nav>
 
   <!-- Hero Section -->
-  <section class="hero-gradient pt-32 pb-20">
-    <div class="container mx-auto px-4 lg:px-8">
-      <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
-        <span class="text-[var(--primary-green)] font-semibold text-sm uppercase tracking-wider">Purchase Loans</span>
-        <h1 class="text-5xl lg:text-6xl font-display font-bold text-[var(--dark-900)] mt-4 mb-6 leading-tight">
-          Your Journey to Homeownership Starts Here
-        </h1>
-        <p class="text-xl text-[var(--gray-500)] mb-12 max-w-2xl mx-auto">
-          Whether it's your first home or your dream home, we'll help you find the perfect loan with competitive rates and expert guidance every step of the way.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="https://mortgage-app-cvfhf7gagugdf3eh.eastus2-01.azurewebsites.net/application.html" target="_blank" class="btn-primary">Get Pre-Approved</a>
-          <a href="#calculator" class="btn-outline-green">Calculate Payment</a>
-        </div>
+<section class="hero-gradient pt-32 pb-20">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+      <div class="flex items-center justify-center mb-4">
+        <span class="badge-gold">NEW HOMEOWNERS</span>
+      </div>
+      <h1 class="text-5xl lg:text-6xl font-display font-bold text-[var(--dark-900)] mt-4 mb-6 leading-tight">
+        Purchase Your Dream Home with Confidence
+      </h1>
+      <p class="text-xl text-[var(--gray-500)] mb-12 max-w-2xl mx-auto">
+        Competitive rates and flexible terms for first-time buyers and experienced homeowners. Let us guide you through every step of the purchase process.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="https://mortgage-app-cvfhf7gagugdf3eh.eastus2-01.azurewebsites.net/application.html" target="_blank" class="bg-white text-[var(--primary-green)] px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-50 transition shadow-lg hover:shadow-xl">Get Pre-Approved</a>
+        <a href="#requirements" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-[var(--primary-green)] transition">View Requirements</a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- Key Benefits -->
   <section class="py-16 bg-white">
