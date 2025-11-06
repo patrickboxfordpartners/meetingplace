@@ -60,7 +60,7 @@ $query = 'mutation ($boardId: ID!, $itemName: String!, $columnValues: JSON!) {
 }';
 
 $variables = [
-    "boardId" => "1762389923",
+    "boardId" => "18323185491",
     "itemName" => $full_name,
     "columnValues" => json_encode($columnValues)
 ];
