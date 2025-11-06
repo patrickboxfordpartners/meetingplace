@@ -1,4 +1,5 @@
 <?php
+ob_start();
 // Better debug version
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -12,13 +13,6 @@ file_put_contents('debug.log', "Time: " . date('Y-m-d H:i:s') . "\n\n", FILE_APP
 $full_name = $_POST['full_name'] ?? '';
 $email = $_POST['email'] ?? '';
 $phone = $_POST['phone'] ?? '';
-
-// Show what we got
-echo "<h2>Debug Info:</h2>";
-echo "Full Name: '" . htmlspecialchars($full_name) . "'<br>";
-echo "Email: '" . htmlspecialchars($email) . "'<br>";
-echo "Phone: '" . htmlspecialchars($phone) . "'<br>";
-echo "<br>";
 
 // Check what's missing
 $missing = [];
@@ -128,9 +122,9 @@ $responseData = json_decode($response, true);
 // Check for errors
 if ($httpCode !== 200 || isset($responseData['errors'])) {
     file_put_contents('debug.log', "ERROR from Monday.com\n", FILE_APPEND);
-    echo "<h3 style='color: red;'>ERROR: Failed to submit to Monday.com</h3>";
-    echo "HTTP Code: $httpCode<br>";
-    echo "Response: <pre>" . print_r($responseData, true) . "</pre>";
+     "<h3 style='color: red;'>ERROR: Failed to submit to Monday.com</h3>";
+     "HTTP Code: $httpCode<br>";
+     "Response: <pre>" . print_r($responseData, true) . "</pre>";
     exit;
 }
 
