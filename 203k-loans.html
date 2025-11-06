@@ -44,6 +44,18 @@
       font-family: 'Playfair Display', serif;
     }
     
+    /* Scroll Progress Indicator */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-green) 0%, var(--gold-accent) 100%);
+      z-index: 9999;
+      transition: width 0.1s ease;
+    }
+    
     /* Custom Utilities */
     .btn-primary {
       @apply bg-[var(--primary-green)] text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-green-600 transition shadow-lg hover:shadow-xl;
@@ -91,19 +103,19 @@
     }
     
     /* Hero Section */
-   .hero-gradient {
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.95) 0%, rgba(5, 150, 105, 0.95) 100%),
-              url('https://images.unsplash.com/photo-CHOOSE-YOUR-IMAGE?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
-  background-size: cover;
-  background-position: center;
-  color: white;
-}
+    .hero-gradient {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.95) 0%, rgba(5, 150, 105, 0.95) 100%),
+                  url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+      background-size: cover;
+      background-position: center;
+      color: white;
+    }
 
-.hero-gradient h1,
-.hero-gradient p {
-  color: white;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
+    .hero-gradient h1,
+    .hero-gradient p {
+      color: white;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
     
     /* Comparison Grid */
     .comparison-item {
@@ -111,12 +123,19 @@
     }
     
     /* Badge */
-.badge-orange {
-  @apply bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-xs font-semibold;
-}
+    .badge-orange {
+      @apply bg-white text-orange-700 px-4 py-2 rounded-full text-sm font-bold shadow-lg;
+    }
+    
+    .badge-gold {
+      @apply bg-white text-orange-700 px-4 py-2 rounded-full text-sm font-bold shadow-lg;
+    }
   </style>
 </head>
 <body>
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress" id="scroll-progress"></div>
+  
   <!-- Navigation -->
   <nav class="fixed w-full bg-white shadow-md z-50">
     <div class="container mx-auto px-4 lg:px-8 py-4">
@@ -142,25 +161,25 @@
   </nav>
 
   <!-- Hero Section -->
-<section class="hero-gradient pt-32 pb-20">
-  <div class="container mx-auto px-4 lg:px-8">
-    <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
-      <div class="flex items-center justify-center mb-4">
-        <span class="badge-gold">RENOVATION FINANCING</span>
-      </div>
-      <h1 class="text-5xl lg:text-6xl font-display font-bold text-[var(--dark-900)] mt-4 mb-6 leading-tight">
-        Turn Fixer-Uppers Into Dream Homes
-      </h1>
-      <p class="text-xl text-[var(--gray-500)] mb-12 max-w-2xl mx-auto">
-        Finance both the purchase price and renovation costs in a single loan. The FHA 203k program makes it easy to buy and improve your home.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="https://mortgage-app-cvfhf7gagugdf3eh.eastus2-01.azurewebsites.net/application.html" target="_blank" class="bg-white text-[var(--primary-green)] px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-50 transition shadow-lg hover:shadow-xl">Get Pre-Approved</a>
-        <a href="#requirements" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-[var(--primary-green)] transition">View Requirements</a>
+  <section class="hero-gradient pt-32 pb-20">
+    <div class="container mx-auto px-4 lg:px-8">
+      <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+        <div class="flex items-center justify-center mb-4">
+          <span class="badge-gold">RENOVATION FINANCING</span>
+        </div>
+        <h1 class="text-5xl lg:text-6xl font-display font-bold mt-4 mb-6 leading-tight">
+          Turn Fixer-Uppers Into Dream Homes
+        </h1>
+        <p class="text-xl mb-12 max-w-2xl mx-auto">
+          Finance both the purchase price and renovation costs in a single loan. The FHA 203k program makes it easy to buy and improve your home.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="https://mortgage-app-cvfhf7gagugdf3eh.eastus2-01.azurewebsites.net/application.html" target="_blank" class="bg-white text-[var(--primary-green)] px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-50 transition shadow-lg hover:shadow-xl">Get Pre-Approved</a>
+          <a href="#requirements" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-[var(--primary-green)] transition">View Requirements</a>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
   <!-- Key Benefits -->
   <section class="py-16 bg-white">
@@ -563,7 +582,7 @@
   </section>
 
   <!-- Requirements -->
-  <section class="py-20 bg-[var(--gray-100)]">
+  <section id="requirements" class="py-20 bg-[var(--gray-100)]">
     <div class="container mx-auto px-4 lg:px-8">
       <div class="text-center mb-16" data-aos="fade-up">
         <span class="text-[var(--primary-green)] font-semibold text-sm uppercase tracking-wider">Qualification</span>
@@ -712,6 +731,10 @@
           </p>
         </div>
       </div>
+      
+      <div class="text-center mt-12">
+        <a href="help-center.html" class="btn-outline-green">View All FAQs</a>
+      </div>
     </div>
   </section>
 
@@ -803,6 +826,14 @@
       duration: 800,
       once: true,
       offset: 100
+    });
+    
+    // Scroll Progress Indicator
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('scroll-progress').style.width = scrolled + '%';
     });
     
     // 203k Renovation Calculator
