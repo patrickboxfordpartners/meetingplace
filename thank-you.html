@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Application Received - MPlace Mortgage</title>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-green: #10B981;
+      --dark-900: #111827;
+      --gray-500: #6B7280;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #F3F4F6 0%, #E5E7EB 100%);
+      color: var(--dark-900);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+    
+    .container {
+      max-width: 600px;
+      background: white;
+      border-radius: 24px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      padding: 3rem;
+      text-align: center;
+    }
+    
+    .success-icon {
+      width: 100px;
+      height: 100px;
+      background: var(--primary-green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+      animation: scaleIn 0.5s ease;
+    }
+    
+    @keyframes scaleIn {
+      from {
+        transform: scale(0);
+      }
+      to {
+        transform: scale(1);
+      }
+    }
+    
+    .checkmark {
+      width: 50px;
+      height: 50px;
+      border: 4px solid white;
+      border-radius: 50%;
+      position: relative;
+    }
+    
+    .checkmark::after {
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: 16px;
+      width: 10px;
+      height: 20px;
+      border: solid white;
+      border-width: 0 4px 4px 0;
+      transform: rotate(45deg);
+    }
+    
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--dark-900);
+      margin-bottom: 1rem;
+    }
+    
+    p {
+      font-size: 1.1rem;
+      color: var(--gray-500);
+      margin-bottom: 1.5rem;
+    }
+    
+    .next-steps {
+      background: #F3F4F6;
+      border-radius: 16px;
+      padding: 2rem;
+      margin: 2rem 0;
+      text-align: left;
+    }
+    
+    .next-steps h2 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--dark-900);
+    }
+    
+    .next-steps ul {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .next-steps li {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid #E5E7EB;
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    
+    .next-steps li:last-child {
+      border-bottom: none;
+    }
+    
+    .step-number {
+      background: var(--primary-green);
+      color: white;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    
+    .btn-primary {
+      display: inline-block;
+      background: var(--primary-green);
+      color: white;
+      padding: 1rem 2.5rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+      margin-top: 1rem;
+    }
+    
+    .btn-primary:hover {
+      background: #059669;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+    }
+    
+    .contact-info {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid #E5E7EB;
+    }
+    
+    .contact-info p {
+      font-size: 0.95rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .contact-info a {
+      color: var(--primary-green);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="success-icon">
+      <div class="checkmark"></div>
+    </div>
+    
+    <h1>Application Received!</h1>
+    <p>Thank you for choosing Meetingplace Mortgage. We've received your mortgage application and our team is already reviewing it.</p>
+    
+    <div class="next-steps">
+      <h2>What Happens Next?</h2>
+      <ul>
+        <li>
+          <span class="step-number">1</span>
+          <span>We'll review your application within <strong>1 business day</strong></span>
+        </li>
+        <li>
+          <span class="step-number">2</span>
+          <span>A dedicated loan officer will contact you to discuss your options</span>
+        </li>
+        <li>
+          <span class="step-number">3</span>
+          <span>We may request additional documentation to complete your file</span>
+        </li>
+        <li>
+          <span class="step-number">4</span>
+          <span>You'll receive a <strong>pre-approval decision within 3-5 days</strong></span>
+        </li>
+      </ul>
+    </div>
+    
+    <a href="https://mplacemortgage.com" class="btn-primary">Return to Homepage</a>
+    
+    <div class="contact-info">
+      <p><strong>Need immediate assistance?</strong></p>
+      <p>Call us at <a href="tel:844-224-2275">(844) 224-2275</a></p>
+      <p>Email: <a href="mailto:info@mplacemortgage.com">info@mplacemortgage.com</a></p>
+      <p style="font-size: 0.85rem; margin-top: 1rem;">Monday-Friday: 9AM - 6PM | Saturday: 10AM - 4PM</p>
+    </div>
+  </div>
+</body>
+</html>
