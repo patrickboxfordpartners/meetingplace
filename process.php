@@ -73,6 +73,9 @@ curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 
+echo json_encode(['query' => $query, 'variables' => $variables], JSON_UNESCAPED_SLASHES);
+exit;
+
 $response = curl_exec($ch);
 curl_close($ch);
 
