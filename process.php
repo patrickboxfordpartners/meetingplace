@@ -134,10 +134,7 @@ if ($httpCode !== 200 || isset($responseData['errors'])) {
     exit;
 }
 
-// Success! Redirect
-file_put_contents('debug.log', "SUCCESS! Redirecting to thank-you page\n\n", FILE_APPEND);
-echo "<h2 style='color: green;'>SUCCESS! Redirecting...</h2>";
-echo "<script>setTimeout(function(){ window.location.href = 'https://mplacemortgage.com/thank-you.html'; }, 2000);</script>";
+header('Location: https://mplacemortgage.com/thank-you.html', true, 303);
 exit;
-?>
+
 
