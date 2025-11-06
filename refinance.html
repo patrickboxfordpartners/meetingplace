@@ -92,13 +92,23 @@
     
     /* Hero Section */
     .hero-gradient {
-      background: linear-gradient(135deg, rgba(124, 58, 237, 0.05) 0%, rgba(255, 255, 255, 1) 100%);
-    }
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.95) 0%, rgba(5, 150, 105, 0.95) 100%),
+              url('https://images.unsplash.com/photo-CHOOSE-YOUR-IMAGE?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+.hero-gradient h1,
+.hero-gradient p {
+  color: white;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
     
     /* Badge */
-    .badge-purple {
-      @apply bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-xs font-semibold;
-    }
+.badge-green {
+  @apply bg-white text-[var(--primary-green)] px-4 py-2 rounded-full text-sm font-bold shadow-lg;
+}
     
     /* Reason Cards */
     .reason-card {
@@ -137,25 +147,26 @@
 </nav>
 
   <!-- Hero Section -->
-  <section class="hero-gradient pt-32 pb-20">
-    <div class="container mx-auto px-4 lg:px-8">
-      <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
-        <div class="flex items-center justify-center mb-4">
-          <span class="badge-purple">REFINANCING</span>
-        </div>
-        <h1 class="text-5xl lg:text-6xl font-display font-bold text-[var(--dark-900)] mt-4 mb-6 leading-tight">
-          Lower Your Rate, Lower Your Payment
-        </h1>
-        <p class="text-xl text-[var(--gray-500)] mb-12 max-w-2xl mx-auto">
-          Refinancing your mortgage can save you thousands. Whether you want to reduce your monthly payment, shorten your loan term, or access your home's equity, we'll help you find the right solution.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="#calculator" class="btn-primary">Calculate Your Savings</a>
-          <a href="#when-to-refinance" class="btn-outline-green">Should I Refinance?</a>
-        </div>
+  <!-- Hero Section -->
+<section class="hero-gradient pt-32 pb-20">
+  <div class="container mx-auto px-4 lg:px-8">
+    <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+      <div class="flex items-center justify-center mb-4">
+        <span class="badge-gold">SAVE MONEY</span>
+      </div>
+      <h1 class="text-5xl lg:text-6xl font-display font-bold text-[var(--dark-900)] mt-4 mb-6 leading-tight">
+        Refinance and Save Thousands
+      </h1>
+      <p class="text-xl text-[var(--gray-500)] mb-12 max-w-2xl mx-auto">
+        Lower your monthly payment, shorten your loan term, or tap into your home's equity. See if refinancing makes sense for your situation.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="https://mortgage-app-cvfhf7gagugdf3eh.eastus2-01.azurewebsites.net/application.html" target="_blank" class="bg-white text-[var(--primary-green)] px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-50 transition shadow-lg hover:shadow-xl">Get Pre-Approved</a>
+        <a href="#requirements" class="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-[var(--primary-green)] transition">View Requirements</a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- Key Benefits -->
   <section class="py-16 bg-white">
