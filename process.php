@@ -85,14 +85,14 @@ $columnValues = array_filter($columnValues, function($value) {
 });
 
 // GraphQL mutation
-$query = 'mutation ($boardId: ID!, $itemName: String!, $columnValues: JSON!) {
+$query = 'mutation ($boardId: 18323185491!, $itemName: String!, $columnValues: JSON!) {
   create_item(board_id: $boardId, item_name: $itemName, column_values: $columnValues) {
     id
   }
 }';
 
 $variables = [
-    "boardId" => "1762389923",
+    "boardId" => "18323185491",
     "itemName" => $full_name,
     "columnValues" => json_encode($columnValues)
 ];
