@@ -45,9 +45,12 @@ $columnValues = [
     'numeric_mkxdw8b6' => $time_at_job,
     'numeric_mkxd3yr5' => $monthly_income,
     'numeric_mkxdhe8q' => $other_income,
+    'numeric_mkxddesj' => $savings,
+    'numeric_mkxdmkaa' => $monthly_debt,
     'date_mkxd4yv6' => ['date' => $dob],
     'dropdown_mkxbjpf6' => ['labels' => [$transaction_type]],
-    'dropdown_mkxdw2t5' => ['labels' => [$occupancy]]
+    'dropdown_mkxdw2t5' => ['labels' => [$occupancy]],
+    'boolean_mkxdqnft' => ['checked' => ($consent === 'Yes' ? 'true' : 'false')]
 ];
 
 // Remove empty values
