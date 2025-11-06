@@ -28,10 +28,13 @@ if (empty($full_name) || empty($email) || empty($phone)) {
     die("ERROR: Please fill in all required fields (Name, Email, Phone)");
 }
 
+// Clean phone number - remove all non-digits
+$phone_clean = preg_replace('/[^0-9]/', '', $phone);
+
 // Build column values for Monday.com
 $columnValues = [
     'lead_email' => ['email' => $email, 'text' => $email],
-    'lead_phone' => ['phone' => $phone, 'countryShortName' => 'US'],
+    'lead_phone' => ['phone' => $phone_clean, 'countryShortName' => 'US'],
     'text' => $job_title,
     'lead_company' => $employer,
     'text_mkxdrgsj' => $current_address,
