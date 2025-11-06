@@ -1,5 +1,5 @@
 <?php
-// Debug version - will show us what's happening
+// Better debug version
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -12,6 +12,28 @@ file_put_contents('debug.log', "Time: " . date('Y-m-d H:i:s') . "\n\n", FILE_APP
 $full_name = $_POST['full_name'] ?? '';
 $email = $_POST['email'] ?? '';
 $phone = $_POST['phone'] ?? '';
+
+// Show what we got
+echo "<h2>Debug Info:</h2>";
+echo "Full Name: '" . htmlspecialchars($full_name) . "'<br>";
+echo "Email: '" . htmlspecialchars($email) . "'<br>";
+echo "Phone: '" . htmlspecialchars($phone) . "'<br>";
+echo "<br>";
+
+// Check what's missing
+$missing = [];
+if (empty($full_name)) $missing[] = 'full_name';
+if (empty($email)) $missing[] = 'email';
+if (empty($phone)) $missing[] = 'phone';
+
+if (!empty($missing)) {
+    echo "<h3 style='color: red;'>Missing Required Fields:</h3>";
+    echo implode(', ', $missing);
+    file_put_contents('debug.log', "ERROR: Missing fields: " . implode(', ', $missing) . "\n", FILE_APPEND);
+    exit;
+}
+
+// If we get here, all required fields are present
 $dob = $_POST['dob'] ?? '';
 $current_address = $_POST['current_address'] ?? '';
 $property_address = $_POST['property_address'] ?? '';
@@ -28,13 +50,6 @@ $bank_name = $_POST['bank_name'] ?? '';
 $savings = $_POST['savings'] ?? '';
 $monthly_debt = $_POST['monthly_debt'] ?? '';
 $consent = isset($_POST['consent']) ? 'Yes' : 'No';
-
-// Validate required fields
-if (empty($full_name) || empty($email) || empty($phone)) {
-    file_put_contents('debug.log', "ERROR: Missing required fields\n", FILE_APPEND);
-    echo "ERROR: Missing required fields";
-    exit;
-}
 
 file_put_contents('debug.log', "Validation passed. Name: $full_name, Email: $email\n", FILE_APPEND);
 
@@ -113,14 +128,15 @@ $responseData = json_decode($response, true);
 // Check for errors
 if ($httpCode !== 200 || isset($responseData['errors'])) {
     file_put_contents('debug.log', "ERROR from Monday.com\n", FILE_APPEND);
-    echo "ERROR: Failed to submit to Monday.com<br>";
+    echo "<h3 style='color: red;'>ERROR: Failed to submit to Monday.com</h3>";
     echo "HTTP Code: $httpCode<br>";
-    echo "Response: " . print_r($responseData, true);
+    echo "Response: <pre>" . print_r($responseData, true) . "</pre>";
     exit;
 }
 
 // Success! Redirect
 file_put_contents('debug.log', "SUCCESS! Redirecting to thank-you page\n\n", FILE_APPEND);
-header('Location: https://mplacemortgage.com/thank-you.html');
+echo "<h2 style='color: green;'>SUCCESS! Redirecting...</h2>";
+echo "<script>setTimeout(function(){ window.location.href = 'https://mplacemortgage.com/thank-you.html'; }, 2000);</script>";
 exit;
 ?>
