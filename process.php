@@ -101,6 +101,87 @@ if ($httpCode !== 200 || isset($responseData['errors'])) {
     echo "<pre>" . print_r($responseData, true) . "</pre>";
     exit;
 }
+// Extract the Monday item ID from response
+$monday_item_id = $responseData['data']['create_item']['id'] ?? '';
+
+// ==================== URLA GENERATION ====================
+$lead_data = array(
+    'Name' => $full_name,
+    'Email' => $email,
+    'Phone' => $phone,
+    'Date of Birth' => $dob,
+    'Current Address' => $current_address,
+    'Property Address' => $property_address,
+    'Purchase Price' => $purchase_price,
+    'Loan Amount Requested' => $loan_amount,
+    'Transaction Type' => $transaction_type,
+    'Occupancy' => $occupancy,
+    'Employer Name' => $employer,
+    'Job Title' => $job_title,
+    'Time At Job' => $time_at_job,
+    'Monthly Gross Income' => $monthly_income,
+    'Other Income' => $other_income,
+    'Bank Name' => $bank_name,
+    'Approximate Savings' => $savings,
+    'Monthly Debt Obligations' => $monthly_debt,
+    'monday_item_id' => $monday_item_id
+);
+
+$json_data = json_encode($lead_data);
+$python_script = '/home/your_user/monday_integration.py';  // UPDATE THIS PATH
+$command = "python3 " . escapeshellarg($python_script) . " --data " . escapeshellarg($json_data) . " 2>&1";
+exec($command, $output, $return_var);
+
+if ($return_var === 0) {
+    // PDF generated successfully - extract the file path from output
+    $pdf_path = '';
+    foreach ($output as $line) {
+        if (strpos($line, 'Path:') !== false) {
+            $pdf_path = trim(str_replace('Path:', '', $line));
+            break;
+        }
+    }
+    
+    if ($pdf_path && file_exists($pdf_path)) {
+        // Upload PDF to Monday Files column
+        $file_column_id = 'file_mkxfbe9g';  // Or your actual column ID like 'files_mkxd1234'
+        
+        $upload_query = 'mutation ($file: File!, $itemId: ID!, $columnId: String!) {
+            add_file_to_column (item_id: $itemId, column_id: $columnId, file: $file) {
+                id
+            }
+        }';
+        
+        $curl_file = new CURLFile($pdf_path, 'application/pdf', basename($pdf_path));
+        
+        $upload_data = [
+            'query' => $upload_query,
+            'variables' => json_encode([
+                'itemId' => $monday_item_id,
+                'columnId' => $file_column_id
+            ]),
+            'map' => json_encode(['file' => ['variables.file']]),
+            'file' => $curl_file
+        ];
+        
+        $ch_upload = curl_init('https://api.monday.com/v2/file');
+        curl_setopt($ch_upload, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch_upload, CURLOPT_POST, true);
+        curl_setopt($ch_upload, CURLOPT_POSTFIELDS, $upload_data);
+        curl_setopt($ch_upload, CURLOPT_HTTPHEADER, [
+            'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ0aWQiOjU4MjkzNTYyNSwiYWFpIjoxMSwidWlkIjo5NTQxMTU0NiwiaWFkIjoiMjAyNS0xMS0wNVQxODo0ODowNy40OTZaIiwicGVyIjoibWU6d3JpdGUiLCJhY3RpZCI6MzIyNzkzMTcsInJnbiI6InVzZTEifQ.0wdsVkQOlNx2zUJKFsyuvs0IdouCdHUWKl1fPoCSLRI'
+        ]);
+        
+        curl_exec($ch_upload);
+        curl_close($ch_upload);
+        
+        // Optional: Delete local PDF after upload
+        // unlink($pdf_path);
+    }
+} else {
+    error_log("URLA generation failed for $full_name: " . implode("\n", $output));
+}
+// ==================== END URLA GENERATION ====================
 
 // Success - redirect
 header('Location: https://mplacemortgage.com/thank-you.html');
