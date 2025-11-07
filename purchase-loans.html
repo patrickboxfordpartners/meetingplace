@@ -43,6 +43,18 @@
       font-family: 'Playfair Display', serif;
     }
     
+    /* Scroll Progress Indicator */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary-green) 0%, var(--gold-accent) 100%);
+      z-index: 9999;
+      transition: width 0.1s ease;
+    }
+    
     /* Custom Utilities */
     .btn-primary {
       @apply bg-[var(--primary-green)] text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-green-600 transition shadow-lg hover:shadow-xl;
@@ -113,25 +125,33 @@
     
     /* Hero Section */
     .hero-gradient {
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.95) 0%, rgba(5, 150, 105, 0.95) 100%),
-              url('https://images.unsplash.com/photo-CHOOSE-YOUR-IMAGE?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
-  background-size: cover;
-  background-position: center;
-  color: white;
-}
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.95) 0%, rgba(5, 150, 105, 0.95) 100%),
+                  url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+      background-size: cover;
+      background-position: center;
+      color: white;
+    }
 
-.hero-gradient h1,
-.hero-gradient p {
-  color: white;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-.badge-green {
-  @apply bg-white text-[var(--primary-green)] px-4 py-2 rounded-full text-sm font-bold shadow-lg;
-}
+    .hero-gradient h1,
+    .hero-gradient p {
+      color: white;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .badge-green {
+      @apply bg-white text-[var(--primary-green)] px-4 py-2 rounded-full text-sm font-bold shadow-lg;
+    }
+    
+    .badge-gold {
+      @apply bg-white text-[var(--primary-green)] px-4 py-2 rounded-full text-sm font-bold shadow-lg;
+    }
     
   </style>
 </head>
 <body>
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress" id="scroll-progress"></div>
+  
   <!-- Navigation -->
   <nav class="fixed w-full bg-white shadow-md z-50">
   <div class="container mx-auto px-4 lg:px-8 py-4">
@@ -163,10 +183,10 @@
       <div class="flex items-center justify-center mb-4">
         <span class="badge-gold">NEW HOMEOWNERS</span>
       </div>
-      <h1 class="text-5xl lg:text-6xl font-display font-bold text-[var(--dark-900)] mt-4 mb-6 leading-tight">
+      <h1 class="text-5xl lg:text-6xl font-display font-bold mt-4 mb-6 leading-tight">
         Purchase Your Dream Home with Confidence
       </h1>
-      <p class="text-xl text-[var(--gray-500)] mb-12 max-w-2xl mx-auto">
+      <p class="text-xl mb-12 max-w-2xl mx-auto">
         Competitive rates and flexible terms for first-time buyers and experienced homeowners. Let us guide you through every step of the purchase process.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
@@ -588,7 +608,7 @@
   </section>
 
   <!-- Requirements -->
-  <section class="py-20 bg-white">
+  <section id="requirements" class="py-20 bg-white">
     <div class="container mx-auto px-4 lg:px-8">
       <div class="text-center mb-16" data-aos="fade-up">
         <span class="text-[var(--primary-green)] font-semibold text-sm uppercase tracking-wider">What You'll Need</span>
@@ -780,7 +800,7 @@
       
       <div class="text-center mt-12" data-aos="fade-up">
         <p class="text-[var(--gray-500)] mb-6">Still have questions?</p>
-        <a href="faq.html" class="btn-outline-green">View All FAQs</a>
+        <a href="help-center.html" class="btn-outline-green">View All FAQs</a>
       </div>
     </div>
   </section>
@@ -834,9 +854,9 @@
       <div>
         <h4 class="text-lg font-semibold mb-6">Resources</h4>
         <ul class="space-y-3">
-          <li><a href="calculator.html" class="text-gray-400 hover:text-green-500 transition">Calculator</a></li>
-          <li><a href="faq.html" class="text-gray-400 hover:text-green-500 transition">FAQ</a></li>
-          <li><a href="resources.html" class="text-gray-400 hover:text-green-500 transition">Learning Center</a></li>
+          <li><a href="help-center.html" class="text-gray-400 hover:text-green-500 transition">Calculator</a></li>
+          <li><a href="help-center.html" class="text-gray-400 hover:text-green-500 transition">FAQ</a></li>
+          <li><a href="help-center.html" class="text-gray-400 hover:text-green-500 transition">Learning Center</a></li>
           <li><a href="privacy-policy.html" class="text-gray-400 hover:text-green-500 transition">Privacy Policy</a></li>
           <li><a href="terms-of-service.html" class="text-gray-400 hover:text-green-500 transition">Terms of Service</a></li>
         </ul>
@@ -861,7 +881,7 @@
       </div>
       <div class="text-center">
         <p class="text-gray-400 text-sm">
-          © 2024 MPlace Mortgage. All rights reserved.
+          © 2025 Meetingplace Mortgage. All rights reserved.
         </p>
       </div>
     </div>
@@ -874,6 +894,14 @@
       duration: 800,
       once: true,
       offset: 100
+    });
+    
+    // Scroll Progress Indicator
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('scroll-progress').style.width = scrolled + '%';
     });
     
     // Purchase Calculator
