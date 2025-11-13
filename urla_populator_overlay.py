@@ -312,9 +312,7 @@ class URLAPopulator:
             import traceback
             traceback.print_exc()
             return False
-```
 
 ## requirements.txt
-```
 pypdf
 reportlab
