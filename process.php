@@ -128,9 +128,15 @@ $lead_data = array(
 );
 
 $json_data = json_encode($lead_data);
-$python_script = '/home/your_user/monday_integration.py';  // UPDATE THIS PATH
+$python_script = '/home/site/wwwroot/monday_integration.py';  // UPDATE THIS PATH
 $command = "python3 " . escapeshellarg($python_script) . " --data " . escapeshellarg($json_data) . " 2>&1";
 exec($command, $output, $return_var);
+
+// Add debugging right here:
+error_log("URLA Generation Debug:");
+error_log("Command: " . $command);
+error_log("Return code: " . $return_var);
+error_log("Output: " . print_r($output, true));
 
 if ($return_var === 0) {
     // PDF generated successfully - extract the file path from output
